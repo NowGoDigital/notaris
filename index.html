@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notaris & PPAT Elite | Mataram</title>
     
-    <!-- Fonts: Playfair Display (Luxury Serif) + Plus Jakarta Sans (Modern) + Cormorant (Italic Editorial) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,11 +19,15 @@
             --gold: #D4AF37;
             --gold-light: #E8C872;
             --gold-soft: rgba(212, 175, 55, 0.15);
+            --gold-ultra-soft: rgba(212, 175, 55, 0.06);
             --accent-blue: #3b82f6;
-            --accent-cyan: #06b6d4;
             --white: #ffffff;
             --text-cream: #f5f0e1;
             --text-muted: rgba(255,255,255,0.65);
+            --text-body: #475569;
+            --bg-section: #faf9f7;
+            --bg-section-alt: #f3f1ed;
+            --border-light: rgba(0,0,0,0.06);
             
             --font-serif: 'Playfair Display', serif;
             --font-editorial: 'Cormorant Garamond', serif;
@@ -32,6 +35,8 @@
             
             --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E5A1 50%, #D4AF37 100%);
             --gradient-hero: radial-gradient(ellipse at top, #1a2744 0%, #0a0e1a 60%, #05070d 100%);
+            --shadow-luxury: 0 25px 60px rgba(0,0,0,0.08);
+            --shadow-gold: 0 15px 40px rgba(212, 175, 55, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,12 +47,13 @@
             color: var(--primary-dark);
             background-color: var(--white);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
         a { text-decoration: none; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         ul { list-style: none; }
+        h1, h2, h3, h4 { font-family: var(--font-serif); }
 
         /* ============================================= */
         /* ============== NAVBAR PREMIUM =============== */
@@ -61,24 +67,16 @@
 
         .navbar.scrolled {
             padding: 1rem 0;
-            background: rgba(10, 14, 26, 0.85);
+            background: rgba(10, 14, 26, 0.92);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid rgba(212, 175, 55, 0.15);
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
 
-        .nav-content { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
 
-        /* Logo Premium dengan Monogram */
-        .logo {
-            display: flex; align-items: center; gap: 14px;
-            color: var(--white);
-        }
+        .logo { display: flex; align-items: center; gap: 14px; color: var(--white); }
 
         .logo-monogram {
             width: 48px; height: 48px;
@@ -86,600 +84,884 @@
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-family: var(--font-serif);
-            font-weight: 700;
-            font-size: 1.2rem;
+            font-weight: 700; font-size: 1.2rem;
             color: var(--gold);
             background: rgba(212, 175, 55, 0.05);
             position: relative;
-            transition: all 0.4s ease;
+            transition: all 0.5s ease;
         }
 
         .logo-monogram::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
+            content: ''; position: absolute; inset: -4px;
             border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 50%;
-            transition: all 0.4s ease;
+            border-radius: 50%; transition: all 0.4s ease;
         }
 
         .logo:hover .logo-monogram {
-            background: var(--gold);
-            color: var(--primary-dark);
+            background: var(--gold); color: var(--primary-dark);
             transform: rotate(360deg);
         }
 
-        .logo-text {
-            display: flex; flex-direction: column; line-height: 1;
-        }
-
+        .logo-text { display: flex; flex-direction: column; line-height: 1; }
         .logo-text .brand-name {
-            font-family: var(--font-serif);
-            font-size: 1.35rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--white);
+            font-family: var(--font-serif); font-size: 1.35rem;
+            font-weight: 700; letter-spacing: 2px; color: var(--white);
         }
-
         .logo-text .brand-tag {
-            font-size: 0.65rem;
-            letter-spacing: 4px;
-            color: var(--gold);
-            text-transform: uppercase;
-            margin-top: 4px;
-            font-weight: 500;
+            font-size: 0.65rem; letter-spacing: 4px;
+            color: var(--gold); text-transform: uppercase;
+            margin-top: 4px; font-weight: 500;
         }
 
-        /* Menu Links - Gaya Brand Mewah */
-        .nav-links { 
-            display: flex; 
-            gap: 2.8rem; 
-            align-items: center; 
-        }
-        
+        .nav-links { display: flex; gap: 2.8rem; align-items: center; }
         .nav-links a {
-            color: rgba(255,255,255,0.85);
-            font-size: 0.78rem;
-            font-weight: 500;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            position: relative;
-            padding: 8px 0;
+            color: rgba(255,255,255,0.85); font-size: 0.78rem;
+            font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase;
+            position: relative; padding: 8px 0;
         }
-
         .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 50%;
-            width: 0; height: 1px;
-            background: var(--gold);
-            transition: all 0.4s ease;
-            transform: translateX(-50%);
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            width: 0; height: 1px; background: var(--gold);
+            transition: all 0.4s ease; transform: translateX(-50%);
         }
-
         .nav-links a::after {
-            content: '◆';
-            position: absolute;
-            bottom: -14px; left: 50%;
-            font-size: 0.45rem;
-            color: var(--gold);
-            opacity: 0;
-            transform: translateX(-50%);
-            transition: all 0.4s ease;
+            content: '◆'; position: absolute; bottom: -14px; left: 50%;
+            font-size: 0.45rem; color: var(--gold); opacity: 0;
+            transform: translateX(-50%); transition: all 0.4s ease;
         }
-
         .nav-links a:hover { color: var(--white); }
         .nav-links a:hover::before { width: 100%; }
         .nav-links a:hover::after { opacity: 1; bottom: -10px; }
 
-        /* Tombol CTA Navbar - Gaya Luxury */
         .btn-nav {
             background: transparent !important;
             color: var(--gold) !important;
             padding: 0.9rem 2rem !important;
             border: 1px solid var(--gold) !important;
             border-radius: 0 !important;
-            font-weight: 600 !important;
-            letter-spacing: 2px !important;
-            font-size: 0.75rem !important;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
+            font-weight: 600 !important; letter-spacing: 2px !important;
+            font-size: 0.75rem !important; text-transform: uppercase;
+            position: relative; overflow: hidden;
             transition: all 0.4s ease !important;
         }
-
         .btn-nav::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: var(--gold);
-            transition: left 0.4s ease;
-            z-index: -1;
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%; background: var(--gold);
+            transition: left 0.4s ease; z-index: -1;
         }
-
-        .btn-nav:hover {
-            color: var(--primary-dark) !important;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3) !important;
-        }
-
+        .btn-nav:hover { color: var(--primary-dark) !important; box-shadow: var(--shadow-gold) !important; }
         .btn-nav:hover::before { left: 0; }
         .btn-nav::after { display: none !important; }
 
-        /* Hamburger */
         .hamburger {
             display: none; flex-direction: column; gap: 6px;
             cursor: pointer; padding: 8px; border: none; background: none;
         }
-        .hamburger span {
-            width: 28px; height: 1.5px; background: var(--gold);
-            transition: all 0.3s ease;
-        }
+        .hamburger span { width: 28px; height: 1.5px; background: var(--gold); transition: all 0.3s ease; }
 
         /* ============================================= */
         /* ============= HERO SECTION LUXURY =========== */
         /* ============================================= */
         .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+            position: relative; min-height: 100vh;
+            display: flex; align-items: center;
             padding: 140px 0 80px;
             background: var(--gradient-hero);
-            overflow: hidden;
-            color: var(--white);
+            overflow: hidden; color: var(--white);
         }
 
-        /* Subtle Grain Texture Overlay */
         .hero::before {
-            content: '';
-            position: absolute; inset: 0;
+            content: ''; position: absolute; inset: 0;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.04;
-            z-index: 1;
-            pointer-events: none;
+            opacity: 0.04; z-index: 1; pointer-events: none;
         }
 
-        /* Radial Gold Glow */
         .hero-glow {
-            position: absolute;
-            top: 20%; right: 10%;
+            position: absolute; top: 20%; right: 10%;
             width: 600px; height: 600px;
             background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
-            filter: blur(60px);
-            z-index: 1;
-            pointer-events: none;
+            filter: blur(60px); z-index: 1; pointer-events: none;
         }
-
         .hero-glow-2 {
-            position: absolute;
-            bottom: 10%; left: 5%;
+            position: absolute; bottom: 10%; left: 5%;
             width: 500px; height: 500px;
             background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
-            filter: blur(60px);
-            z-index: 1;
-            pointer-events: none;
+            filter: blur(60px); z-index: 1; pointer-events: none;
         }
 
         .hero-grid {
-            display: grid; 
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 80px; 
-            align-items: center; 
-            position: relative; 
-            z-index: 2;
+            display: grid; grid-template-columns: 1.1fr 0.9fr;
+            gap: 80px; align-items: center; position: relative; z-index: 2;
         }
 
-        /* === HERO TEXT === */
         .hero-text { position: relative; }
 
-        /* Premium Badge */
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
+            display: inline-flex; align-items: center; gap: 12px;
             padding: 10px 22px;
             border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 50px;
-            background: rgba(212, 175, 55, 0.05);
+            border-radius: 50px; background: rgba(212, 175, 55, 0.05);
             margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0; animation: fadeInUp 1s ease 0.2s forwards;
         }
-
         .hero-badge .dot {
-            width: 6px; height: 6px;
-            background: var(--gold);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--gold);
+            width: 6px; height: 6px; background: var(--gold);
+            border-radius: 50%; box-shadow: 0 0 10px var(--gold);
             animation: pulseDot 2s ease-in-out infinite;
         }
-
         @keyframes pulseDot {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(1.3); }
         }
-
         .hero-badge span {
-            font-size: 0.72rem;
-            letter-spacing: 3.5px;
-            text-transform: uppercase;
-            color: var(--gold);
-            font-weight: 600;
+            font-size: 0.72rem; letter-spacing: 3.5px;
+            text-transform: uppercase; color: var(--gold); font-weight: 600;
         }
 
-        /* Main Title - Typography Editorial */
         .hero-text h1 {
             font-family: var(--font-serif);
             font-size: clamp(3rem, 6vw, 5.5rem);
-            line-height: 1.05;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.4s forwards;
+            line-height: 1.05; font-weight: 700;
+            letter-spacing: -1px; margin-bottom: 1.5rem;
+            opacity: 0; animation: fadeInUp 1s ease 0.4s forwards;
         }
-
-        .hero-text h1 .line {
-            display: block;
-            overflow: hidden;
-        }
-
+        .hero-text h1 .line { display: block; overflow: hidden; }
         .hero-text h1 .italic-accent {
-            font-family: var(--font-editorial);
-            font-style: italic;
-            font-weight: 400;
+            font-family: var(--font-editorial); font-style: italic; font-weight: 400;
             background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1.15em;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; font-size: 1.15em;
         }
-
         .hero-text h1 .thin-word {
-            font-weight: 400;
-            font-family: var(--font-editorial);
-            font-style: italic;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.85em;
+            font-weight: 400; font-family: var(--font-editorial);
+            font-style: italic; color: rgba(255,255,255,0.7); font-size: 0.85em;
         }
 
-        /* Gold Divider Line */
         .gold-divider {
-            display: flex;
-            align-items: center;
-            gap: 16px;
+            display: flex; align-items: center; gap: 16px;
             margin: 2rem 0;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0; animation: fadeInUp 1s ease 0.6s forwards;
         }
-
-        .gold-divider .line {
-            height: 1px;
-            width: 60px;
-            background: var(--gold);
-        }
-
-        .gold-divider .diamond {
-            color: var(--gold);
-            font-size: 0.6rem;
-        }
-
+        .gold-divider .line-sep { height: 1px; width: 60px; background: var(--gold); }
+        .gold-divider .diamond { color: var(--gold); font-size: 0.6rem; }
         .gold-divider .est-text {
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            color: rgba(255,255,255,0.5);
-            text-transform: uppercase;
+            font-size: 0.75rem; letter-spacing: 3px;
+            color: rgba(255,255,255,0.5); text-transform: uppercase;
         }
 
-        /* Description */
         .hero-text .hero-desc {
-            font-family: var(--font-sans);
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            max-width: 520px;
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            line-height: 1.8;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.8s forwards;
+            font-family: var(--font-sans); font-size: 1.05rem;
+            color: var(--text-muted); max-width: 520px;
+            margin-bottom: 2.5rem; font-weight: 300; line-height: 1.8;
+            opacity: 0; animation: fadeInUp 1s ease 0.8s forwards;
         }
 
-        /* Buttons Row */
         .hero-btns {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeInUp 1s ease 1s forwards;
+            display: flex; gap: 20px; flex-wrap: wrap;
+            opacity: 0; animation: fadeInUp 1s ease 1s forwards;
         }
 
         .btn-luxury {
-            display: inline-flex;
-            align-items: center;
-            gap: 14px;
-            padding: 18px 38px;
-            background: var(--gold);
-            color: var(--primary-dark);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            border: none;
-            cursor: pointer;
+            display: inline-flex; align-items: center; gap: 14px;
+            padding: 18px 38px; background: var(--gold);
+            color: var(--primary-dark); font-size: 0.8rem;
+            font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+            position: relative; overflow: hidden; transition: all 0.4s ease;
+            border: none; cursor: pointer;
         }
-
         .btn-luxury::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
+            content: ''; position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
+            transform: translateX(-100%); transition: transform 0.6s ease;
         }
-
         .btn-luxury:hover {
-            background: var(--gold-light);
-            transform: translateY(-3px);
+            background: var(--gold-light); transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
         }
-
         .btn-luxury:hover::before { transform: translateX(100%); }
-
         .btn-luxury .arrow {
-            width: 28px; height: 28px;
-            border: 1px solid var(--primary-dark);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.7rem;
-            transition: all 0.3s ease;
+            width: 28px; height: 28px; border: 1px solid var(--primary-dark);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 0.7rem; transition: all 0.3s ease;
         }
-
         .btn-luxury:hover .arrow {
-            background: var(--primary-dark);
-            color: var(--gold);
-            transform: rotate(-45deg);
+            background: var(--primary-dark); color: var(--gold); transform: rotate(-45deg);
         }
 
         .btn-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 18px 32px;
-            background: transparent;
-            color: var(--white);
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.4s ease;
+            display: inline-flex; align-items: center; gap: 12px;
+            padding: 18px 32px; background: transparent;
+            color: var(--white); font-size: 0.8rem;
+            font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.2); transition: all 0.4s ease;
         }
-
         .btn-ghost:hover {
-            border-color: var(--gold);
-            color: var(--gold);
+            border-color: var(--gold); color: var(--gold);
             background: rgba(212, 175, 55, 0.05);
         }
 
-        /* Signature */
         .hero-signature {
-            margin-top: 3rem;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            opacity: 0;
-            animation: fadeInUp 1s ease 1.2s forwards;
+            margin-top: 3rem; display: flex; align-items: center; gap: 20px;
+            opacity: 0; animation: fadeInUp 1s ease 1.2s forwards;
         }
-
-        .signature-line {
-            width: 50px; height: 1px;
-            background: rgba(255,255,255,0.3);
-        }
-
+        .signature-line { width: 50px; height: 1px; background: rgba(255,255,255,0.3); }
         .signature-text {
-            font-family: var(--font-editorial);
-            font-style: italic;
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.6);
+            font-family: var(--font-editorial); font-style: italic;
+            font-size: 1.1rem; color: rgba(255,255,255,0.6);
         }
-
         .signature-name {
-            font-family: var(--font-serif);
-            font-style: normal;
-            color: var(--gold);
-            font-weight: 600;
+            font-family: var(--font-serif); font-style: normal;
+            color: var(--gold); font-weight: 600;
         }
 
-        /* === HERO VISUAL === */
+        /* Hero Visual */
         .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 600px;
-            opacity: 0;
-            animation: fadeIn 1.2s ease 0.6s forwards;
+            position: relative; display: flex; justify-content: center; align-items: center;
+            min-height: 600px; opacity: 0; animation: fadeIn 1.2s ease 0.6s forwards;
         }
-
-        .photo-container {
-            position: relative;
-            width: 460px;
-            height: 460px;
-        }
-
+        .photo-container { position: relative; width: 460px; height: 460px; }
         .photo-glow {
-            position: absolute;
-            top: 50%; left: 50%;
+            position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 420px; height: 420px;
-            border-radius: 50%;
+            width: 420px; height: 420px; border-radius: 50%;
             background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
-            filter: blur(30px);
-            z-index: 1;
+            filter: blur(30px); z-index: 1;
         }
-
-        /* Premium Photo Frame with Double Border */
         .photo-frame {
-            position: absolute;
-            top: 50%; left: 50%;
+            position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 380px; height: 380px;
-            border-radius: 50%;
-            overflow: hidden;
-            z-index: 5;
+            width: 380px; height: 380px; border-radius: 50%;
+            overflow: hidden; z-index: 5;
             border: 2px solid var(--gold);
-            box-shadow: 
-                0 0 0 8px rgba(10, 14, 26, 0.9),
-                0 0 0 9px rgba(212, 175, 55, 0.4),
-                0 30px 80px rgba(0,0,0,0.5);
+            box-shadow: 0 0 0 8px rgba(10, 14, 26, 0.9),
+                        0 0 0 9px rgba(212, 175, 55, 0.4),
+                        0 30px 80px rgba(0,0,0,0.5);
         }
-
         .photo-frame img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            filter: contrast(1.05) saturate(1.1);
+            width: 100%; height: 100%; object-fit: cover;
+            object-position: center top; filter: contrast(1.05) saturate(1.1);
         }
 
-        /* Ornamen Garis Emas Premium */
         .ornament-lines {
-            position: absolute;
-            top: 50%; left: 50%;
+            position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 580px; height: 580px;
-            z-index: 3;
-            pointer-events: none;
+            width: 580px; height: 580px; z-index: 3; pointer-events: none;
         }
-
         .ornament-lines svg { width: 100%; height: 100%; overflow: visible; }
-
         .ornament-rotate-slow { animation: rotateSlow 40s linear infinite; transform-origin: center; }
         .ornament-rotate-reverse { animation: rotateReverse 35s linear infinite; transform-origin: center; }
-
         @keyframes rotateSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes rotateReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
 
-        /* Corner Decorations - Mewah */
-        .corner-deco {
-            position: absolute;
-            width: 80px; height: 80px;
-            z-index: 4;
-        }
-
-        .corner-deco::before, .corner-deco::after {
-            content: '';
-            position: absolute;
-            background: var(--gold);
-        }
-
+        .corner-deco { position: absolute; width: 80px; height: 80px; z-index: 4; }
+        .corner-deco::before, .corner-deco::after { content: ''; position: absolute; background: var(--gold); }
         .corner-tl { top: 0; left: 0; }
         .corner-tl::before { top: 0; left: 0; width: 30px; height: 1px; }
         .corner-tl::after { top: 0; left: 0; width: 1px; height: 30px; }
-
         .corner-tr { top: 0; right: 0; }
         .corner-tr::before { top: 0; right: 0; width: 30px; height: 1px; }
         .corner-tr::after { top: 0; right: 0; width: 1px; height: 30px; }
-
         .corner-bl { bottom: 0; left: 0; }
         .corner-bl::before { bottom: 0; left: 0; width: 30px; height: 1px; }
         .corner-bl::after { bottom: 0; left: 0; width: 1px; height: 30px; }
-
         .corner-br { bottom: 0; right: 0; }
         .corner-br::before { bottom: 0; right: 0; width: 30px; height: 1px; }
         .corner-br::after { bottom: 0; right: 0; width: 1px; height: 30px; }
 
-        /* Floating Cards - Gaya Luxury */
         .float-card {
             position: absolute;
             background: rgba(10, 14, 26, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 18px 22px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            z-index: 10;
-            display: flex; align-items: center; gap: 14px;
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 18px 22px; border: 1px solid rgba(212, 175, 55, 0.3);
+            z-index: 10; display: flex; align-items: center; gap: 14px;
             animation: floatCard 5s ease-in-out infinite;
         }
-
-        .float-card-1 { bottom: 80px; left: -20px; animation-delay: 0s; }
+        .float-card-1 { bottom: 80px; left: -20px; }
         .float-card-2 { top: 80px; right: -20px; animation-delay: 2s; }
-
-        @keyframes floatCard {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-
+        @keyframes floatCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
         .float-card .fc-icon {
-            width: 42px; height: 42px;
-            background: var(--gold);
+            width: 42px; height: 42px; background: var(--gold);
             display: flex; align-items: center; justify-content: center;
-            color: var(--primary-dark);
-            font-size: 1rem;
+            color: var(--primary-dark); font-size: 1rem;
         }
+        .float-card h4 { font-size: 0.95rem; color: var(--white); margin-bottom: 2px; font-weight: 600; }
+        .float-card p { font-size: 0.7rem; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; margin: 0; }
 
-        .float-card h4 {
-            font-family: var(--font-serif);
-            font-size: 0.95rem;
-            color: var(--white);
-            margin-bottom: 2px;
-            font-weight: 600;
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .float-card p {
-            font-size: 0.7rem;
-            color: var(--gold);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin: 0;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Scroll Indicator */
         .scroll-indicator {
-            position: absolute;
-            bottom: 30px; left: 50%;
-            transform: translateX(-50%);
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
             display: flex; flex-direction: column; align-items: center; gap: 10px;
-            z-index: 5;
-            opacity: 0;
-            animation: fadeIn 1s ease 1.5s forwards;
+            z-index: 5; opacity: 0; animation: fadeIn 1s ease 1.5s forwards;
         }
-
-        .scroll-indicator span {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            color: rgba(255,255,255,0.5);
-            text-transform: uppercase;
-        }
-
+        .scroll-indicator span { font-size: 0.7rem; letter-spacing: 3px; color: rgba(255,255,255,0.5); text-transform: uppercase; }
         .scroll-line {
             width: 1px; height: 40px;
             background: linear-gradient(to bottom, var(--gold), transparent);
             animation: scrollPulse 2s ease-in-out infinite;
         }
-
         @keyframes scrollPulse {
             0%, 100% { opacity: 0.3; transform: scaleY(0.5); transform-origin: top; }
             50% { opacity: 1; transform: scaleY(1); }
         }
 
         /* ============================================= */
-        /* ================ RESPONSIVE ================ */
+        /* =========== SECTION COMMON STYLES =========== */
+        /* ============================================= */
+        .section { padding: 100px 0; position: relative; }
+        .bg-cream { background: var(--bg-section); }
+        .bg-cream-alt { background: var(--bg-section-alt); }
+
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 70px; }
+        .section-label {
+            display: inline-flex; align-items: center; gap: 12px;
+            font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--gold); font-weight: 600; margin-bottom: 1.2rem;
+        }
+        .section-label::before, .section-label::after {
+            content: ''; width: 30px; height: 1px; background: var(--gold);
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--primary-dark); line-height: 1.2; margin-bottom: 1.2rem;
+        }
+        .section-title .gold-word {
+            font-family: var(--font-editorial); font-style: italic;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .section-desc { color: var(--text-body); font-size: 1.05rem; font-weight: 300; line-height: 1.8; }
+
+        /* Gold separator between sections */
+        .section-separator {
+            display: flex; align-items: center; justify-content: center;
+            gap: 16px; padding: 0; margin: 0;
+        }
+        .section-separator .sep-line { width: 80px; height: 1px; background: var(--gold); opacity: 0.3; }
+        .section-separator .sep-diamond { color: var(--gold); font-size: 0.5rem; opacity: 0.5; }
+
+        /* ============================================= */
+        /* ============= STATS SECTION ================ */
+        /* ============================================= */
+        .stats-bar {
+            background: var(--primary-dark);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .stats-bar::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.03), transparent);
+        }
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 2rem; text-align: center; position: relative; z-index: 2;
+        }
+        .stat-item {
+            position: relative;
+            padding: 20px;
+        }
+        .stat-item:not(:last-child)::after {
+            content: ''; position: absolute; right: 0; top: 20%; height: 60%;
+            width: 1px; background: rgba(212, 175, 55, 0.2);
+        }
+        .stat-item h3 {
+            font-size: 3rem; font-weight: 700; margin-bottom: 8px;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .stat-item p {
+            font-size: 0.78rem; color: rgba(255,255,255,0.6);
+            letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500;
+        }
+
+        /* ============================================= */
+        /* ============= ABOUT SECTION ================ */
+        /* ============================================= */
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 80px; align-items: center;
+        }
+        .about-img-wrap { position: relative; }
+        .about-img-wrap .img-main {
+            border-radius: 0; overflow: hidden;
+            box-shadow: var(--shadow-luxury);
+            position: relative;
+        }
+        .about-img-wrap .img-main img {
+            width: 100%; height: 500px; object-fit: cover; display: block;
+            filter: contrast(1.02);
+        }
+        /* Gold corner frame on about image */
+        .about-img-wrap .img-frame {
+            position: absolute; inset: -12px;
+            border: 1px solid var(--gold); opacity: 0.3;
+            pointer-events: none;
+        }
+        .about-img-wrap .experience-badge {
+            position: absolute; bottom: -25px; right: -25px;
+            background: var(--primary-dark); color: var(--white);
+            padding: 24px 30px; text-align: center;
+            border: 1px solid var(--gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .experience-badge .exp-num {
+            font-family: var(--font-serif); font-size: 2.5rem; font-weight: 700;
+            color: var(--gold); display: block; line-height: 1;
+        }
+        .experience-badge .exp-text {
+            font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+            color: rgba(255,255,255,0.7); margin-top: 6px;
+        }
+
+        .about-content .about-label {
+            display: inline-flex; align-items: center; gap: 12px;
+            font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--gold); font-weight: 600; margin-bottom: 1.2rem;
+        }
+        .about-content .about-label::before {
+            content: ''; width: 30px; height: 1px; background: var(--gold);
+        }
+        .about-content h2 {
+            font-size: 2.5rem; line-height: 1.2;
+            color: var(--primary-dark); margin-bottom: 1.5rem;
+        }
+        .about-content h2 .gold-word {
+            font-family: var(--font-editorial); font-style: italic;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .about-content p { color: var(--text-body); margin-bottom: 1.2rem; line-height: 1.8; font-weight: 300; }
+        
+        .about-features {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 16px; margin-top: 2rem; padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+        .about-feat {
+            display: flex; align-items: center; gap: 12px;
+            font-weight: 600; font-size: 0.9rem;
+        }
+        .about-feat .feat-icon {
+            width: 32px; height: 32px; min-width: 32px;
+            background: var(--gold-soft);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold); font-size: 0.8rem;
+        }
+
+        /* ============================================= */
+        /* ============ SERVICES SECTION =============== */
+        /* ============================================= */
+        .services-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--white); padding: 45px 35px;
+            border: 1px solid var(--border-light);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; overflow: hidden;
+        }
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: var(--gradient-gold);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        .service-card::after {
+            content: ''; position: absolute; top: 0; right: 0;
+            width: 0; height: 0;
+            border-style: solid; border-width: 0 50px 50px 0;
+            border-color: transparent var(--gold-soft) transparent transparent;
+            transition: all 0.4s ease; opacity: 0;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card:hover::after { opacity: 1; }
+
+        .service-num {
+            font-family: var(--font-serif); font-size: 3.5rem;
+            font-weight: 800; color: var(--gold-soft);
+            line-height: 1; margin-bottom: 20px;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            opacity: 0.4;
+        }
+        .service-card:hover .service-num { opacity: 1; }
+
+        .service-card .svc-icon {
+            width: 56px; height: 56px;
+            background: var(--gold-soft);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold); font-size: 1.3rem;
+            margin-bottom: 20px; transition: all 0.4s ease;
+        }
+        .service-card:hover .svc-icon {
+            background: var(--gold); color: var(--primary-dark);
+        }
+        .service-card h3 { font-size: 1.35rem; margin-bottom: 14px; color: var(--primary-dark); }
+        .service-card p { color: var(--text-body); font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; font-weight: 300; }
+        .svc-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 0.8rem; font-weight: 600; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--gold);
+            transition: all 0.3s ease;
+        }
+        .svc-link .link-line { width: 20px; height: 1px; background: var(--gold); transition: width 0.3s ease; }
+        .svc-link:hover { color: var(--primary-dark); }
+        .svc-link:hover .link-line { width: 35px; background: var(--primary-dark); }
+
+        /* ============================================= */
+        /* ============= WHY US SECTION ================ */
+        /* ============================================= */
+        .why-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+        }
+        .why-card {
+            text-align: center; padding: 40px 24px;
+            border: 1px solid var(--border-light);
+            background: var(--white); transition: all 0.4s ease;
+            position: relative;
+        }
+        .why-card::after {
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 0; height: 2px; background: var(--gold);
+            transition: width 0.4s ease;
+        }
+        .why-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-luxury); }
+        .why-card:hover::after { width: 60px; }
+        .why-card .why-icon {
+            width: 65px; height: 65px; margin: 0 auto 20px;
+            background: var(--gold-soft); display: flex;
+            align-items: center; justify-content: center;
+            color: var(--gold); font-size: 1.5rem;
+            border-radius: 50%; transition: all 0.4s ease;
+        }
+        .why-card:hover .why-icon { background: var(--gold); color: var(--primary-dark); }
+        .why-card h4 { font-size: 1.05rem; margin-bottom: 10px; color: var(--primary-dark); }
+        .why-card p { font-size: 0.9rem; color: var(--text-body); font-weight: 300; line-height: 1.7; }
+
+        /* ============================================= */
+        /* ============= AREA SECTION ================== */
+        /* ============================================= */
+        .area-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 80px; align-items: center;
+        }
+        .area-info h2 { font-size: 2.5rem; margin-bottom: 1.2rem; line-height: 1.2; }
+        .area-info h2 .gold-word {
+            font-family: var(--font-editorial); font-style: italic;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .area-info > p { color: var(--text-body); margin-bottom: 2rem; line-height: 1.8; font-weight: 300; }
+        .area-list { display: grid; gap: 14px; }
+        .area-list li {
+            display: flex; align-items: center; gap: 14px;
+            font-weight: 500; padding: 14px 18px;
+            border: 1px solid var(--border-light);
+            background: var(--white); transition: all 0.3s ease;
+        }
+        .area-list li:hover {
+            border-color: var(--gold); transform: translateX(6px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.1);
+        }
+        .area-list li .check {
+            width: 30px; height: 30px; min-width: 30px;
+            background: var(--gold); display: flex;
+            align-items: center; justify-content: center;
+            color: var(--primary-dark); font-size: 0.7rem;
+        }
+        .area-map {
+            box-shadow: var(--shadow-luxury);
+            height: 450px; position: relative;
+            border: 1px solid var(--border-light);
+        }
+        .area-map iframe { width: 100%; height: 100%; border: 0; filter: saturate(0.8) contrast(1.1); }
+        .area-map::after {
+            content: ''; position: absolute; inset: -8px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            pointer-events: none;
+        }
+
+        /* ============================================= */
+        /* =========== TESTIMONIALS SECTION ============ */
+        /* ============================================= */
+        .testi-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+        }
+        .testi-card {
+            background: var(--white); border: 1px solid var(--border-light);
+            padding: 40px 30px; transition: all 0.4s ease;
+            position: relative;
+        }
+        .testi-card::before {
+            content: '"'; position: absolute; top: 20px; right: 25px;
+            font-family: var(--font-serif); font-size: 5rem;
+            color: var(--gold-soft); line-height: 1;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            opacity: 0.3;
+        }
+        .testi-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-luxury); border-color: rgba(212, 175, 55, 0.2); }
+        .testi-card .stars { color: var(--gold); margin-bottom: 18px; font-size: 0.85rem; letter-spacing: 3px; }
+        .testi-card p {
+            color: var(--text-body); font-style: italic;
+            margin-bottom: 24px; font-size: 0.95rem; line-height: 1.8;
+            font-family: var(--font-editorial); font-size: 1.15rem;
+        }
+        .testi-author {
+            display: flex; align-items: center; gap: 14px;
+            padding-top: 18px; border-top: 1px solid var(--border-light);
+        }
+        .testi-author .avatar {
+            width: 48px; height: 48px;
+            background: var(--primary-dark);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold); font-weight: 700;
+            font-family: var(--font-serif); font-size: 1.1rem;
+            border-radius: 50%;
+        }
+        .testi-author h4 { font-size: 0.95rem; font-family: var(--font-sans); font-weight: 700; }
+        .testi-author span { font-size: 0.8rem; color: var(--text-body); font-weight: 400; }
+
+        /* ============================================= */
+        /* ============ CTA SECTION LUXURY ============= */
+        /* ============================================= */
+        .cta-section {
+            background: var(--gradient-hero); padding: 100px 0;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .cta-section::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
+            border-radius: 50%;
+        }
+        .cta-section::after {
+            content: ''; position: absolute; bottom: -50%; left: -20%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+            border-radius: 50%;
+        }
+        .cta-content { position: relative; z-index: 2; max-width: 750px; margin: 0 auto; }
+        .cta-content .cta-label {
+            display: inline-flex; align-items: center; gap: 12px;
+            font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--gold); font-weight: 600; margin-bottom: 1.5rem;
+        }
+        .cta-content .cta-label::before, .cta-content .cta-label::after {
+            content: ''; width: 30px; height: 1px; background: var(--gold);
+        }
+        .cta-content h2 {
+            color: var(--white); font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.2rem; line-height: 1.2;
+        }
+        .cta-content h2 .gold-word {
+            font-family: var(--font-editorial); font-style: italic;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .cta-content > p { color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; font-size: 1.1rem; font-weight: 300; line-height: 1.8; }
+
+        .cta-gold-divider {
+            display: flex; align-items: center; justify-content: center;
+            gap: 16px; margin-bottom: 2.5rem;
+        }
+        .cta-gold-divider .line-sep { width: 60px; height: 1px; background: var(--gold); opacity: 0.5; }
+        .cta-gold-divider .diamond { color: var(--gold); font-size: 0.5rem; opacity: 0.5; }
+
+        .btn-cta-gold {
+            display: inline-flex; align-items: center; gap: 14px;
+            padding: 20px 45px; background: var(--gold);
+            color: var(--primary-dark); font-size: 0.82rem;
+            font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+            position: relative; overflow: hidden; transition: all 0.4s ease;
+        }
+        .btn-cta-gold::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: translateX(-100%); transition: transform 0.6s ease;
+        }
+        .btn-cta-gold:hover { background: var(--gold-light); transform: translateY(-3px); box-shadow: var(--shadow-gold); }
+        .btn-cta-gold:hover::before { transform: translateX(100%); }
+        .btn-cta-gold .arrow {
+            width: 30px; height: 30px; border: 1px solid var(--primary-dark);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 0.7rem; transition: all 0.3s ease;
+        }
+        .btn-cta-gold:hover .arrow { background: var(--primary-dark); color: var(--gold); transform: rotate(-45deg); }
+
+        /* ============================================= */
+        /* ============ CONTACT SECTION ================ */
+        /* ============================================= */
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 80px; align-items: start;
+        }
+        .contact-info h2 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .contact-info h2 .gold-word {
+            font-family: var(--font-editorial); font-style: italic;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .contact-info > p { color: var(--text-body); margin-bottom: 2.5rem; font-weight: 300; line-height: 1.8; }
+        .contact-details { display: grid; gap: 20px; }
+        .contact-item {
+            display: flex; gap: 16px; align-items: flex-start;
+            padding: 20px; border: 1px solid var(--border-light);
+            background: var(--white); transition: all 0.3s ease;
+        }
+        .contact-item:hover { border-color: rgba(212, 175, 55, 0.3); box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
+        .contact-item .ci-icon {
+            width: 48px; height: 48px; min-width: 48px;
+            background: var(--gold-soft); display: flex;
+            align-items: center; justify-content: center;
+            color: var(--gold); font-size: 1.1rem;
+        }
+        .contact-item h4 { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+        .contact-item p, .contact-item a { font-size: 0.9rem; color: var(--text-body); font-weight: 300; }
+        .contact-item a:hover { color: var(--gold); }
+
+        .contact-form {
+            background: var(--white); padding: 45px;
+            box-shadow: var(--shadow-luxury);
+            border: 1px solid var(--border-light);
+            position: relative;
+        }
+        .contact-form::after {
+            content: ''; position: absolute; inset: -8px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            pointer-events: none;
+        }
+        .contact-form h3 { font-size: 1.5rem; margin-bottom: 8px; }
+        .contact-form > p { color: var(--text-body); font-size: 0.9rem; margin-bottom: 25px; font-weight: 300; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block; font-size: 0.78rem; font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;
+            color: var(--primary-dark);
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 14px 18px;
+            border: 1px solid #e2e8f0; background: #fafafa;
+            font-family: var(--font-sans); font-size: 0.95rem;
+            transition: all 0.3s ease; outline: none;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--gold); background: var(--white);
+            box-shadow: 0 0 0 3px var(--gold-soft);
+        }
+        .form-group textarea { resize: vertical; min-height: 110px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+        .btn-submit {
+            width: 100%; padding: 18px; font-size: 0.82rem;
+            letter-spacing: 2.5px; text-transform: uppercase;
+            font-weight: 700; background: var(--primary-dark);
+            color: var(--gold); border: 1px solid var(--gold);
+            cursor: pointer; transition: all 0.4s ease;
+            font-family: var(--font-sans);
+        }
+        .btn-submit:hover {
+            background: var(--gold); color: var(--primary-dark);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* ============================================= */
+        /* =============== FOOTER LUXURY ================ */
+        /* ============================================= */
+        footer {
+            background: var(--primary-dark); color: var(--white);
+            padding: 80px 0 0; position: relative;
+        }
+        footer::before {
+            content: ''; position: absolute; top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 200px; height: 1px;
+            background: var(--gradient-gold);
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 50px; padding-bottom: 50px;
+        }
+        .footer-brand p { color: rgba(255,255,255,0.5); margin-top: 20px; line-height: 1.8; font-size: 0.9rem; font-weight: 300; }
+        .footer-social { display: flex; gap: 10px; margin-top: 24px; }
+        .footer-social a {
+            width: 42px; height: 42px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold); transition: all 0.3s ease;
+        }
+        .footer-social a:hover { background: var(--gold); color: var(--primary-dark); transform: translateY(-3px); }
+        .footer-col h4 {
+            font-size: 0.82rem; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 24px; font-weight: 600;
+            font-family: var(--font-sans);
+        }
+        .footer-col ul li { margin-bottom: 14px; }
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.5); font-size: 0.9rem;
+            font-weight: 300; transition: all 0.3s ease;
+        }
+        .footer-col ul li a:hover { color: var(--gold); padding-left: 6px; }
+        .footer-col ul li i { color: var(--gold); margin-right: 10px; font-size: 0.8rem; width: 16px; }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 24px 0; display: flex;
+            justify-content: space-between; align-items: center;
+            color: rgba(255,255,255,0.35); font-size: 0.82rem;
+        }
+        .footer-bottom .heart { color: var(--gold); }
+
+        /* ============================================= */
+        /* =========== FLOATING WA BUTTON ============== */
+        /* ============================================= */
+        .float-wa {
+            position: fixed; bottom: 30px; right: 30px; z-index: 999;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .float-wa .tooltip {
+            background: var(--primary-dark); color: var(--gold);
+            padding: 10px 18px; font-size: 0.82rem;
+            font-weight: 600; letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            white-space: nowrap; opacity: 0;
+            transform: translateX(10px); transition: all 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .float-wa:hover .tooltip { opacity: 1; transform: translateX(0); }
+        .float-wa .wa-icon {
+            width: 58px; height: 58px; background: var(--gold);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary-dark); font-size: 26px;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease; animation: bounceWa 3s ease-in-out infinite;
+        }
+        .float-wa:hover .wa-icon { transform: scale(1.1); box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4); }
+        @keyframes bounceWa { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+        /* ============================================= */
+        /* =========== FADE IN ANIMATION =============== */
+        /* ============================================= */
+        .fade-in {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ============================================= */
+        /* ============== RESPONSIVE ==================== */
         /* ============================================= */
         @media (max-width: 1024px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 50px; }
@@ -692,26 +974,30 @@
             .photo-container { width: 400px; height: 400px; }
             .photo-frame { width: 340px; height: 340px; }
             .ornament-lines { width: 500px; height: 500px; }
-            .float-card-1 { left: 10px; }
-            .float-card-2 { right: 10px; }
+            .float-card-1 { left: 10px; } .float-card-2 { right: 10px; }
+            .about-grid, .area-grid, .contact-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .stat-item:nth-child(2)::after { display: none; }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .testi-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-img-wrap .experience-badge { right: 10px; bottom: -20px; }
         }
 
         @media (max-width: 768px) {
-            .nav-links { 
-                display: none;
-                position: fixed;
+            .nav-links {
+                display: none; position: fixed;
                 top: 80px; left: 0; right: 0;
                 flex-direction: column;
                 background: rgba(10, 14, 26, 0.98);
                 backdrop-filter: blur(20px);
-                padding: 2rem;
-                gap: 1.5rem;
+                padding: 2rem; gap: 1.5rem;
                 border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             }
             .nav-links.active { display: flex; }
             .hamburger { display: flex; }
             .hero { padding: 120px 0 60px; }
-            .hero-text h1 { font-size: 2.8rem; }
+            .hero-text h1 { font-size: 2.5rem; }
             .photo-container { width: 320px; height: 320px; }
             .photo-frame { width: 280px; height: 280px; }
             .ornament-lines { width: 400px; height: 400px; }
@@ -719,6 +1005,19 @@
             .logo-text .brand-name { font-size: 1.1rem; letter-spacing: 1px; }
             .logo-text .brand-tag { font-size: 0.6rem; letter-spacing: 2px; }
             .logo-monogram { width: 40px; height: 40px; font-size: 1rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .stat-item::after { display: none !important; }
+            .why-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+            .about-features { grid-template-columns: 1fr; }
+            .about-img-wrap .img-main img { height: 350px; }
+            .about-img-wrap .img-frame { inset: -6px; }
+            .area-map { height: 300px; }
+            .contact-form { padding: 30px 20px; }
+            .section { padding: 70px 0; }
         }
     </style>
 </head>
@@ -748,40 +1047,33 @@
         </div>
     </nav>
 
-    <!-- ============ HERO SECTION LUXURY ============ -->
+    <!-- ============ HERO SECTION ============ -->
     <section class="hero" id="home">
-        <!-- Glow Effects -->
         <div class="hero-glow"></div>
         <div class="hero-glow-2"></div>
-
         <div class="container hero-grid">
-            <!-- LEFT: Text -->
             <div class="hero-text">
                 <div class="hero-badge">
                     <span class="dot"></span>
                     <span>Premium Notary Services</span>
                 </div>
-
                 <h1>
                     <span class="line">Mitra Hukum</span>
                     <span class="line"><span class="italic-accent">Terpercaya</span></span>
                     <span class="line"><span class="thin-word">sejak</span> 2010</span>
                 </h1>
-
                 <div class="gold-divider">
-                    <span class="line"></span>
+                    <span class="line-sep"></span>
                     <span class="diamond">◆</span>
                     <span class="est-text">Notaris & PPAT Resmi</span>
                     <span class="diamond">◆</span>
-                    <span class="line"></span>
+                    <span class="line-sep"></span>
                 </div>
-
                 <p class="hero-desc">
                     Menyediakan layanan kenotariatan dan PPAT dengan standar internasional. 
                     Integritas, ketelitian, dan kerahasiaan adalah fondasi pelayanan kami 
                     untuk mengamankan setiap aset dan legalitas Anda.
                 </p>
-
                 <div class="hero-btns">
                     <a href="https://wa.me/6281234567890" class="btn-luxury">
                         Jadwalkan Konsultasi
@@ -791,7 +1083,6 @@
                         Jelajahi Layanan
                     </a>
                 </div>
-
                 <div class="hero-signature">
                     <span class="signature-line"></span>
                     <span class="signature-text">
@@ -799,20 +1090,13 @@
                     </span>
                 </div>
             </div>
-
-            <!-- RIGHT: Visual -->
             <div class="hero-visual">
                 <div class="photo-container">
-                    <!-- Corner Decorations -->
                     <div class="corner-deco corner-tl"></div>
                     <div class="corner-deco corner-tr"></div>
                     <div class="corner-deco corner-bl"></div>
                     <div class="corner-deco corner-br"></div>
-
-                    <!-- Gold Glow -->
                     <div class="photo-glow"></div>
-
-                    <!-- Ornamen Garis Emas Premium (SVG) -->
                     <div class="ornament-lines">
                         <svg viewBox="0 0 580 580" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <defs>
@@ -830,8 +1114,6 @@
                                     <stop offset="100%" style="stop-color:#F4E5A1;stop-opacity:0.1" />
                                 </linearGradient>
                             </defs>
-
-                            <!-- Outer Ring (Gold) -->
                             <g class="ornament-rotate-slow">
                                 <circle cx="290" cy="290" r="280" stroke="url(#goldGrad1)" stroke-width="1" fill="none" opacity="0.6"/>
                                 <path d="M 290 10 A 280 280 0 0 1 570 290" stroke="url(#goldGrad1)" stroke-width="2" fill="none" stroke-linecap="round"/>
@@ -841,8 +1123,6 @@
                                 <circle cx="290" cy="570" r="3" fill="#D4AF37" opacity="0.6"/>
                                 <circle cx="10" cy="290" r="4" fill="#E8C872"/>
                             </g>
-
-                            <!-- Middle Ring -->
                             <g class="ornament-rotate-reverse">
                                 <circle cx="290" cy="290" r="250" stroke="url(#goldGrad2)" stroke-width="0.8" fill="none" stroke-dasharray="4 8" opacity="0.5"/>
                                 <path d="M 290 40 A 250 250 0 0 1 540 290" stroke="url(#goldGrad2)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.8"/>
@@ -850,66 +1130,422 @@
                                 <circle cx="540" cy="290" r="3" fill="#D4AF37" opacity="0.7"/>
                                 <circle cx="290" cy="40" r="2.5" fill="#F4E5A1"/>
                             </g>
-
-                            <!-- Inner Ring -->
                             <g class="ornament-rotate-slow" style="animation-duration: 50s;">
                                 <circle cx="290" cy="290" r="220" stroke="url(#goldGrad3)" stroke-width="0.5" fill="none" opacity="0.4"/>
                                 <path d="M 290 70 A 220 220 0 0 1 510 290" stroke="url(#goldGrad1)" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/>
                             </g>
-
-                            <!-- Decorative Diamonds at cardinal points -->
-                            <g class="ornament-rotate-reverse" style="animation-duration: 45s;">
-                                <text x="290" y="295" text-anchor="middle" fill="#D4AF37" font-size="10" opacity="0.6">◆</text>
-                            </g>
                         </svg>
                     </div>
-
-                    <!-- Foto Utama -->
                     <div class="photo-frame">
                         <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Notaris Profesional">
                     </div>
                 </div>
-
-                <!-- Floating Cards -->
                 <div class="float-card float-card-1">
                     <div class="fc-icon"><i class="fas fa-award"></i></div>
-                    <div>
-                        <h4>Bersertifikat</h4>
-                        <p>Resmi Negara RI</p>
-                    </div>
+                    <div><h4>Bersertifikat</h4><p>Resmi Negara RI</p></div>
                 </div>
                 <div class="float-card float-card-2">
                     <div class="fc-icon"><i class="fas fa-shield-halved"></i></div>
-                    <div>
-                        <h4>Kerahasiaan</h4>
-                        <p>100% Terjaga</p>
-                    </div>
+                    <div><h4>Kerahasiaan</h4><p>100% Terjaga</p></div>
                 </div>
             </div>
         </div>
-
-        <!-- Scroll Indicator -->
         <div class="scroll-indicator">
             <span>Scroll</span>
             <div class="scroll-line"></div>
         </div>
     </section>
 
+    <!-- ============ STATS BAR ============ -->
+    <div class="stats-bar">
+        <div class="container stats-grid">
+            <div class="stat-item fade-in">
+                <h3>15+</h3>
+                <p>Tahun Pengalaman</p>
+            </div>
+            <div class="stat-item fade-in">
+                <h3>5000+</h3>
+                <p>Akta Diproses</p>
+            </div>
+            <div class="stat-item fade-in">
+                <h3>100%</h3>
+                <p>Legal & Resmi</p>
+            </div>
+            <div class="stat-item fade-in">
+                <h3>24/7</h3>
+                <p>Konsultasi Online</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ ABOUT SECTION ============ -->
+    <section class="section" id="tentang">
+        <div class="container about-grid">
+            <div class="about-img-wrap fade-in">
+                <div class="img-frame"></div>
+                <div class="img-main">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" alt="Tentang Notaris Mataram">
+                </div>
+                <div class="experience-badge">
+                    <span class="exp-num">15+</span>
+                    <span class="exp-text">Tahun</span>
+                </div>
+            </div>
+            <div class="about-content fade-in">
+                <span class="about-label">Tentang Kami</span>
+                <h2>Notaris & PPAT <br><span class="gold-word">Profesional</span> dengan Integritas Tinggi</h2>
+                <p>Kantor Notaris & PPAT kami telah berdiri sejak 2010 di Kota Mataram. Kami berkomitmen memberikan layanan hukum terbaik dengan mengedepankan integritas, kecepatan, dan transparansi.</p>
+                <p>Dengan pengalaman lebih dari 15 tahun, kami telah membantu ribuan klien mulai dari individu, pelaku UMKM, hingga perusahaan besar dalam mengurus legalitas dokumen mereka.</p>
+                <div class="about-features">
+                    <div class="about-feat"><div class="feat-icon"><i class="fas fa-check"></i></div><span>Resmi & Legal</span></div>
+                    <div class="about-feat"><div class="feat-icon"><i class="fas fa-check"></i></div><span>Proses Cepat</span></div>
+                    <div class="about-feat"><div class="feat-icon"><i class="fas fa-check"></i></div><span>Biaya Transparan</span></div>
+                    <div class="about-feat"><div class="feat-icon"><i class="fas fa-check"></i></div><span>Konsultasi Gratis</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-separator"><span class="sep-line"></span><span class="sep-diamond">◆</span><span class="sep-line"></span></div>
+
+    <!-- ============ SERVICES SECTION ============ -->
+    <section class="section bg-cream" id="layanan">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Layanan Kami</span>
+                <h2 class="section-title">Solusi <span class="gold-word">Legalitas</span> Lengkap</h2>
+                <p class="section-desc">Kami menyediakan berbagai layanan kenotariatan dengan standar profesional tertinggi untuk kebutuhan pribadi maupun bisnis Anda.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <span class="service-num">01</span>
+                    <div class="svc-icon"><i class="fas fa-home"></i></div>
+                    <h3>Akta Jual Beli (AJB)</h3>
+                    <p>Pembuatan AJB tanah dan bangunan untuk transaksi properti yang aman dan legal sesuai peraturan BPN.</p>
+                    <a href="#" class="svc-link">Selengkapnya <span class="link-line"></span></a>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-num">02</span>
+                    <div class="svc-icon"><i class="fas fa-landmark"></i></div>
+                    <h3>Hak Tanggungan</h3>
+                    <p>Pengurusan hak tanggungan untuk jaminan kredit bank, termasuk pemasangan dan penghapusan tanggungan.</p>
+                    <a href="#" class="svc-link">Selengkapnya <span class="link-line"></span></a>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-num">03</span>
+                    <div class="svc-icon"><i class="fas fa-building"></i></div>
+                    <h3>Pendirian PT / CV</h3>
+                    <p>Pendirian badan usaha lengkap dengan akta notaris dan pengesahan Kemenkumham untuk bisnis Anda.</p>
+                    <a href="#" class="svc-link">Selengkapnya <span class="link-line"></span></a>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-num">04</span>
+                    <div class="svc-icon"><i class="fas fa-file-contract"></i></div>
+                    <h3>Legalitas Dokumen</h3>
+                    <p>Legalisasi dan waarmerking dokumen penting seperti perjanjian kerjasama dan kontrak kerja.</p>
+                    <a href="#" class="svc-link">Selengkapnya <span class="link-line"></span></a>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-num">05</span>
+                    <div class="svc-icon"><i class="fas fa-scroll"></i></div>
+                    <h3>Wasiat & Testament</h3>
+                    <p>Pembuatan surat wasiat resmi untuk menjamin pembagian harta waris sesuai keinginan Anda.</p>
+                    <a href="#" class="svc-link">Selengkapnya <span class="link-line"></span></a>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-num">06</span>
+                    <div class="svc-icon"><i class="fas fa-stamp"></i></div>
+                    <h3>Kuasa & Perjanjian</h3>
+                    <p>Pembuatan surat kuasa, perjanjian kawin, perjanjian sewa menyewa, dan berbagai akta autentik lainnya.</p>
+                    <a href="#" class="svc-link">Selengkapnya <span class="link-line"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ WHY US SECTION ============ -->
+    <section class="section" id="keunggulan">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Keunggulan Kami</span>
+                <h2 class="section-title">Mengapa <span class="gold-word">Memilih</span> Kami?</h2>
+                <p class="section-desc">Komitmen kami adalah memberikan pelayanan terbaik dengan standar profesional tertinggi.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card fade-in">
+                    <div class="why-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Proses Cepat</h4>
+                    <p>Pengerjaan tepat waktu tanpa mengorbankan kualitas dan ketelitian.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <h4>Biaya Transparan</h4>
+                    <p>Informasi biaya di awal tanpa biaya tersembunyi apapun.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h4>Lokasi Strategis</h4>
+                    <p>Di pusat Kota Mataram, mudah diakses dari seluruh penjuru.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-icon"><i class="fas fa-user-shield"></i></div>
+                    <h4>Pendampingan Penuh</h4>
+                    <p>Dari konsultasi awal hingga akta selesai dan diterima.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ AREA SECTION ============ -->
+    <section class="section bg-cream" id="wilayah">
+        <div class="container area-grid">
+            <div class="area-info fade-in">
+                <span class="section-label">Wilayah Kerja</span>
+                <h2>Melayani <span class="gold-word">Kota Mataram</span> & Seluruh Lombok</h2>
+                <p>Kantor kami berlokasi strategis di pusat Kota Mataram dan melayani seluruh wilayah Nusa Tenggara Barat dengan jangkauan luas.</p>
+                <ul class="area-list">
+                    <li><span class="check"><i class="fas fa-check"></i></span> Kota Mataram</li>
+                    <li><span class="check"><i class="fas fa-check"></i></span> Kabupaten Lombok Barat</li>
+                    <li><span class="check"><i class="fas fa-check"></i></span> Kabupaten Lombok Tengah</li>
+                    <li><span class="check"><i class="fas fa-check"></i></span> Kabupaten Lombok Timur</li>
+                    <li><span class="check"><i class="fas fa-check"></i></span> Kabupaten Lombok Utara</li>
+                    <li><span class="check"><i class="fas fa-check"></i></span> Seluruh Wilayah NTB</li>
+                </ul>
+            </div>
+            <div class="area-map fade-in">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126577.22489692842!2d116.0456!3d-8.5833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcc13ef31d556f7%3A0x30380bde3a3c030!2sMataram%2C%20West%20Nusa%20Tenggara!5e0!3m2!1sen!2sid!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="section" id="testimoni">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Testimoni</span>
+                <h2 class="section-title">Apa Kata <span class="gold-word">Klien</span> Kami?</h2>
+                <p class="section-desc">Kepercayaan dan kepuasan klien adalah bukti nyata komitmen pelayanan kami.</p>
+            </div>
+            <div class="testi-grid">
+                <div class="testi-card fade-in">
+                    <div class="stars">★ ★ ★ ★ ★</div>
+                    <p>"Proses pembuatan AJB sangat cepat dan transparan. Sangat profesional dan recommended untuk urusan properti!"</p>
+                    <div class="testi-author">
+                        <div class="avatar">B</div>
+                        <div><h4>Budi Santoso</h4><span>Pengembang Properti</span></div>
+                    </div>
+                </div>
+                <div class="testi-card fade-in">
+                    <div class="stars">★ ★ ★ ★ ★</div>
+                    <p>"Pendirian PT kami selesai kurang dari 2 minggu. Biayanya jelas dari awal, tidak ada biaya tambahan. Sangat memuaskan!"</p>
+                    <div class="testi-author">
+                        <div class="avatar">S</div>
+                        <div><h4>Siti Rahmawati</h4><span>Pengusaha UMKM</span></div>
+                    </div>
+                </div>
+                <div class="testi-card fade-in">
+                    <div class="stars">★ ★ ★ ★ ★</div>
+                    <p>"Tim yang sangat membantu dan responsif. Konsultasinya gratis dan sangat informatif. Terima kasih banyak!"</p>
+                    <div class="testi-author">
+                        <div class="avatar">M</div>
+                        <div><h4>Muhammad Ridwan</h4><span>Wiraswasta</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CTA SECTION ============ -->
+    <section class="cta-section">
+        <div class="container cta-content fade-in">
+            <span class="cta-label">Mulai Sekarang</span>
+            <h2>Siap <span class="gold-word">Mengamankan</span><br>Aset & Legalitas Anda?</h2>
+            <div class="cta-gold-divider">
+                <span class="line-sep"></span>
+                <span class="diamond">◆</span>
+                <span class="line-sep"></span>
+            </div>
+            <p>Konsultasikan kebutuhan hukum Anda sekarang. Tim ahli kami siap memberikan solusi terbaik. Gratis dan tanpa kewajiban.</p>
+            <a href="https://wa.me/6281234567890" class="btn-cta-gold">
+                <i class="fab fa-whatsapp"></i> Chat WhatsApp Sekarang
+                <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT SECTION ============ -->
+    <section class="section bg-cream" id="kontak">
+        <div class="container contact-grid">
+            <div class="contact-info fade-in">
+                <span class="section-label" style="justify-content:flex-start;">Hubungi Kami</span>
+                <h2>Mari <span class="gold-word">Bicara</span> tentang Kebutuhan Anda</h2>
+                <p>Tim kami siap membantu Anda dengan senang hati. Hubungi kami melalui salah satu cara di bawah ini.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="ci-icon"><i class="fas fa-location-dot"></i></div>
+                        <div><h4>Alamat Kantor</h4><p>Jl. Langko No. 88, Mataram, NTB 83127</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="ci-icon"><i class="fas fa-phone"></i></div>
+                        <div><h4>Telepon / WA</h4><a href="tel:+6281234567890">0812-3456-7890</a></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+                        <div><h4>Email</h4><a href="mailto:info@notarismataram.id">info@notarismataram.id</a></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="ci-icon"><i class="fas fa-clock"></i></div>
+                        <div><h4>Jam Operasional</h4><p>Sen-Jum: 08.00-16.00 WITA | Sab: 09.00-12.00</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form fade-in">
+                <h3>Kirim Pesan</h3>
+                <p>Isi formulir di bawah dan kami akan segera menghubungi Anda.</p>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nama Lengkap</label>
+                            <input type="text" placeholder="Nama Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <label>No. Telepon</label>
+                            <input type="tel" placeholder="08xx-xxxx-xxxx" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Layanan</label>
+                        <select>
+                            <option value="">Pilih layanan...</option>
+                            <option>Akta Jual Beli (AJB)</option>
+                            <option>Hak Tanggungan</option>
+                            <option>Pendirian PT / CV</option>
+                            <option>Legalitas Dokumen</option>
+                            <option>Wasiat & Testament</option>
+                            <option>Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Pesan</label>
+                        <textarea placeholder="Jelaskan kebutuhan Anda..." rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Kirim via WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-monogram">N</div>
+                        <div class="logo-text">
+                            <span class="brand-name">NOTARIS</span>
+                            <span class="brand-tag">MATARAM · EST. 2010</span>
+                        </div>
+                    </div>
+                    <p>Kantor Notaris & PPAT terpercaya di Kota Mataram, melayani dengan integritas dan profesionalisme tinggi sejak 2010.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="#">Akta Jual Beli</a></li>
+                        <li><a href="#">Hak Tanggungan</a></li>
+                        <li><a href="#">Pendirian PT/CV</a></li>
+                        <li><a href="#">Legalitas Dokumen</a></li>
+                        <li><a href="#">Wasiat & Waris</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                        <li><a href="#layanan">Layanan</a></li>
+                        <li><a href="#testimoni">Testimoni</a></li>
+                        <li><a href="#kontak">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-pin"></i> Jl. Langko No. 88, Mataram</a></li>
+                        <li><a href="tel:+6281234567890"><i class="fas fa-phone"></i> 0812-3456-7890</a></li>
+                        <li><a href="mailto:info@notarismataram.id"><i class="fas fa-envelope"></i> info@notarismataram.id</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> Sen-Jum: 08.00-16.00</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Notaris & PPAT Mataram. All rights reserved.</p>
+                <p>Dibuat dengan <span class="heart">◆</span> di Mataram</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WA -->
+    <a href="https://wa.me/6281234567890" class="float-wa" target="_blank">
+        <span class="tooltip">Chat dengan kami</span>
+        <div class="wa-icon"><i class="fab fa-whatsapp"></i></div>
+    </a>
+
     <script>
-        // Navbar scroll effect
+        // Navbar scroll
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Hamburger toggle
+        // Hamburger
         document.getElementById('hamburger').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
         });
 
-        // Close menu on link click (mobile)
+        // Close menu on link click
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Form -> WhatsApp
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nama = this.querySelector('input[type="text"]').value;
+            const telp = this.querySelector('input[type="tel"]').value;
+            const layanan = this.querySelector('select').value;
+            const pesan = this.querySelector('textarea').value;
+            const text = `Halo, saya ${nama} (${telp}).%0ALayanan: ${layanan}%0A%0A${pesan}`;
+            window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
     </script>
