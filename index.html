@@ -3,315 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notaris & PPAT Elite | Mataram</title>
+    <title>Notaris & PPAT Ahmad Fauzan | Mataram</title>
     
-    <!-- Fonts: Playfair Display (Luxury) & Plus Jakarta Sans (Modern) -->
+    <!-- Google Fonts: Poppins untuk kesan Modern & Clean -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Icons -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* --- VARIABLES & RESET --- */
+        /* --- RESET & VARIABLES --- */
         :root {
-            --primary-dark: #0f172a;
-            --primary-blue: #1e40af;
-            --accent-blue: #3b82f6;
-            --accent-cyan: #06b6d4;
-            --gold: #fbbf24;
+            --primary-dark: #0f172a;      /* Biru Tua Gelap (Navy) */
+            --primary-blue: #1e40af;      /* Biru Profesional */
+            --accent-orange: #F59E0B;     /* Oranye/Emas Energik (Sesuai Referensi) */
+            --accent-light: #FCD34D;      /* Kuning Muda */
             --white: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.5);
-            --shadow-premium: 0 20px 40px -10px rgba(30, 64, 175, 0.15);
-            --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0ea5e9 100%);
-            --gradient-text: linear-gradient(to right, #1e40af, #06b6d4);
-            --font-serif: 'Playfair Display', serif;
-            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --light-gray: #f8fafc;
+            --text-gray: #94a3b8;
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         
         body {
-            font-family: var(--font-sans);
+            font-family: 'Poppins', sans-serif;
             color: var(--primary-dark);
-            background-color: #f8fafc;
+            background-color: var(--white);
             overflow-x: hidden;
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 700; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         a { text-decoration: none; transition: all 0.3s ease; }
         ul { list-style: none; }
 
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
-
-        /* --- NAVBAR GLASSMORPHISM --- */
+        /* --- NAVBAR --- */
         .navbar {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            padding: 1.2rem 0;
-            transition: all 0.4s ease;
-        }
-        
-        .navbar.scrolled {
-            padding: 0.8rem 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         .nav-content { display: flex; justify-content: space-between; align-items: center; }
 
         .logo {
-            font-size: 1.5rem; font-weight: 800; color: var(--primary-blue);
+            font-size: 1.5rem; font-weight: 800; color: var(--primary-dark);
             display: flex; align-items: center; gap: 10px;
-            font-family: var(--font-serif);
         }
         
-        .logo i { 
-            background: var(--gradient-text); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            font-size: 1.8rem;
-        }
+        .logo i { color: var(--accent-orange); font-size: 1.8rem; }
 
-        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
         
         .nav-links a {
             color: var(--primary-dark); font-weight: 500; font-size: 0.95rem;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: ''; position: absolute; width: 0; height: 2px;
-            bottom: -5px; left: 0; background: var(--accent-blue);
-            transition: width 0.3s ease;
         }
         
-        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--primary-blue); }
 
         .btn-nav {
-            background: var(--primary-dark); color: white !important;
-            padding: 0.8rem 1.8rem; border-radius: 50px;
-            font-weight: 600; box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
+            background: var(--primary-blue); color: white !important;
+            padding: 0.8rem 1.5rem; border-radius: 50px;
+            font-weight: 600; box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2);
         }
         
-        .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(15, 23, 42, 0.3); }
-        .btn-nav::after { display: none; }
+        .btn-nav:hover { transform: translateY(-2px); background: var(--primary-dark); }
 
-        /* --- HERO SECTION PREMIUM --- */
+        /* --- HERO SECTION (DESIGN UTAMA) --- */
         .hero {
             position: relative;
             min-height: 100vh;
-            display: flex; align-items: center;
-            background: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            padding-top: 80px; /* Space for navbar */
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
             overflow: hidden;
-            padding-top: 80px;
+            color: var(--white);
         }
 
-        /* Abstract Background Shapes */
+        /* Background Pattern Dots Halus */
         .hero::before {
-            content: ''; position: absolute; top: -20%; right: -10%;
-            width: 60vw; height: 60vw;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
-            filter: blur(80px); animation: pulse 10s infinite alternate;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(#ffffff 1px, transparent 1px);
+            background-size: 40px 40px; opacity: 0.05; z-index: 1;
         }
-        
-        .hero::after {
-            content: ''; position: absolute; bottom: -10%; left: -10%;
-            width: 40vw; height: 40vw;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
-            filter: blur(60px); animation: pulse 8s infinite alternate-reverse;
-        }
-
-        @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
 
         .hero-grid {
-            display: grid; grid-template-columns: 1.2fr 0.8fr;
-            gap: 4rem; align-items: center; position: relative; z-index: 2;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 60px; align-items: center; position: relative; z-index: 2;
+            padding: 60px 0;
         }
 
+        /* Hero Text Content */
         .hero-text h1 {
-            font-size: clamp(3rem, 5vw, 4.5rem);
-            line-height: 1.1; color: white;
-            margin-bottom: 1.5rem; letter-spacing: -1px;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1; font-weight: 800; margin-bottom: 20px;
         }
 
         .hero-text h1 span {
-            background: linear-gradient(to right, #60a5fa, #22d3ee);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            font-style: italic;
+            color: var(--accent-orange);
+            display: block; /* Agar baris baru */
         }
 
         .hero-text p {
-            font-size: 1.15rem; color: rgba(255,255,255,0.8);
-            max-width: 550px; margin-bottom: 2.5rem; font-weight: 300;
+            font-size: 1.1rem; color: rgba(255,255,255,0.8);
+            margin-bottom: 30px; max-width: 500px; font-weight: 300;
         }
 
-        .hero-btns { display: flex; gap: 1.5rem; }
+        .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
 
         .btn-primary {
-            background: linear-gradient(90deg, #2563eb, #06b6d4);
-            color: white; padding: 1rem 2.5rem; border-radius: 50px;
+            background: var(--accent-orange); color: var(--primary-dark);
+            padding: 15px 35px; border-radius: 50px;
+            font-weight: 700; display: inline-flex; align-items: center; gap: 10px;
+            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
+        }
+        
+        .btn-primary:hover { transform: translateY(-3px); background: var(--accent-light); }
+
+        .btn-outline {
+            background: transparent; border: 2px solid rgba(255,255,255,0.3);
+            color: white; padding: 13px 35px; border-radius: 50px;
             font-weight: 600; display: inline-flex; align-items: center; gap: 10px;
-            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
-            border: 1px solid rgba(255,255,255,0.1);
         }
         
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(37, 99, 235, 0.6); }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
 
-        .btn-glass {
-            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
-            color: white; padding: 1rem 2.5rem; border-radius: 50px;
-            font-weight: 600; border: 1px solid rgba(255,255,255,0.2);
-            display: inline-flex; align-items: center; gap: 10px;
+        /* --- HERO PHOTO FRAME STYLE (SESUAI REFERENSI) --- */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 500px; /* Fixed height for alignment */
+        }
+
+        /* The Orange Circle Border Frame */
+        .photo-frame {
+            position: relative;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            border: 12px solid var(--accent-orange); /* Border Tebal Oranye */
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            z-index: 2;
+            background: #fff;
+            animation: floatImage 6s ease-in-out infinite;
+        }
+
+        @keyframes floatImage {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        /* Decorative Elements behind photo */
+        .decor-circle {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .circle-1 {
+            width: 100px; height: 100px;
+            background: var(--accent-orange);
+            top: 20px; right: 40px;
+            opacity: 0.8;
+        }
+
+        .circle-2 {
+            width: 60px; height: 60px;
+            border: 4px solid var(--accent-light);
+            bottom: 40px; left: 20px;
+            opacity: 0.6;
+        }
+
+        .circle-3 {
+            width: 500px; height: 500px;
+            border: 2px dashed rgba(255,255,255,0.1);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        /* --- STATS SECTION --- */
+        .stats-section {
+            background: var(--white);
+            padding: 40px 0;
+            border-bottom: 1px solid #e2e8f0;
         }
         
-        .btn-glass:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
-
-        /* Hero Image Composition */
-        .hero-visual { position: relative; }
-        
-        .hero-img-wrapper {
-            position: relative; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
-            transition: transform 0.5s ease;
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 20px; text-align: center;
         }
         
-        .hero-img-wrapper:hover { transform: perspective(1000px) rotateY(0) rotateX(0); }
-        
-        .hero-img-wrapper img { width: 100%; height: auto; display: block; }
+        .stat-item h3 { font-size: 2rem; color: var(--primary-blue); font-weight: 800; }
+        .stat-item p { font-size: 0.9rem; color: #64748b; font-weight: 500; }
 
-        .floating-card {
-            position: absolute; background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(20px); padding: 1.2rem;
-            border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            display: flex; align-items: center; gap: 1rem;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .card-left { bottom: 40px; left: -40px; z-index: 3; }
-        .card-right { top: 40px; right: -30px; z-index: 3; animation-delay: 2s; }
+        /* --- SERVICES SECTION --- */
+        .section { padding: 80px 0; }
+        .bg-light { background: var(--light-gray); }
 
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-
-        .fc-icon {
-            width: 50px; height: 50px; background: var(--primary-blue);
-            border-radius: 12px; display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.2rem;
-        }
-        
-        .fc-text h4 { font-family: var(--font-sans); font-size: 0.9rem; margin-bottom: 2px; color: var(--primary-dark); }
-        .fc-text p { font-size: 0.75rem; color: #64748b; margin: 0; }
-
-        /* --- STATS BAR --- */
-        .stats-bar {
-            background: white; margin-top: -60px; position: relative; z-index: 10;
-            border-radius: 20px; box-shadow: var(--shadow-premium);
-            padding: 2.5rem; display: grid; grid-template-columns: repeat(4, 1fr);
-            gap: 2rem; text-align: center; border: 1px solid rgba(0,0,0,0.03);
-        }
-        
-        .stat-item h3 { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 0.5rem; }
-        .stat-item p { font-size: 0.9rem; color: #64748b; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* --- SERVICES (Cards with Hover Glow) --- */
-        .section { padding: 8rem 0; }
-        .bg-light { background: #f1f5f9; }
-
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 5rem; }
+        .section-header { text-align: center; margin-bottom: 60px; }
         .section-label {
-            color: var(--accent-blue); font-weight: 700; text-transform: uppercase;
-            letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 1rem; display: block;
+            color: var(--accent-orange); font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 10px; display: block;
         }
         
-        .section-title { font-size: 2.8rem; color: var(--primary-dark); margin-bottom: 1.5rem; line-height: 1.2; }
-        .section-desc { color: #64748b; font-size: 1.1rem; }
+        .section-title { font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 15px; }
 
         .services-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .service-card {
-            background: white; padding: 3rem 2.5rem; border-radius: 24px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(0,0,0,0.04); position: relative; overflow: hidden;
-            group: service;
+            background: white; padding: 40px 30px; border-radius: 20px;
+            transition: all 0.3s ease; border: 1px solid #e2e8f0;
+            position: relative; overflow: hidden;
         }
 
-        .service-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan));
-            transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
-        }
-
-        .service-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1); }
-        .service-card:hover::before { transform: scaleX(1); }
-
-        .icon-box {
-            width: 70px; height: 70px; background: #eff6ff; border-radius: 20px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.8rem; color: var(--primary-blue); margin-bottom: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover .icon-box { background: var(--primary-blue); color: white; transform: rotateY(180deg); }
-
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-dark); }
-        .service-card p { color: #64748b; line-height: 1.7; margin-bottom: 1.5rem; }
-        .learn-more { color: var(--primary-blue); font-weight: 600; display: flex; align-items: center; gap: 8px; }
-        .learn-more i { transition: transform 0.3s ease; }
-        .service-card:hover .learn-more i { transform: translateX(5px); }
-
-        /* --- CTA SECTION (Modern Gradient) --- */
-        .cta-section {
-            background: var(--gradient-hero); padding: 6rem 0;
-            position: relative; overflow: hidden; text-align: center;
+        .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: transparent; }
+        
+        .service-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px;
+            background: var(--accent-orange); transform: scaleX(0); transition: transform 0.3s ease;
         }
         
-        .cta-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
-        .cta-content h2 { color: white; font-size: 3rem; margin-bottom: 1.5rem; }
-        .cta-content p { color: rgba(255,255,255,0.9); font-size: 1.2rem; margin-bottom: 3rem; }
+        .service-card:hover::after { transform: scaleX(1); }
+
+        .icon-box {
+            width: 60px; height: 60px; background: #eff6ff; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: var(--primary-blue); margin-bottom: 20px;
+        }
+
+        .service-card h3 { font-size: 1.3rem; margin-bottom: 15px; }
+        .service-card p { color: #64748b; font-size: 0.95rem; }
+
+        /* --- CONTACT/CTA SECTION --- */
+        .cta-section {
+            background: var(--primary-dark);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+        .cta-content h2 { color: white; font-size: 2.5rem; margin-bottom: 20px; }
+        .cta-content p { color: rgba(255,255,255,0.8); margin-bottom: 30px; }
 
         /* --- FOOTER --- */
-        footer { background: var(--primary-dark); color: white; padding: 5rem 0 2rem; }
-        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
-        .footer-brand p { color: #94a3b8; margin-top: 1.5rem; line-height: 1.8; }
-        .footer-col h4 { font-size: 1.2rem; margin-bottom: 2rem; color: white; }
-        .footer-col ul li { margin-bottom: 1rem; }
-        .footer-col ul li a { color: #94a3b8; transition: color 0.3s; }
-        .footer-col ul li a:hover { color: var(--accent-cyan); }
-        .copyright { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; text-align: center; color: #64748b; font-size: 0.9rem; }
+        footer { background: #020617; color: white; padding: 60px 0 20px; border-top: 5px solid var(--accent-orange); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-size: 1.2rem; margin-bottom: 20px; color: var(--accent-orange); }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #94a3b8; }
+        .footer-col ul li a:hover { color: white; padding-left: 5px; }
+        .copyright { text-align: center; color: #64748b; font-size: 0.9rem; border-top: 1px solid #1e293b; padding-top: 20px; }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 1024px) {
+        @media (max-width: 992px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-text p { margin: 0 auto 2.5rem; }
+            .hero-text p { margin: 0 auto 30px; }
             .hero-btns { justify-content: center; }
-            .hero-visual { display: none; } /* Hide complex visual on tablet for simplicity */
-            .stats-bar { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .hero-visual { margin-top: 40px; height: auto; }
+            .photo-frame { width: 350px; height: 350px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            .nav-links { display: none; } /* Simplified for demo */
             .hero-text h1 { font-size: 2.5rem; }
-            .stats-bar { grid-template-columns: 1fr; margin-top: 2rem; }
-            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .section-title { font-size: 2rem; }
+            .photo-frame { width: 300px; height: 300px; border-width: 8px; }
+            .stats-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar">
         <div class="container nav-content">
             <a href="#" class="logo">
                 <i class="fas fa-scale-balanced"></i>
@@ -319,10 +305,10 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#home">Beranda</a></li>
-                <li><a href="#about">Tentang</a></li>
-                <li><a href="#services">Layanan</a></li>
-                <li><a href="#contact">Kontak</a></li>
-                <li><a href="https://wa.me/6281234567890" class="btn-nav">Konsultasi <i class="fas fa-arrow-right"></i></a></li>
+                <li><a href="#layanan">Layanan</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+                <li><a href="https://wa.me/6281234567890" class="btn-nav"><i class="fab fa-whatsapp"></i> Konsultasi</a></li>
             </ul>
         </div>
     </nav>
@@ -330,167 +316,128 @@
     <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="container hero-grid">
+            <!-- Left: Text -->
             <div class="hero-text">
-                <h1>Mitra Hukum <br><span>Profesional & Modern</span><br>di Kota Mataram</h1>
-                <p>Solusi notaris dan PPAT terdepan dengan integritas tinggi. Kami menggabungkan keahlian hukum klasik dengan efisiensi teknologi modern untuk keamanan aset Anda.</p>
+                <h1>Solusi Hukum <span>Notaris & PPAT</span> Terpercaya</h1>
+                <p>Melayani pembuatan akta tanah, pendirian perusahaan, dan legalitas dokumen dengan cepat, transparan, dan profesional di Kota Mataram.</p>
                 <div class="hero-btns">
                     <a href="https://wa.me/6281234567890" class="btn-primary">
                         <i class="fab fa-whatsapp"></i> Hubungi Kami
                     </a>
-                    <a href="#services" class="btn-glass">
-                        <i class="fas fa-play"></i> Lihat Layanan
+                    <a href="#layanan" class="btn-outline">
+                        Lihat Layanan <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
-            
+
+            <!-- Right: Photo with Frame Style -->
             <div class="hero-visual">
-                <div class="hero-img-wrapper">
-                    <!-- Placeholder Image: Modern Office/Handshake -->
-                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Professional Notary Service">
-                </div>
-                
-                <!-- Floating Cards -->
-                <div class="floating-card card-left">
-                    <div class="fc-icon"><i class="fas fa-file-signature"></i></div>
-                    <div class="fc-text">
-                        <h4>Legalitas Terjamin</h4>
-                        <p>Resmi Negara RI</p>
-                    </div>
-                </div>
-                
-                <div class="floating-card card-right">
-                    <div class="fc-icon" style="background: var(--accent-cyan);"><i class="fas fa-clock"></i></div>
-                    <div class="fc-text">
-                        <h4>Proses Cepat</h4>
-                        <p>Efisien & Transparan</p>
-                    </div>
+                <!-- Decorative Background Elements -->
+                <div class="decor-circle circle-3"></div>
+                <div class="decor-circle circle-1"></div>
+                <div class="decor-circle circle-2"></div>
+
+                <!-- Main Photo Frame -->
+                <div class="photo-frame">
+                    <!-- GANTI URL INI DENGAN FOTO ANDA -->
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Foto Notaris Profesional">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- STATS BAR -->
-    <div class="container">
-        <div class="stats-bar">
+    <!-- STATS -->
+    <div class="stats-section">
+        <div class="container stats-grid">
             <div class="stat-item">
                 <h3>15+</h3>
                 <p>Tahun Pengalaman</p>
             </div>
             <div class="stat-item">
-                <h3>5k+</h3>
-                <p>Akta Selesai</p>
+                <h3>5000+</h3>
+                <p>Akta Diproses</p>
             </div>
             <div class="stat-item">
                 <h3>100%</h3>
-                <p>Kepuasan Klien</p>
+                <p>Legal & Resmi</p>
             </div>
             <div class="stat-item">
                 <h3>24/7</h3>
-                <p>Layanan Online</p>
+                <p>Konsultasi Online</p>
             </div>
         </div>
     </div>
 
     <!-- SERVICES -->
-    <section class="section bg-light" id="services">
+    <section class="section bg-light" id="layanan">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Expertise Area</span>
-                <h2 class="section-title">Layanan Hukum Komprehensif</h2>
-                <p class="section-desc">Kami menyediakan layanan kenotariatan lengkap dengan standar pelayanan premium untuk individu maupun korporasi.</p>
+                <span class="section-label">Layanan Kami</span>
+                <h2 class="section-title">Solusi Legalitas Lengkap</h2>
+                <p style="color:#64748b;">Kami menyediakan berbagai layanan kenotariatan untuk kebutuhan pribadi maupun bisnis Anda.</p>
             </div>
 
             <div class="services-grid">
-                <!-- Card 1 -->
                 <div class="service-card">
                     <div class="icon-box"><i class="fas fa-home"></i></div>
-                    <h3>Properti & Tanah</h3>
-                    <p>Pengurusan AJB, Hak Tanggungan, dan sertifikasi tanah dengan proses yang aman dan cepat di wilayah NTB.</p>
-                    <a href="#" class="learn-more">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    <h3>Akta Tanah & Properti</h3>
+                    <p>Pembuatan AJB, Hak Tanggungan, dan sertifikasi tanah dengan proses aman dan cepat.</p>
                 </div>
-                <!-- Card 2 -->
                 <div class="service-card">
                     <div class="icon-box"><i class="fas fa-building"></i></div>
-                    <h3>Korporasi & Bisnis</h3>
-                    <p>Pendirian PT, CV, Perubahan Anggaran Dasar, hingga legalitas perizinan usaha untuk pertumbuhan bisnis Anda.</p>
-                    <a href="#" class="learn-more">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    <h3>Pendirian Perusahaan</h3>
+                    <p>Jasa pendirian PT, CV, dan Yayasan lengkap dengan pengesahan Kemenkumham.</p>
                 </div>
-                <!-- Card 3 -->
                 <div class="service-card">
-                    <div class="icon-box"><i class="fas fa-users"></i></div>
-                    <h3>Waris & Wasiat</h3>
-                    <p>Perencanaan harta waris yang legal dan mengikat secara hukum untuk menjamin ketenangan keluarga Anda.</p>
-                    <a href="#" class="learn-more">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    <div class="icon-box"><i class="fas fa-file-signature"></i></div>
+                    <h3>Legalitas Dokumen</h3>
+                    <p>Legalisasi, Waarmerking, dan pembuatan surat kuasa atau perjanjian kerjasama.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA SECTION -->
-    <section class="cta-section">
+    <!-- CTA -->
+    <section class="cta-section" id="kontak">
         <div class="container cta-content">
-            <h2>Siap Mengamankan Aset Anda?</h2>
-            <p>Jangan ragu untuk berdiskusi dengan tim ahli kami. Konsultasi awal gratis untuk kebutuhan notaris dan PPAT Anda di Mataram.</p>
-            <a href="https://wa.me/6281234567890" class="btn-primary" style="background: white; color: var(--primary-blue);">
-                <i class="fab fa-whatsapp"></i> Chat WhatsApp Sekarang
+            <h2>Butuh Konsultasi Hukum?</h2>
+            <p>Diskusikan kebutuhan Anda dengan tim ahli kami. Gratis konsultasi awal via WhatsApp.</p>
+            <a href="https://wa.me/6281234567890" class="btn-primary" style="background: white; color: var(--primary-dark);">
+                <i class="fab fa-whatsapp"></i> Chat Sekarang
             </a>
-        </div2>
+        </div>
     </section>
 
     <!-- FOOTER -->
-    <footer id="contact">
+    <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="logo" style="color: white;">
-                        <i class="fas fa-scale-balanced" style="-webkit-text-fill-color: white;"></i>
-                        NOTARIS MATARAM
-                    </a>
-                    <p>Kantor Notaris & PPAT dengan standar pelayanan internasional di jantung Kota Mataram. Kepercayaan Anda adalah prioritas utama kami.</p>
+                <div class="footer-col">
+                    <h4>Notaris Mataram</h4>
+                    <p style="color:#94a3b8; font-size:0.9rem;">Kantor Notaris & PPAT resmi yang melayani wilayah Kota Mataram dan seluruh Nusa Tenggara Barat dengan integritas tinggi.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Layanan</h4>
+                    <h4>Navigasi</h4>
                     <ul>
-                        <li><a href="#">Akta Tanah</a></li>
-                        <li><a href="#">Pendirian Perusahaan</a></li>
-                        <li><a href="#">Wasiat & Waris</a></li>
-                        <li><a href="#">Legalisasi Dokumen</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Perusahaan</h4>
-                    <ul>
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Karir</a></li>
-                        <li><a href="#">Blog Hukum</a></li>
-                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#layanan">Layanan</a></li>
+                        <li><a href="#kontak">Kontak</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Kontak</h4>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Jl. Pejanggik No. 88, Mataram</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Jl. Langko No. 88, Mataram</li>
                         <li><i class="fas fa-phone"></i> +62 812-3456-7890</li>
-                        <li><i class="fas fa-envelope"></i> hello@notarismataram.id</li>
+                        <li><i class="fas fa-envelope"></i> info@notarismataram.id</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                &copy; 2026 Notaris Mataram. All Rights Reserved. Designed with Precision.
+                &copy; 2026 Notaris & PPAT Mataram. All Rights Reserved.
             </div>
         </div>
     </footer>
 
-    <script>
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    </script>
 </body>
 </html>
