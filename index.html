@@ -1081,29 +1081,22 @@
         }
 
 
- /* ============================================
-   PARTNER / REKANAN (Inside Tentang Section)
+/* ============================================
+   PARTNER / REKANAN (Inside Tentang Section) - RAPAT
    ============================================ */
 .partners-inner {
-    margin-top: 70px;
-    padding-top: 60px;
-    border-top: 1px solid var(--border-light);
+    margin-top: 20px;        /* Jarak sangat rapat */
+    padding-top: 20px;       /* Padding minimal */
+    /* border-top DIHILANGKAN */
     position: relative;
 }
 
-.partners-inner::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 80px; height: 1px;
-    background: var(--gradient-gold);
-}
+/* ::before DIHILANGKAN - tidak ada garis gold */
 
 .partners-header {
     text-align: center;
     max-width: 700px;
-    margin: 0 auto 50px;
+    margin: 0 auto 40px;
 }
 
 .partners-header .section-label {
@@ -1361,7 +1354,7 @@
 }
 
 @media (max-width: 768px) {
-    .partners-inner { margin-top: 50px; padding-top: 40px; }
+    .partners-inner { margin-top: 20px; padding-top: 20px; }
     .partners-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
     .partner-logo { min-height: 100px; padding: 18px 10px; }
     .partner-logo .logo-icon { width: 40px; height: 40px; font-size: 1.4rem; }
