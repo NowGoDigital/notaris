@@ -1081,24 +1081,22 @@
         }
 
 
-        /* ============================================
-   PARTNER / REKANAN SECTION
+ /* ============================================
+   PARTNER / REKANAN (Inside Tentang Section)
    ============================================ */
-   .partners-section {
-    padding: 70px 0 80px;
-    background: var(--white);
+.partners-inner {
+    margin-top: 70px;
+    padding-top: 60px;
+    border-top: 1px solid var(--border-light);
     position: relative;
-    overflow: hidden;
-    border-top: 1px solid rgba(0,0,0,0.04);
-    border-bottom: 1px solid rgba(0,0,0,0.04);
 }
 
-.partners-section::before {
+.partners-inner::before {
     content: '';
     position: absolute;
     top: 0; left: 50%;
     transform: translateX(-50%);
-    width: 100px; height: 1px;
+    width: 80px; height: 1px;
     background: var(--gradient-gold);
 }
 
@@ -1106,8 +1104,6 @@
     text-align: center;
     max-width: 700px;
     margin: 0 auto 50px;
-    position: relative;
-    z-index: 2;
 }
 
 .partners-header .section-label {
@@ -1207,15 +1203,9 @@
     position: relative;
     z-index: 1;
     transition: all 0.4s ease;
-    filter: grayscale(100%);
-    opacity: 0.7;
 }
 
-.partner-logo:hover .logo-name {
-    filter: grayscale(0%);
-    opacity: 1;
-    color: var(--gold);
-}
+.partner-logo:hover .logo-name { color: var(--gold); }
 
 .partner-logo .logo-type {
     font-size: 0.62rem;
@@ -1231,7 +1221,7 @@
 
 .partner-logo:hover .logo-type { opacity: 1; }
 
-/* Specific Bank Colors */
+/* Specific Colors */
 .partner-logo.bri .logo-icon { color: #00529B; background: rgba(0, 82, 155, 0.08); }
 .partner-logo.mandiri .logo-icon { color: #003D79; background: rgba(0, 61, 121, 0.08); }
 .partner-logo.bni .logo-icon { color: #F37021; background: rgba(243, 112, 33, 0.08); }
@@ -1245,7 +1235,7 @@
 .partner-logo.danamon .logo-icon { color: #FED100; background: rgba(254, 209, 0, 0.08); }
 .partner-logo.cimB .logo-icon { color: #8B1F41; background: rgba(139, 31, 65, 0.08); }
 
-/* Marquee Animation */
+/* Marquee */
 .partners-marquee {
     overflow: hidden;
     position: relative;
@@ -1265,12 +1255,12 @@
 
 .partners-marquee::before {
     left: 0;
-    background: linear-gradient(90deg, var(--white) 0%, transparent 100%);
+    background: linear-gradient(90deg, var(--bg-section) 0%, transparent 100%);
 }
 
 .partners-marquee::after {
     right: 0;
-    background: linear-gradient(270deg, var(--white) 0%, transparent 100%);
+    background: linear-gradient(270deg, var(--bg-section) 0%, transparent 100%);
 }
 
 .marquee-track {
@@ -1316,10 +1306,7 @@
 
 .marquee-item:hover .m-icon { filter: grayscale(0%); opacity: 1; }
 
-.marquee-item .m-text {
-    display: flex;
-    flex-direction: column;
-}
+.marquee-item .m-text { display: flex; flex-direction: column; }
 
 .marquee-item .m-name {
     font-weight: 700;
@@ -1345,9 +1332,7 @@
     border-top: 1px solid var(--border-light);
 }
 
-.p-stat {
-    text-align: center;
-}
+.p-stat { text-align: center; }
 
 .p-stat .p-num {
     font-family: var(--font-serif);
@@ -1376,7 +1361,7 @@
 }
 
 @media (max-width: 768px) {
-    .partners-section { padding: 50px 0 60px; }
+    .partners-inner { margin-top: 50px; padding-top: 40px; }
     .partners-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
     .partner-logo { min-height: 100px; padding: 18px 10px; }
     .partner-logo .logo-icon { width: 40px; height: 40px; font-size: 1.4rem; }
@@ -1585,185 +1570,173 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- ============================================
-     PARTNER / REKANAN SECTION
-     ============================================ -->
-<section class="partners-section" id="partner">
-    <div class="container">
-        
-        <div class="partners-header fade-in">
-            <span class="section-label">Mitra Terpercaya</span>
-            <h2 class="section-title">Dipercaya Oleh <span class="gold-word">Rekanan</span> Terkemuka</h2>
-            <p>Kami menjalin kerja sama strategis dengan berbagai bank nasional, lembaga pemerintah, dan asosiasi profesi untuk memberikan pelayanan terbaik dan terlengkap bagi setiap klien.</p>
-        </div>
-
-        <!-- Logo Grid Utama -->
-        <div class="partners-grid fade-in">
+    
+            <!-- ============================================
+             REKANAN & MITRA KERJA SAMA (Inside Tentang)
+             ============================================ -->
+        <div class="partners-inner fade-in">
             
-            <div class="partner-logo bri">
-                <div class="logo-icon"><i class="fas fa-university"></i></div>
-                <span class="logo-name">Bank BRI</span>
-                <span class="logo-type">Bank BUMN</span>
+            <div class="partners-header">
+                <span class="section-label">Mitra Terpercaya</span>
+                <h2 class="section-title">Dipercaya Oleh <span class="gold-word">Rekanan</span> Terkemuka</h2>
+                <p>Kami menjalin kerja sama strategis dengan berbagai bank nasional, lembaga pemerintah, dan asosiasi profesi untuk memberikan pelayanan terbaik dan terlengkap bagi setiap klien.</p>
             </div>
 
-            <div class="partner-logo mandiri">
-                <div class="logo-icon"><i class="fas fa-landmark"></i></div>
-                <span class="logo-name">Bank Mandiri</span>
-                <span class="logo-type">Bank BUMN</span>
+            <!-- Logo Grid Utama -->
+            <div class="partners-grid">
+                <div class="partner-logo bri">
+                    <div class="logo-icon"><i class="fas fa-university"></i></div>
+                    <span class="logo-name">Bank BRI</span>
+                    <span class="logo-type">Bank BUMN</span>
+                </div>
+                <div class="partner-logo mandiri">
+                    <div class="logo-icon"><i class="fas fa-landmark"></i></div>
+                    <span class="logo-name">Bank Mandiri</span>
+                    <span class="logo-type">Bank BUMN</span>
+                </div>
+                <div class="partner-logo bni">
+                    <div class="logo-icon"><i class="fas fa-building-columns"></i></div>
+                    <span class="logo-name">Bank BNI</span>
+                    <span class="logo-type">Bank BUMN</span>
+                </div>
+                <div class="partner-logo btn">
+                    <div class="logo-icon"><i class="fas fa-house-chimney"></i></div>
+                    <span class="logo-name">Bank BTN</span>
+                    <span class="logo-type">KPR & Properti</span>
+                </div>
+                <div class="partner-logo bpd">
+                    <div class="logo-icon"><i class="fas fa-mountain-sun"></i></div>
+                    <span class="logo-name">Bank NTB Syariah</span>
+                    <span class="logo-type">BPD Regional</span>
+                </div>
+                <div class="partner-logo bsi">
+                    <div class="logo-icon"><i class="fas fa-mosque"></i></div>
+                    <span class="logo-name">Bank BSI</span>
+                    <span class="logo-type">Bank Syariah</span>
+                </div>
+                <div class="partner-logo atr">
+                    <div class="logo-icon"><i class="fas fa-map-location-dot"></i></div>
+                    <span class="logo-name">ATR / BPN</span>
+                    <span class="logo-type">Lembaga Pemerintah</span>
+                </div>
+                <div class="partner-logo kemenkumham">
+                    <div class="logo-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <span class="logo-name">Kemenkumham</span>
+                    <span class="logo-type">Kementerian</span>
+                </div>
+                <div class="partner-logo ippat">
+                    <div class="logo-icon"><i class="fas fa-gavel"></i></div>
+                    <span class="logo-name">IPPAT</span>
+                    <span class="logo-type">Asosiasi PPAT</span>
+                </div>
+                <div class="partner-logo inan">
+                    <div class="logo-icon"><i class="fas fa-handshake"></i></div>
+                    <span class="logo-name">INI</span>
+                    <span class="logo-type">Ikatan Notaris</span>
+                </div>
+                <div class="partner-logo danamon">
+                    <div class="logo-icon"><i class="fas fa-coins"></i></div>
+                    <span class="logo-name">Bank Danamon</span>
+                    <span class="logo-type">Bank Swasta</span>
+                </div>
+                <div class="partner-logo cimB">
+                    <div class="logo-icon"><i class="fas fa-piggy-bank"></i></div>
+                    <span class="logo-name">CIMB Niaga</span>
+                    <span class="logo-type">Bank Swasta</span>
+                </div>
             </div>
 
-            <div class="partner-logo bni">
-                <div class="logo-icon"><i class="fas fa-building-columns"></i></div>
-                <span class="logo-name">Bank BNI</span>
-                <span class="logo-type">Bank BUMN</span>
+            <!-- Marquee Secondary Partners -->
+            <div class="partners-marquee">
+                <div class="marquee-track">
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#003D79;background:rgba(0,61,121,.08)"><i class="fas fa-building"></i></div>
+                        <div class="m-text"><span class="m-name">Bank BCA</span><span class="m-type">Bank Swasta</span></div>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#E31837;background:rgba(227,24,55,.08)"><i class="fas fa-credit-card"></i></div>
+                        <div class="m-text"><span class="m-name">Bank Mega</span><span class="m-type">Bank Swasta</span></div>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#00A651;background:rgba(0,166,81,.08)"><i class="fas fa-leaf"></i></div>
+                        <div class="m-text"><span class="m-name">Bank Syariah Indonesia</span><span class="m-type">Perbankan Syariah</span></div>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#1a2744;background:rgba(26,39,68,.08)"><i class="fas fa-landmark-dome"></i></div>
+                        <div class="m-text"><span class="m-name">Kementerian ATR/BPN</span><span class="m-type">Lembaga Negara</span></div>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#D4AF37;background:rgba(212,175,55,.08)"><i class="fas fa-stamp"></i></div>
+                        <div class="m-text"><span class="m-name">Kantor Pajak NTB</span><span class="m-type">Instansi Pemerintah</span></div>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#8B4513;background:rgba(139,69,19,.08)"><i class="fas fa-shield-halved"></i></div>
+                        <div class="m-text"><span class="m-name">Asuransi Jasindo</span><span class="m-type">Asuransi BUMN</span></div>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#00529B;background:rgba(0,82,155,.08)"><i class="fas fa-file-shield"></i></div>
+                        <div class="m-text"><span class="m-name">BPJS Ketenagakerjaan</span><span class="m-type">Lembaga Negara</span></div>
+                    </div>
+                    <!-- Duplicate untuk seamless loop -->
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#003D79;background:rgba(0,61,121,.08)"><i class="fas fa-building"></i></div>
+                        <div class="m-text"><span class="m-name">Bank BCA</span><span class="m-type">Bank Swasta</span></div>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#E31837;background:rgba(227,24,55,.08)"><i class="fas fa-credit-card"></i></div>
+                        <div class="m-text"><span class="m-name">Bank Mega</span><span class="m-type">Bank Swasta</span></div>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#00A651;background:rgba(0,166,81,.08)"><i class="fas fa-leaf"></i></div>
+                        <div class="m-text"><span class="m-name">Bank Syariah Indonesia</span><span class="m-type">Perbankan Syariah</span></div>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#1a2744;background:rgba(26,39,68,.08)"><i class="fas fa-landmark-dome"></i></div>
+                        <div class="m-text"><span class="m-name">Kementerian ATR/BPN</span><span class="m-type">Lembaga Negara</span></div>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#D4AF37;background:rgba(212,175,55,.08)"><i class="fas fa-stamp"></i></div>
+                        <div class="m-text"><span class="m-name">Kantor Pajak NTB</span><span class="m-type">Instansi Pemerintah</span></div>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#8B4513;background:rgba(139,69,19,.08)"><i class="fas fa-shield-halved"></i></div>
+                        <div class="m-text"><span class="m-name">Asuransi Jasindo</span><span class="m-type">Asuransi BUMN</span></div>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="m-icon" style="color:#00529B;background:rgba(0,82,155,.08)"><i class="fas fa-file-shield"></i></div>
+                        <div class="m-text"><span class="m-name">BPJS Ketenagakerjaan</span><span class="m-type">Lembaga Negara</span></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="partner-logo btn">
-                <div class="logo-icon"><i class="fas fa-house-chimney"></i></div>
-                <span class="logo-name">Bank BTN</span>
-                <span class="logo-type">KPR & Properti</span>
-            </div>
-
-            <div class="partner-logo bpd">
-                <div class="logo-icon"><i class="fas fa-mountain-sun"></i></div>
-                <span class="logo-name">Bank NTB Syariah</span>
-                <span class="logo-type">BPD Regional</span>
-            </div>
-
-            <div class="partner-logo bsi">
-                <div class="logo-icon"><i class="fas fa-mosque"></i></div>
-                <span class="logo-name">Bank BSI</span>
-                <span class="logo-type">Bank Syariah</span>
-            </div>
-
-            <div class="partner-logo atr">
-                <div class="logo-icon"><i class="fas fa-map-location-dot"></i></div>
-                <span class="logo-name">ATR / BPN</span>
-                <span class="logo-type">Lembaga Pemerintah</span>
-            </div>
-
-            <div class="partner-logo kemenkumham">
-                <div class="logo-icon"><i class="fas fa-scale-balanced"></i></div>
-                <span class="logo-name">Kemenkumham</span>
-                <span class="logo-type">Kementerian</span>
-            </div>
-
-            <div class="partner-logo ippat">
-                <div class="logo-icon"><i class="fas fa-gavel"></i></div>
-                <span class="logo-name">IPPAT</span>
-                <span class="logo-type">Asosiasi PPAT</span>
-            </div>
-
-            <div class="partner-logo inan">
-                <div class="logo-icon"><i class="fas fa-handshake"></i></div>
-                <span class="logo-name">INI</span>
-                <span class="logo-type">Ikatan Notaris</span>
-            </div>
-
-            <div class="partner-logo danamon">
-                <div class="logo-icon"><i class="fas fa-coins"></i></div>
-                <span class="logo-name">Bank Danamon</span>
-                <span class="logo-type">Bank Swasta</span>
-            </div>
-
-            <div class="partner-logo cimB">
-                <div class="logo-icon"><i class="fas fa-piggy-bank"></i></div>
-                <span class="logo-name">CIMB Niaga</span>
-                <span class="logo-type">Bank Swasta</span>
+            <!-- Stats Bar -->
+            <div class="partners-stats">
+                <div class="p-stat">
+                    <div class="p-num">15+</div>
+                    <div class="p-label">Bank Rekanan</div>
+                </div>
+                <div class="p-stat">
+                    <div class="p-num">5</div>
+                    <div class="p-label">Lembaga Pemerintah</div>
+                </div>
+                <div class="p-stat">
+                    <div class="p-num">10+</div>
+                    <div class="p-label">Tahun Kerja Sama</div>
+                </div>
+                <div class="p-stat">
+                    <div class="p-num">2.500+</div>
+                    <div class="p-label">Transaksi Berhasil</div>
+                </div>
             </div>
 
         </div>
-
-        <!-- Marquee Secondary Partners -->
-        <div class="partners-marquee fade-in">
-            <div class="marquee-track">
-                <!-- Set 1 -->
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#003D79;background:rgba(0,61,121,.08)"><i class="fas fa-building"></i></div>
-                    <div class="m-text"><span class="m-name">Bank BCA</span><span class="m-type">Bank Swasta</span></div>
-                </div>
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#E31837;background:rgba(227,24,55,.08)"><i class="fas fa-credit-card"></i></div>
-                    <div class="m-text"><span class="m-name">Bank Mega</span><span class="m-type">Bank Swasta</span></div>
-                </div>
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#00A651;background:rgba(0,166,81,.08)"><i class="fas fa-leaf"></i></div>
-                    <div class="m-text"><span class="m-name">Bank Syariah Indonesia</span><span class="m-type">Perbankan Syariah</span></div>
-                </div>
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#1a2744;background:rgba(26,39,68,.08)"><i class="fas fa-landmark-dome"></i></div>
-                    <div class="m-text"><span class="m-name">Kementerian ATR/BPN</span><span class="m-type">Lembaga Negara</span></div>
-                </div>
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#D4AF37;background:rgba(212,175,55,.08)"><i class="fas fa-stamp"></i></div>
-                    <div class="m-text"><span class="m-name">Kantor Pajak NTB</span><span class="m-type">Instansi Pemerintah</span></div>
-                </div>
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#8B4513;background:rgba(139,69,19,.08)"><i class="fas fa-shield-halved"></i></div>
-                    <div class="m-text"><span class="m-name">Asuransi Jasindo</span><span class="m-type">Asuransi BUMN</span></div>
-                </div>
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#00529B;background:rgba(0,82,155,.08)"><i class="fas fa-file-shield"></i></div>
-                    <div class="m-text"><span class="m-name">BPJS Ketenagakerjaan</span><span class="m-type">Lembaga Negara</span></div>
-                </div>
-                <!-- Duplicate untuk seamless loop -->
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#003D79;background:rgba(0,61,121,.08)"><i class="fas fa-building"></i></div>
-                    <div class="m-text"><span class="m-name">Bank BCA</span><span class="m-type">Bank Swasta</span></div>
-                </div>
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#E31837;background:rgba(227,24,55,.08)"><i class="fas fa-credit-card"></i></div>
-                    <div class="m-text"><span class="m-name">Bank Mega</span><span class="m-type">Bank Swasta</span></div>
-                </div>
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#00A651;background:rgba(0,166,81,.08)"><i class="fas fa-leaf"></i></div>
-                    <div class="m-text"><span class="m-name">Bank Syariah Indonesia</span><span class="m-type">Perbankan Syariah</span></div>
-                </div>
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#1a2744;background:rgba(26,39,68,.08)"><i class="fas fa-landmark-dome"></i></div>
-                    <div class="m-text"><span class="m-name">Kementerian ATR/BPN</span><span class="m-type">Lembaga Negara</span></div>
-                </div>
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#D4AF37;background:rgba(212,175,55,.08)"><i class="fas fa-stamp"></i></div>
-                    <div class="m-text"><span class="m-name">Kantor Pajak NTB</span><span class="m-type">Instansi Pemerintah</span></div>
-                </div>
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#8B4513;background:rgba(139,69,19,.08)"><i class="fas fa-shield-halved"></i></div>
-                    <div class="m-text"><span class="m-name">Asuransi Jasindo</span><span class="m-type">Asuransi BUMN</span></div>
-                </div>
-                <div class="marquee-item">
-                    <div class="m-icon" style="color:#00529B;background:rgba(0,82,155,.08)"><i class="fas fa-file-shield"></i></div>
-                    <div class="m-text"><span class="m-name">BPJS Ketenagakerjaan</span><span class="m-type">Lembaga Negara</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Stats Bar -->
-        <div class="partners-stats fade-in">
-            <div class="p-stat">
-                <div class="p-num">15+</div>
-                <div class="p-label">Bank Rekanan</div>
-            </div>
-            <div class="p-stat">
-                <div class="p-num">5</div>
-                <div class="p-label">Lembaga Pemerintah</div>
-            </div>
-            <div class="p-stat">
-                <div class="p-num">10+</div>
-                <div class="p-label">Tahun Kerja Sama</div>
-            </div>
-            <div class="p-stat">
-                <div class="p-num">2.500+</div>
-                <div class="p-label">Transaksi Berhasil</div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-
+        <!-- END PARTNERS INNER -->
+    
+    
+    
+    
+    
+    </section>
 
     
 
