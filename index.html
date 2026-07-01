@@ -1079,6 +1079,322 @@
             .contact-form { padding: 25px 15px; }
             .section { padding: 60px 0; }
         }
+
+
+        /* ============================================
+   PARTNER / REKANAN SECTION
+   ============================================ */
+   .partners-section {
+    padding: 70px 0 80px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(0,0,0,0.04);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.partners-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 100px; height: 1px;
+    background: var(--gradient-gold);
+}
+
+.partners-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.partners-header .section-label {
+    justify-content: center;
+}
+
+.partners-header .section-title {
+    margin-bottom: 0.8rem;
+}
+
+.partners-header p {
+    color: var(--text-body);
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* Logo Grid */
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.partner-logo {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 120px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.partner-logo::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--gradient-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.partner-logo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.partner-logo:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+}
+
+.partner-logo:hover::before { transform: scaleX(1); }
+.partner-logo:hover::after { opacity: 1; }
+
+.partner-logo .logo-icon {
+    width: 50px; height: 50px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    border-radius: 50%;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+    filter: grayscale(100%);
+    opacity: 0.65;
+}
+
+.partner-logo:hover .logo-icon {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.partner-logo .logo-name {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: var(--primary-dark);
+    text-align: center;
+    line-height: 1.2;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s ease;
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
+
+.partner-logo:hover .logo-name {
+    filter: grayscale(0%);
+    opacity: 1;
+    color: var(--gold);
+}
+
+.partner-logo .logo-type {
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-body);
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    opacity: 0.6;
+    transition: all 0.4s ease;
+}
+
+.partner-logo:hover .logo-type { opacity: 1; }
+
+/* Specific Bank Colors */
+.partner-logo.bri .logo-icon { color: #00529B; background: rgba(0, 82, 155, 0.08); }
+.partner-logo.mandiri .logo-icon { color: #003D79; background: rgba(0, 61, 121, 0.08); }
+.partner-logo.bni .logo-icon { color: #F37021; background: rgba(243, 112, 33, 0.08); }
+.partner-logo.btn .logo-icon { color: #F5A623; background: rgba(245, 166, 35, 0.08); }
+.partner-logo.bpd .logo-icon { color: #C8102E; background: rgba(200, 16, 46, 0.08); }
+.partner-logo.bsi .logo-icon { color: #00A651; background: rgba(0, 166, 81, 0.08); }
+.partner-logo.atr .logo-icon { color: #8B4513; background: rgba(139, 69, 19, 0.08); }
+.partner-logo.kemenkumham .logo-icon { color: #1a2744; background: rgba(26, 39, 68, 0.08); }
+.partner-logo.ippat .logo-icon { color: #D4AF37; background: rgba(212, 175, 55, 0.08); }
+.partner-logo.inan .logo-icon { color: #6B4423; background: rgba(107, 68, 35, 0.08); }
+.partner-logo.danamon .logo-icon { color: #FED100; background: rgba(254, 209, 0, 0.08); }
+.partner-logo.cimB .logo-icon { color: #8B1F41; background: rgba(139, 31, 65, 0.08); }
+
+/* Marquee Animation */
+.partners-marquee {
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+}
+
+.partners-marquee::before,
+.partners-marquee::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.partners-marquee::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--white) 0%, transparent 100%);
+}
+
+.partners-marquee::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--white) 0%, transparent 100%);
+}
+
+.marquee-track {
+    display: flex;
+    gap: 20px;
+    animation: marqueeScroll 35s linear infinite;
+    width: max-content;
+}
+
+.marquee-track:hover { animation-play-state: paused; }
+
+@keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.marquee-item {
+    flex-shrink: 0;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    padding: 18px 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 220px;
+    transition: all 0.3s ease;
+}
+
+.marquee-item:hover {
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.marquee-item .m-icon {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.marquee-item:hover .m-icon { filter: grayscale(0%); opacity: 1; }
+
+.marquee-item .m-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.marquee-item .m-name {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--primary-dark);
+    letter-spacing: 0.5px;
+}
+
+.marquee-item .m-type {
+    font-size: 0.65rem;
+    color: var(--text-body);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* Stats Bar */
+.partners-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-light);
+}
+
+.p-stat {
+    text-align: center;
+}
+
+.p-stat .p-num {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.p-stat .p-label {
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-body);
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .partners-grid { grid-template-columns: repeat(4, 1fr); }
+    .partners-stats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+@media (max-width: 768px) {
+    .partners-section { padding: 50px 0 60px; }
+    .partners-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .partner-logo { min-height: 100px; padding: 18px 10px; }
+    .partner-logo .logo-icon { width: 40px; height: 40px; font-size: 1.4rem; }
+    .partner-logo .logo-name { font-size: 0.72rem; }
+    .partner-logo .logo-type { font-size: 0.55rem; }
+    .partners-stats { grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 35px; padding-top: 30px; }
+    .p-stat .p-num { font-size: 1.8rem; }
+    .p-stat .p-label { font-size: 0.65rem; }
+}
+
+@media (max-width: 480px) {
+    .partners-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+
+
+        
     </style>
 </head>
 <body>
@@ -1270,6 +1586,186 @@
             </div>
         </div>
     </section>
+
+    <!-- ============================================
+     PARTNER / REKANAN SECTION
+     ============================================ -->
+<section class="partners-section" id="partner">
+    <div class="container">
+        
+        <div class="partners-header fade-in">
+            <span class="section-label">Mitra Terpercaya</span>
+            <h2 class="section-title">Dipercaya Oleh <span class="gold-word">Rekanan</span> Terkemuka</h2>
+            <p>Kami menjalin kerja sama strategis dengan berbagai bank nasional, lembaga pemerintah, dan asosiasi profesi untuk memberikan pelayanan terbaik dan terlengkap bagi setiap klien.</p>
+        </div>
+
+        <!-- Logo Grid Utama -->
+        <div class="partners-grid fade-in">
+            
+            <div class="partner-logo bri">
+                <div class="logo-icon"><i class="fas fa-university"></i></div>
+                <span class="logo-name">Bank BRI</span>
+                <span class="logo-type">Bank BUMN</span>
+            </div>
+
+            <div class="partner-logo mandiri">
+                <div class="logo-icon"><i class="fas fa-landmark"></i></div>
+                <span class="logo-name">Bank Mandiri</span>
+                <span class="logo-type">Bank BUMN</span>
+            </div>
+
+            <div class="partner-logo bni">
+                <div class="logo-icon"><i class="fas fa-building-columns"></i></div>
+                <span class="logo-name">Bank BNI</span>
+                <span class="logo-type">Bank BUMN</span>
+            </div>
+
+            <div class="partner-logo btn">
+                <div class="logo-icon"><i class="fas fa-house-chimney"></i></div>
+                <span class="logo-name">Bank BTN</span>
+                <span class="logo-type">KPR & Properti</span>
+            </div>
+
+            <div class="partner-logo bpd">
+                <div class="logo-icon"><i class="fas fa-mountain-sun"></i></div>
+                <span class="logo-name">Bank NTB Syariah</span>
+                <span class="logo-type">BPD Regional</span>
+            </div>
+
+            <div class="partner-logo bsi">
+                <div class="logo-icon"><i class="fas fa-mosque"></i></div>
+                <span class="logo-name">Bank BSI</span>
+                <span class="logo-type">Bank Syariah</span>
+            </div>
+
+            <div class="partner-logo atr">
+                <div class="logo-icon"><i class="fas fa-map-location-dot"></i></div>
+                <span class="logo-name">ATR / BPN</span>
+                <span class="logo-type">Lembaga Pemerintah</span>
+            </div>
+
+            <div class="partner-logo kemenkumham">
+                <div class="logo-icon"><i class="fas fa-scale-balanced"></i></div>
+                <span class="logo-name">Kemenkumham</span>
+                <span class="logo-type">Kementerian</span>
+            </div>
+
+            <div class="partner-logo ippat">
+                <div class="logo-icon"><i class="fas fa-gavel"></i></div>
+                <span class="logo-name">IPPAT</span>
+                <span class="logo-type">Asosiasi PPAT</span>
+            </div>
+
+            <div class="partner-logo inan">
+                <div class="logo-icon"><i class="fas fa-handshake"></i></div>
+                <span class="logo-name">INI</span>
+                <span class="logo-type">Ikatan Notaris</span>
+            </div>
+
+            <div class="partner-logo danamon">
+                <div class="logo-icon"><i class="fas fa-coins"></i></div>
+                <span class="logo-name">Bank Danamon</span>
+                <span class="logo-type">Bank Swasta</span>
+            </div>
+
+            <div class="partner-logo cimB">
+                <div class="logo-icon"><i class="fas fa-piggy-bank"></i></div>
+                <span class="logo-name">CIMB Niaga</span>
+                <span class="logo-type">Bank Swasta</span>
+            </div>
+
+        </div>
+
+        <!-- Marquee Secondary Partners -->
+        <div class="partners-marquee fade-in">
+            <div class="marquee-track">
+                <!-- Set 1 -->
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#003D79;background:rgba(0,61,121,.08)"><i class="fas fa-building"></i></div>
+                    <div class="m-text"><span class="m-name">Bank BCA</span><span class="m-type">Bank Swasta</span></div>
+                </div>
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#E31837;background:rgba(227,24,55,.08)"><i class="fas fa-credit-card"></i></div>
+                    <div class="m-text"><span class="m-name">Bank Mega</span><span class="m-type">Bank Swasta</span></div>
+                </div>
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#00A651;background:rgba(0,166,81,.08)"><i class="fas fa-leaf"></i></div>
+                    <div class="m-text"><span class="m-name">Bank Syariah Indonesia</span><span class="m-type">Perbankan Syariah</span></div>
+                </div>
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#1a2744;background:rgba(26,39,68,.08)"><i class="fas fa-landmark-dome"></i></div>
+                    <div class="m-text"><span class="m-name">Kementerian ATR/BPN</span><span class="m-type">Lembaga Negara</span></div>
+                </div>
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#D4AF37;background:rgba(212,175,55,.08)"><i class="fas fa-stamp"></i></div>
+                    <div class="m-text"><span class="m-name">Kantor Pajak NTB</span><span class="m-type">Instansi Pemerintah</span></div>
+                </div>
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#8B4513;background:rgba(139,69,19,.08)"><i class="fas fa-shield-halved"></i></div>
+                    <div class="m-text"><span class="m-name">Asuransi Jasindo</span><span class="m-type">Asuransi BUMN</span></div>
+                </div>
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#00529B;background:rgba(0,82,155,.08)"><i class="fas fa-file-shield"></i></div>
+                    <div class="m-text"><span class="m-name">BPJS Ketenagakerjaan</span><span class="m-type">Lembaga Negara</span></div>
+                </div>
+                <!-- Duplicate untuk seamless loop -->
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#003D79;background:rgba(0,61,121,.08)"><i class="fas fa-building"></i></div>
+                    <div class="m-text"><span class="m-name">Bank BCA</span><span class="m-type">Bank Swasta</span></div>
+                </div>
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#E31837;background:rgba(227,24,55,.08)"><i class="fas fa-credit-card"></i></div>
+                    <div class="m-text"><span class="m-name">Bank Mega</span><span class="m-type">Bank Swasta</span></div>
+                </div>
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#00A651;background:rgba(0,166,81,.08)"><i class="fas fa-leaf"></i></div>
+                    <div class="m-text"><span class="m-name">Bank Syariah Indonesia</span><span class="m-type">Perbankan Syariah</span></div>
+                </div>
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#1a2744;background:rgba(26,39,68,.08)"><i class="fas fa-landmark-dome"></i></div>
+                    <div class="m-text"><span class="m-name">Kementerian ATR/BPN</span><span class="m-type">Lembaga Negara</span></div>
+                </div>
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#D4AF37;background:rgba(212,175,55,.08)"><i class="fas fa-stamp"></i></div>
+                    <div class="m-text"><span class="m-name">Kantor Pajak NTB</span><span class="m-type">Instansi Pemerintah</span></div>
+                </div>
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#8B4513;background:rgba(139,69,19,.08)"><i class="fas fa-shield-halved"></i></div>
+                    <div class="m-text"><span class="m-name">Asuransi Jasindo</span><span class="m-type">Asuransi BUMN</span></div>
+                </div>
+                <div class="marquee-item">
+                    <div class="m-icon" style="color:#00529B;background:rgba(0,82,155,.08)"><i class="fas fa-file-shield"></i></div>
+                    <div class="m-text"><span class="m-name">BPJS Ketenagakerjaan</span><span class="m-type">Lembaga Negara</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="partners-stats fade-in">
+            <div class="p-stat">
+                <div class="p-num">15+</div>
+                <div class="p-label">Bank Rekanan</div>
+            </div>
+            <div class="p-stat">
+                <div class="p-num">5</div>
+                <div class="p-label">Lembaga Pemerintah</div>
+            </div>
+            <div class="p-stat">
+                <div class="p-num">10+</div>
+                <div class="p-label">Tahun Kerja Sama</div>
+            </div>
+            <div class="p-stat">
+                <div class="p-num">2.500+</div>
+                <div class="p-label">Transaksi Berhasil</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+    
 
     <div class="section-separator"><span class="sep-line"></span><span class="sep-diamond">◆</span><span class="sep-line"></span></div>
 
