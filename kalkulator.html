@@ -1,1 +1,753 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Pajak Properti - BPHTB & PPh Final</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold-primary: #c9a961;
+            --gold-dark: #a88a3f;
+            --gold-light: #e8d5a3;
+            --gold-glow: rgba(201, 169, 97, 0.3);
+            --text-dark: #1a1a2e;
+            --text-body: #4a4a5a;
+            --text-muted: #7a7a8a;
+            --bg-light: #faf8f3;
+            --bg-white: #ffffff;
+            --border-light: #e8e4d9;
+            --white: #ffffff;
+            --success: #28a745;
+            --info: #17a2b8;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #faf8f3 0%, #f5f0e1 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: var(--text-dark);
+        }
+
+        .calculator-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .calc-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .calc-header .icon-wrap {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px var(--gold-glow);
+        }
+
+        .calc-header .icon-wrap i {
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+
+        .calc-header h1 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .calc-header h1 span {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .calc-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* CARD UTAMA */
+        .calc-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-light);
+            margin-bottom: 25px;
+        }
+
+        .calc-card h2 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .calc-card h2 i {
+            color: var(--gold-primary);
+        }
+
+        /* FORM GROUP */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-group label i {
+            color: var(--gold-primary);
+            font-size: 0.9rem;
+        }
+
+        .form-group .hint {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: 2px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper .prefix {
+            position: absolute;
+            left: 14px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            pointer-events: none;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 13px 14px 13px 50px;
+            border: 1.5px solid var(--border-light);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group select {
+            padding-left: 14px;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a88a3f'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 24px;
+            padding-right: 40px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            background: var(--white);
+            box-shadow: 0 0 0 3px var(--gold-glow);
+        }
+
+        /* RADIO OPTIONS */
+        .radio-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .radio-option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .radio-option input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .radio-option .radio-box {
+            display: flex;
+            flex-direction: column;
+            padding: 14px;
+            border: 1.5px solid var(--border-light);
+            border-radius: 10px;
+            background: var(--bg-light);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .radio-option .radio-box .tarif {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gold-dark);
+            margin-bottom: 4px;
+        }
+
+        .radio-option .radio-box .desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .radio-option input:checked + .radio-box {
+            border-color: var(--gold-primary);
+            background: linear-gradient(135deg, #fff9e8 0%, #fdf4dc 100%);
+            box-shadow: 0 4px 12px var(--gold-glow);
+        }
+
+        .radio-option input:checked + .radio-box .tarif {
+            color: var(--gold-dark);
+        }
+
+        /* BUTTON */
+        .btn-calculate {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 6px 15px var(--gold-glow);
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--gold-glow);
+        }
+
+        .btn-calculate:active {
+            transform: translateY(0);
+        }
+
+        .btn-reset {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            color: var(--text-muted);
+            border: 1.5px solid var(--border-light);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-reset:hover {
+            border-color: var(--gold-primary);
+            color: var(--gold-dark);
+        }
+
+        /* HASIL PERHITUNGAN */
+        .result-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-light);
+            display: none;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-card.show {
+            display: block;
+        }
+
+        .result-card h2 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .result-card h2 i {
+            color: var(--success);
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px dashed var(--border-light);
+        }
+
+        .result-row:last-child {
+            border-bottom: none;
+        }
+
+        .result-row .label {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .result-row .label .main {
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .result-row .label .sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .result-row .value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-align: right;
+        }
+
+        .result-section {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--gold-primary);
+        }
+
+        .result-section h3 {
+            font-size: 0.95rem;
+            color: var(--gold-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-section h3 i {
+            font-size: 1rem;
+        }
+
+        .result-highlight {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .result-highlight .label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .result-highlight .value {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        /* INFO BOX */
+        .info-box {
+            background: #fff9e8;
+            border: 1px solid var(--gold-light);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .info-box i {
+            color: var(--gold-dark);
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+
+        .info-box .info-text {
+            font-size: 0.82rem;
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+
+        .info-box .info-text strong {
+            color: var(--text-dark);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+            .calc-card, .result-card { padding: 22px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+            .radio-options { grid-template-columns: 1fr; }
+            .calc-header h1 { font-size: 1.5rem; }
+            .result-highlight .value { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <!-- HEADER -->
+        <div class="calc-header">
+            <div class="icon-wrap">
+                <i class="fas fa-calculator"></i>
+            </div>
+            <h1>Kalkulator <span>Pajak Properti</span></h1>
+            <p>Estimasi BPHTB (Pembeli) & PPh Final (Penjual)</p>
+        </div>
+
+        <!-- FORM INPUT -->
+        <div class="calc-card">
+            <h2><i class="fas fa-edit"></i> Data Transaksi</h2>
+            <div class="form-grid">
+                <!-- Harga Transaksi -->
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-hand-holding-usd"></i>
+                        Harga Transaksi
+                        <span class="hint">(harga jual beli)</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="prefix">Rp</span>
+                        <input type="text" id="hargaTransaksi" placeholder="Contoh: 1.500.000.000" inputmode="numeric">
+                    </div>
+                </div>
+
+                <!-- NJOP -->
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        NJOP PBB
+                        <span class="hint">(di SPPT PBB)</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="prefix">Rp</span>
+                        <input type="text" id="njop" placeholder="Contoh: 1.200.000.000" inputmode="numeric">
+                    </div>
+                </div>
+
+                <!-- NPOPTKP -->
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-shield-alt"></i>
+                        NPOPTKP
+                        <span class="hint">(nilai tidak kena pajak)</span>
+                    </label>
+                    <select id="npoptkpSelect" onchange="toggleCustomNpoptkp()">
+                        <option value="60000000">Rp 60.000.000 (Umum)</option>
+                        <option value="80000000">Rp 80.000.000 (DKI Jakarta)</option>
+                        <option value="120000000">Rp 120.000.000 (Beberapa Kota)</option>
+                        <option value="350000000">Rp 350.000.000 (Waris/Hibah)</option>
+                        <option value="custom">Lainnya (Custom)</option>
+                    </select>
+                </div>
+
+                <!-- Custom NPOPTKP -->
+                <div class="form-group" id="customNpoptkpGroup" style="display: none;">
+                    <label>
+                        <i class="fas fa-pen"></i>
+                        NPOPTKP Custom
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="prefix">Rp</span>
+                        <input type="text" id="npoptkpCustom" placeholder="Masukkan nilai" inputmode="numeric">
+                    </div>
+                </div>
+
+                <!-- Jenis Properti -->
+                <div class="form-group full-width">
+                    <label>
+                        <i class="fas fa-home"></i>
+                        Jenis Properti
+                        <span class="hint">(untuk tarif PPh Final penjual)</span>
+                    </label>
+                    <div class="radio-options">
+                        <label class="radio-option">
+                            <input type="radio" name="jenisProperti" value="2.5" checked>
+                            <div class="radio-box">
+                                <div class="tarif">2,5%</div>
+                                <div class="desc">Rumah tinggal, ruko, tanah kosong, apartemen (tarif umum)</div>
+                            </div>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="jenisProperti" value="1">
+                            <div class="radio-box">
+                                <div class="tarif">1%</div>
+                                <div class="desc">Rumah sederhana / sangat sederhana (RSS/RSHS) oleh WP OP</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-group full-width">
+                    <button class="btn-calculate" onclick="hitungPajak()">
+                        <i class="fas fa-calculator"></i> Hitung Sekarang
+                    </button>
+                    <button class="btn-reset" onclick="resetForm()">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- HASIL -->
+        <div class="result-card" id="resultCard">
+            <h2><i class="fas fa-check-circle"></i> Hasil Perhitungan</h2>
+
+            <!-- Ringkasan Dasar Pengenaan -->
+            <div class="result-section">
+                <h3><i class="fas fa-info-circle"></i> Dasar Pengenaan Pajak</h3>
+                <div class="result-row">
+                    <div class="label">
+                        <span class="main">Harga Transaksi</span>
+                    </div>
+                    <div class="value" id="resHarga">-</div>
+                </div>
+                <div class="result-row">
+                    <div class="label">
+                        <span class="main">NJOP PBB</span>
+                    </div>
+                    <div class="value" id="resNjop">-</div>
+                </div>
+                <div class="result-row">
+                    <div class="label">
+                        <span class="main">NPOPTKP</span>
+                        <span class="sub">(pengurang BPHTB)</span>
+                    </div>
+                    <div class="value" id="resNpoptkp">-</div>
+                </div>
+                <div class="result-row">
+                    <div class="label">
+                        <span class="main"><strong>Nilai Perolehan (DPP)</strong></span>
+                        <span class="sub">MAX(Harga Transaksi, NJOP)</span>
+                    </div>
+                    <div class="value" style="color: var(--gold-dark);" id="resDpp">-</div>
+                </div>
+            </div>
+
+            <!-- BPHTB -->
+            <div class="result-section">
+                <h3><i class="fas fa-user-tie"></i> Ditanggung PEMBELI — BPHTB</h3>
+                <div class="result-row">
+                    <div class="label">
+                        <span class="main">Rumus</span>
+                        <span class="sub">(Nilai Perolehan - NPOPTKP) × 5%</span>
+                    </div>
+                </div>
+                <div class="result-row">
+                    <div class="label">
+                        <span class="main"><strong>BPHTB Terutang</strong></span>
+                    </div>
+                    <div class="value" style="color: var(--success); font-size: 1.15rem;" id="resBphtb">-</div>
+                </div>
+            </div>
+
+            <!-- PPh Final -->
+            <div class="result-section">
+                <h3><i class="fas fa-user-check"></i> Ditanggung PENJUAL — PPh Final</h3>
+                <div class="result-row">
+                    <div class="label">
+                        <span class="main">Rumus</span>
+                        <span class="sub">Nilai Perolehan × <span id="tarifPphText">2,5%</span></span>
+                    </div>
+                </div>
+                <div class="result-row">
+                    <div class="label">
+                        <span class="main"><strong>PPh Final Terutang</strong></span>
+                    </div>
+                    <div class="value" style="color: var(--info); font-size: 1.15rem;" id="resPph">-</div>
+                </div>
+            </div>
+
+            <!-- TOTAL -->
+            <div class="result-highlight">
+                <div class="label">Total Seluruh Pajak Transaksi</div>
+                <div class="value" id="resTotal">-</div>
+            </div>
+
+            <!-- INFO BOX -->
+            <div class="info-box">
+                <i class="fas fa-lightbulb"></i>
+                <div class="info-text">
+                    <strong>Catatan:</strong> Perhitungan ini adalah <strong>estimasi</strong>. BPHTB dibayarkan pembeli ke Kas Daerah, sedangkan PPh Final disetor penjual ke Kas Negara. Nilai final dapat berbeda tergantung kebijakan Pemda setempat dan kondisi spesifik transaksi. Konsultasikan dengan Notaris/PPAT untuk kepastian.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Format angka ke format Rupiah (tanpa "Rp" dan tanpa desimal untuk ribuan)
+        function formatRupiah(angka) {
+            if (isNaN(angka) || angka === 0) return 'Rp 0';
+            return 'Rp ' + angka.toLocaleString('id-ID');
+        }
+
+        // Parse input ke angka
+        function parseRupiah(str) {
+            return parseInt(str.replace(/\D/g, '')) || 0;
+        }
+
+        // Auto-format input saat mengetik
+        function setupAutoFormat(id) {
+            const input = document.getElementById(id);
+            input.addEventListener('input', function(e) {
+                let value = parseRupiah(e.target.value);
+                if (value > 0) {
+                    e.target.value = value.toLocaleString('id-ID');
+                } else {
+                    e.target.value = '';
+                }
+            });
+        }
+
+        setupAutoFormat('hargaTransaksi');
+        setupAutoFormat('njop');
+        setupAutoFormat('npoptkpCustom');
+
+        // Toggle input custom NPOPTKP
+        function toggleCustomNpoptkp() {
+            const select = document.getElementById('npoptkpSelect').value;
+            const customGroup = document.getElementById('customNpoptkpGroup');
+            customGroup.style.display = select === 'custom' ? 'flex' : 'none';
+        }
+
+        // Fungsi Hitung
+        function hitungPajak() {
+            const hargaTransaksi = parseRupiah(document.getElementById('hargaTransaksi').value);
+            const njop = parseRupiah(document.getElementById('njop').value);
+
+            // Validasi
+            if (hargaTransaksi <= 0 && njop <= 0) {
+                alert('Mohon isi minimal salah satu: Harga Transaksi atau NJOP PBB');
+                return;
+            }
+
+            // Ambil NPOPTKP
+            let npoptkp;
+            const selectVal = document.getElementById('npoptkpSelect').value;
+            if (selectVal === 'custom') {
+                npoptkp = parseRupiah(document.getElementById('npoptkpCustom').value);
+            } else {
+                npoptkp = parseInt(selectVal);
+            }
+
+            // Ambil tarif PPh
+            const tarifPph = parseFloat(document.querySelector('input[name="jenisProperti"]:checked').value);
+
+            // Hitung Dasar Pengenaan (MAX antara harga transaksi dan NJOP)
+            const dpp = Math.max(hargaTransaksi, njop);
+
+            // Hitung BPHTB (jika DPP < NPOPTKP, maka BPHTB = 0)
+            const bphtb = Math.max((dpp - npoptkp) * 0.05, 0);
+
+            // Hitung PPh Final
+            const pph = dpp * (tarifPph / 100);
+
+            // Total
+            const total = bphtb + pph;
+
+            // Tampilkan hasil
+            document.getElementById('resHarga').textContent = formatRupiah(hargaTransaksi);
+            document.getElementById('resNjop').textContent = formatRupiah(njop);
+            document.getElementById('resNpoptkp').textContent = formatRupiah(npoptkp);
+            document.getElementById('resDpp').textContent = formatRupiah(dpp);
+            document.getElementById('resBphtb').textContent = formatRupiah(bphtb);
+            document.getElementById('resPph').textContent = formatRupiah(pph);
+            document.getElementById('tarifPphText').textContent = tarifPph.toString().replace('.', ',') + '%';
+            document.getElementById('resTotal').textContent = formatRupiah(total);
+
+            // Tampilkan card hasil dengan animasi
+            const resultCard = document.getElementById('resultCard');
+            resultCard.classList.remove('show');
+            setTimeout(() => {
+                resultCard.classList.add('show');
+                resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+        }
+
+        // Reset form
+        function resetForm() {
+            document.getElementById('hargaTransaksi').value = '';
+            document.getElementById('njop').value = '';
+            document.getElementById('npoptkpCustom').value = '';
+            document.getElementById('npoptkpSelect').value = '60000000';
+            document.querySelector('input[name="jenisProperti"][value="2.5"]').checked = true;
+            document.getElementById('customNpoptkpGroup').style.display = 'none';
+            document.getElementById('resultCard').classList.remove('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Enter key untuk hitung
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                hitungPajak();
+            }
+        });
+    </script>
+</body>
+</html>
