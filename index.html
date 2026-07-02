@@ -1372,6 +1372,292 @@
 }
 
 
+/* =============================================
+   MOBILE TOP BAR - JUDUL WEBSITE (MOBILE ONLY)
+   ============================================= */
+
+.mobile-top-bar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-top-bar {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: rgba(10, 14, 26, 0.92);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+        z-index: 997;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        /* Safe area untuk notch (iPhone) */
+        padding-top: env(safe-area-inset-top);
+    }
+    
+    /* Efek shimmer emas di bagian bawah top bar */
+    .mobile-top-bar::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, 
+            transparent 0%, 
+            var(--gold) 20%, 
+            var(--gold-light) 50%, 
+            var(--gold) 80%, 
+            transparent 100%);
+        opacity: 0.6;
+    }
+    
+    /* Container logo + nama */
+    .mobile-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    /* Logo circle */
+    .mobile-brand-logo {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 
+            0 0 0 2px rgba(212, 175, 55, 0.2),
+            0 4px 12px rgba(212, 175, 55, 0.3);
+        flex-shrink: 0;
+    }
+    
+    .mobile-brand-logo i {
+        color: #0a0e1a;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    
+    /* Nama kantor */
+    .mobile-brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+    }
+    
+    .mobile-brand-name {
+        font-family: var(--font-serif);
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 0.5px;
+    }
+    
+    .mobile-brand-title {
+        font-size: 0.62rem;
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin-top: 2px;
+    }
+    
+    /* Sesuaikan body padding untuk top bar + bottom nav */
+    body {
+        padding-top: 60px;
+    }
+    
+    /* Hero section - sesuaikan padding */
+    .hero {
+        padding-top: 20px !important;
+        min-height: calc(100vh - 60px);
+    }
+}
+
+        
+
+/* =============================================
+   BOTTOM NAVIGATION BAR - APP-LIKE (MOBILE ONLY)
+   ============================================= */
+
+/* Padding bawah body agar konten tidak tertutup bottom nav */
+@media (max-width: 768px) {
+    body {
+        padding-bottom: 75px;
+    }
+    
+    /* SEMBUNYIKAN NAVBAR ATAS (Logo + Menu + Hamburger) DI MOBILE */
+    .navbar {
+        display: none !important;
+    }
+    
+    /* Hero tidak perlu padding-top karena navbar hilang */
+        
+    /* Floating WA geser ke atas agar tidak tertutup bottom nav */
+    .float-wa {
+        bottom: 95px !important;
+        right: 18px !important;
+    }
+    .float-wa .tooltip {
+        display: none !important;
+    }
+    
+    /* Scroll indicator di hero - geser lebih tinggi */
+    .scroll-indicator {
+        bottom: 85px !important;
+    }
+}
+
+/* Bottom Navigation Container */
+.bottom-nav {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 72px;
+        background: rgba(10, 14, 26, 0.85);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-top: 1px solid rgba(212, 175, 55, 0.25);
+        z-index: 998;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 8px;
+        box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.15);
+        /* Safe area untuk notch/home indicator (iPhone) */
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+    
+    /* Efek shimmer/glow emas di bagian atas bottom nav */
+    .bottom-nav::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, 
+            transparent 0%, 
+            var(--gold) 20%, 
+            var(--gold-light) 50%, 
+            var(--gold) 80%, 
+            transparent 100%);
+        opacity: 0.8;
+    }
+    
+    /* Menu Item */
+    .bottom-nav-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 8px 4px;
+        color: rgba(255, 255, 255, 0.55);
+        text-decoration: none;
+        position: relative;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Icon circle */
+    .bottom-nav-item .bn-icon {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 1.05rem;
+        transition: all 0.35s ease;
+        position: relative;
+    }
+    
+    /* Label text */
+    .bottom-nav-item .bn-label {
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-family: var(--font-sans);
+        transition: all 0.3s ease;
+    }
+    
+    /* Hover / Active state */
+    .bottom-nav-item.active,
+    .bottom-nav-item:active {
+        color: var(--gold);
+    }
+    
+    .bottom-nav-item.active .bn-icon {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%);
+        color: var(--gold);
+        box-shadow: 
+            0 0 0 2px rgba(212, 175, 55, 0.15),
+            0 4px 15px rgba(212, 175, 55, 0.3),
+            inset 0 0 10px rgba(212, 175, 55, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .bottom-nav-item.active .bn-label {
+        color: var(--gold);
+        font-weight: 700;
+    }
+    
+    /* Indicator dot di bawah ikon aktif */
+    .bottom-nav-item.active::after {
+        content: '';
+        position: absolute;
+        bottom: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 4px;
+        background: var(--gold);
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--gold);
+        animation: dotPulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes dotPulse {
+        0%, 100% { 
+            opacity: 1; 
+            transform: translateX(-50%) scale(1);
+            box-shadow: 0 0 8px var(--gold);
+        }
+        50% { 
+            opacity: 0.7; 
+            transform: translateX(-50%) scale(1.3);
+            box-shadow: 0 0 14px var(--gold-light);
+        }
+    }
+    
+    /* Taptic feedback on touch */
+    .bottom-nav-item:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Tablet (768px - 1024px) - tidak ada bottom nav */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .bottom-nav { display: none; }
+}        
 
 
         
@@ -1379,6 +1665,23 @@
 </head>
 <body>
 
+
+    <!-- ============ MOBILE TOP BAR (APP-LIKE HEADER) ============ -->
+<header class="mobile-top-bar">
+    <div class="mobile-brand">
+        <div class="mobile-brand-logo">
+            <i class="fas fa-landmark"></i>
+        </div>
+        <div class="mobile-brand-text">
+            <span class="mobile-brand-name">Notaris & PPAT</span>
+            <span class="mobile-brand-title">Kantor Hukum Terpercaya</span>
+        </div>
+    </div>
+</header>
+
+
+
+    
     <!-- ============ NAVBAR PREMIUM ============ -->
     <nav class="navbar" id="navbar">
         <div class="container nav-content">
@@ -1967,6 +2270,30 @@
         <div class="wa-icon"><i class="fab fa-whatsapp"></i></div>
     </a>
 
+    <!-- ============ BOTTOM NAVIGATION BAR (APP-LIKE) ============ -->
+<nav class="bottom-nav" id="bottomNav" aria-label="Navigasi Mobile">
+    <a href="#home" class="bottom-nav-item active" data-section="home">
+        <span class="bn-icon"><i class="fas fa-house"></i></span>
+        <span class="bn-label">Beranda</span>
+    </a>
+    <a href="#tentang" class="bottom-nav-item" data-section="tentang">
+        <span class="bn-icon"><i class="fas fa-circle-info"></i></span>
+        <span class="bn-label">Tentang</span>
+    </a>
+    <a href="#layanan" class="bottom-nav-item" data-section="layanan">
+        <span class="bn-icon"><i class="fas fa-briefcase"></i></span>
+        <span class="bn-label">Layanan</span>
+    </a>
+    <a href="#testimoni" class="bottom-nav-item" data-section="testimoni">
+        <span class="bn-icon"><i class="fas fa-star"></i></span>
+        <span class="bn-label">Testimoni</span>
+    </a>
+    <a href="#kontak" class="bottom-nav-item" data-section="kontak">
+        <span class="bn-icon"><i class="fas fa-phone"></i></span>
+        <span class="bn-label">Kontak</span>
+    </a>
+</nav>
+    
     <script>
         // Navbar scroll
         window.addEventListener('scroll', () => {
@@ -2016,7 +2343,83 @@
                 if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
+    
+    // ============ BOTTOM NAVIGATION - ACTIVE STATE TRACKING ============
+(function() {
+    const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+    const sections = ['home', 'tentang', 'layanan', 'testimoni', 'kontak'];
+    
+    // Fungsi untuk set menu aktif
+    function setActiveMenu(sectionId) {
+        bottomNavItems.forEach(item => {
+            if (item.getAttribute('data-section') === sectionId) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+    
+    // Click handler - smooth scroll + set active
+    bottomNavItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+                // Tambahkan offset kecil agar posisi lebih pas
+                const offset = 10;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                
+                // Set active dengan delay kecil untuk feedback visual
+                setTimeout(() => setActiveMenu(this.getAttribute('data-section')), 100);
+                
+                // Haptic feedback (jika browser support)
+                if (navigator.vibrate) {
+                    navigator.vibrate(10);
+                }
+            }
+        });
+    });
+    
+    // Scroll spy - otomatis update active menu saat scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(function() {
+            // Hanya jalankan di mobile
+            if (window.innerWidth > 768) return;
+            
+            let currentSection = 'home';
+            const scrollPos = window.scrollY + window.innerHeight / 3;
+            
+            sections.forEach(id => {
+                const section = document.getElementById(id);
+                if (section) {
+                    const top = section.offsetTop;
+                    const height = section.offsetHeight;
+                    if (scrollPos >= top && scrollPos < top + height) {
+                        currentSection = id;
+                    }
+                }
+            });
+            
+            setActiveMenu(currentSection);
+        }, 50);
+    });
+})();
+    
+    
+    
+    
+    
     </script>
 
+<a href="https://wa.me/6281234567890" class="float-wa" target="_blank">
+    <span class="tooltip">Chat dengan kami</span>
+    <div class="wa-icon"><i class="fab fa-whatsapp"></i></div>
+</a>    
+    
 </body>
 </html>
