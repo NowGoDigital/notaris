@@ -1,1 +1,1493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Monitoring Order Layanan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold-primary: #c9a961;
+            --gold-dark: #a88a3f;
+            --gold-light: #e8d5a3;
+            --gold-glow: rgba(201, 169, 97, 0.3);
+            --text-dark: #1a1a2e;
+            --text-body: #4a4a5a;
+            --text-muted: #7a7a8a;
+            --bg-light: #faf8f3;
+            --bg-dark: #1a1a2e;
+            --bg-card: #ffffff;
+            --border-light: #e8e4d9;
+            --white: #ffffff;
+            --success: #28a745;
+            --warning: #f0ad4e;
+            --danger: #dc3545;
+            --info: #17a2b8;
+            --purple: #6f42c1;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f7;
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        /* ============ LOGIN PAGE ============ */
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+            padding: 20px;
+        }
+
+        .login-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-light);
+        }
+
+        .login-logo {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px var(--gold-glow);
+        }
+
+        .login-logo i { font-size: 1.8rem; color: white; }
+
+        .login-card h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+        }
+
+        .login-card .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 30px;
+        }
+
+        .login-field { margin-bottom: 18px; }
+
+        .login-field label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .login-field .input-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .login-field .input-box i {
+            position: absolute;
+            left: 14px;
+            color: var(--gold-primary);
+        }
+
+        .login-field input {
+            width: 100%;
+            padding: 12px 14px 12px 42px;
+            border: 1.5px solid var(--border-light);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background: var(--bg-light);
+            transition: all 0.3s ease;
+        }
+
+        .login-field input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            background: white;
+            box-shadow: 0 0 0 3px var(--gold-glow);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px var(--gold-glow);
+        }
+
+        .btn-login:hover { transform: translateY(-2px); box-shadow: 0 10px 25px var(--gold-glow); }
+
+        .login-error {
+            background: #fff5f5;
+            color: var(--danger);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            display: none;
+            border: 1px solid #fecaca;
+        }
+
+        .login-hint {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-light);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .login-hint code {
+            background: var(--bg-light);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--gold-dark);
+            font-weight: 600;
+        }
+
+        /* ============ ADMIN PANEL ============ */
+        .admin-panel { display: none; }
+        .admin-panel.show { display: block; }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 240px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a2e 0%, #252541 100%);
+            color: white;
+            padding: 20px 0;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-logo .logo-circle {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .sidebar-logo .logo-circle i { color: white; font-size: 1.1rem; }
+
+        .sidebar-logo .logo-text h3 {
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .sidebar-logo .logo-text span {
+            font-size: 0.72rem;
+            color: var(--gold-light);
+            opacity: 0.8;
+        }
+
+        .sidebar-menu { padding: 20px 0; }
+
+        .menu-label {
+            padding: 0 20px 8px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.4);
+            font-weight: 600;
+        }
+
+        .menu-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item:hover {
+            background: rgba(201, 169, 97, 0.08);
+            color: white;
+        }
+
+        .menu-item.active {
+            background: rgba(201, 169, 97, 0.12);
+            color: var(--gold-primary);
+            border-left-color: var(--gold-primary);
+        }
+
+        .menu-item i { width: 18px; text-align: center; }
+
+        .menu-item .badge {
+            margin-left: auto;
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 240px;
+            min-height: 100vh;
+        }
+
+        /* Topbar */
+        .topbar {
+            background: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .topbar h2 {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-body);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover { background: var(--gold-light); color: var(--gold-dark); }
+
+        .btn-icon .notif-dot {
+            position: absolute;
+            top: 8px; right: 8px;
+            width: 8px; height: 8px;
+            background: var(--danger);
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 12px 5px 5px;
+            background: var(--bg-light);
+            border-radius: 30px;
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .user-info { line-height: 1.2; }
+        .user-info .name { font-size: 0.85rem; font-weight: 600; }
+        .user-info .role { font-size: 0.7rem; color: var(--text-muted); }
+
+        /* Page Content */
+        .page-content { padding: 25px 30px; }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .stat-icon {
+            width: 55px; height: 55px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .stat-icon.blue { background: #e7f3ff; color: #2563eb; }
+        .stat-icon.orange { background: #fff4e5; color: #f59e0b; }
+        .stat-icon.green { background: #e8f8ef; color: var(--success); }
+        .stat-icon.purple { background: #f3e8ff; color: var(--purple); }
+        .stat-icon.red { background: #fee; color: var(--danger); }
+
+        .stat-info .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .stat-info .value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .stat-info .trend {
+            font-size: 0.75rem;
+            color: var(--success);
+            margin-top: 2px;
+        }
+
+        /* Orders Section */
+        .orders-section {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+        }
+
+        .orders-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .orders-header h3 {
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .orders-header h3 i { color: var(--gold-primary); }
+
+        .orders-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 9px 14px 9px 38px;
+            border: 1.5px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 0.88rem;
+            width: 220px;
+            background: var(--bg-light);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            background: white;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .filter-select {
+            padding: 9px 32px 9px 12px;
+            border: 1.5px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 0.88rem;
+            background: var(--bg-light);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a88a3f'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 20px;
+        }
+
+        .btn-primary {
+            padding: 9px 16px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 5px 15px var(--gold-glow); }
+
+        /* Orders Table */
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .orders-table thead {
+            background: var(--bg-light);
+        }
+
+        .orders-table th {
+            padding: 14px 15px;
+            text-align: left;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .orders-table td {
+            padding: 14px 15px;
+            font-size: 0.88rem;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: middle;
+        }
+
+        .orders-table tbody tr { transition: background 0.2s ease; }
+        .orders-table tbody tr:hover { background: var(--bg-light); }
+
+        .order-id {
+            font-weight: 700;
+            color: var(--gold-dark);
+            font-family: 'Courier New', monospace;
+        }
+
+        .client-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .client-info .name { font-weight: 600; color: var(--text-dark); }
+        .client-info .phone { font-size: 0.78rem; color: var(--text-muted); }
+
+        .service-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: #e8f8ef;
+            color: var(--success);
+        }
+
+        .service-badge.ppjb { background: #e7f3ff; color: #2563eb; }
+        .service-badge.legalisasi { background: #fff4e5; color: #f59e0b; }
+        .service-badge.waris { background: #f3e8ff; color: var(--purple); }
+        .service-badge.akta { background: #e8f8ef; color: var(--success); }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        .status-baru { background: #fff4e5; color: #f59e0b; }
+        .status-proses { background: #e7f3ff; color: #2563eb; }
+        .status-menunggu { background: #f3e8ff; color: var(--purple); }
+        .status-tanda-tangan { background: #ffe4e6; color: #e11d48; }
+        .status-selesai { background: #e8f8ef; color: var(--success); }
+        .status-batal { background: #fee; color: var(--danger); }
+
+        .action-btns {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-sm {
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-sm:hover { background: var(--bg-light); }
+        .btn-sm.view { color: var(--info); }
+        .btn-sm.edit { color: var(--gold-dark); }
+        .btn-sm.delete { color: var(--danger); }
+        .btn-sm.view:hover { background: #e7f3ff; }
+        .btn-sm.edit:hover { background: #fff4e5; }
+        .btn-sm.delete:hover { background: #fee; }
+
+        .empty-state {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--border-light);
+            margin-bottom: 15px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.show { display: flex; }
+
+        .modal {
+            background: white;
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-header h3 i { color: var(--gold-primary); }
+
+        .modal-close {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        .modal-close:hover { background: #fee; color: var(--danger); }
+
+        .modal-body { padding: 25px; }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .detail-item label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .detail-item .value {
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .detail-item.full { grid-column: span 2; }
+
+        .notes-section {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .notes-section h4 {
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            color: var(--gold-dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .notes-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .notes-section textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+        }
+
+        .modal-footer {
+            padding: 15px 25px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn-secondary {
+            padding: 9px 16px;
+            background: white;
+            color: var(--text-body);
+            border: 1.5px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 0.88rem;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-secondary:hover { background: var(--bg-light); }
+
+        /* Timeline */
+        .timeline {
+            margin-top: 15px;
+            padding-left: 25px;
+            border-left: 2px dashed var(--border-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 8px 0 12px 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 12px;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--gold-primary);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--gold-light);
+        }
+
+        .timeline-item .time {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+
+        .timeline-item .event {
+            font-size: 0.88rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 2000;
+            transform: translateX(120%);
+            transition: transform 0.4s ease;
+        }
+
+        .toast.show { transform: translateX(0); }
+
+        /* Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            .sidebar.show { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .menu-toggle { display: block; }
+            .page-content { padding: 20px 15px; }
+            .topbar { padding: 12px 15px; }
+            .topbar h2 { font-size: 1rem; }
+            .search-box input { width: 140px; }
+            .orders-table { font-size: 0.8rem; }
+            .orders-table th, .orders-table td { padding: 10px 8px; }
+            .orders-table .hide-mobile { display: none; }
+            .detail-grid { grid-template-columns: 1fr; }
+            .detail-item.full { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ LOGIN PAGE ============ -->
+    <div class="login-page" id="loginPage">
+        <div class="login-card">
+            <div class="login-logo">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <h1>Admin Panel</h1>
+            <p class="subtitle">Monitoring Order Layanan Notaris & PPAT</p>
+
+            <div class="login-error" id="loginError">
+                <i class="fas fa-exclamation-circle"></i>
+                Username atau password salah!
+            </div>
+
+            <div class="login-field">
+                <label>Username</label>
+                <div class="input-box">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" placeholder="Masukkan username" autocomplete="username">
+                </div>
+            </div>
+
+            <div class="login-field">
+                <label>Password</label>
+                <div class="input-box">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Masukkan password" autocomplete="current-password">
+                </div>
+            </div>
+
+            <button class="btn-login" onclick="login()">
+                <i class="fas fa-sign-in-alt"></i> Masuk
+            </button>
+
+            <div class="login-hint">
+                Demo: <code>admin</code> / <code>admin123</code>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ ADMIN PANEL ============ -->
+    <div class="admin-panel" id="adminPanel">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-circle"><i class="fas fa-landmark"></i></div>
+                <div class="logo-text">
+                    <h3>Notaris Panel</h3>
+                    <span>Admin Dashboard</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <div class="menu-label">Menu Utama</div>
+                <div class="menu-item active">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Order Layanan</span>
+                    <span class="badge" id="menuBadge">0</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <span>Data Klien</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Dokumen</span>
+                </div>
+
+                <div class="menu-label" style="margin-top: 20px;">Lainnya</div>
+                <div class="menu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Laporan</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Pengaturan</span>
+                </div>
+                <div class="menu-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Keluar</span>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main -->
+        <div class="main-content">
+            <!-- Topbar -->
+            <header class="topbar">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <button class="menu-toggle" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2><i class="fas fa-chart-pie" style="color: var(--gold-primary);"></i> Dashboard Monitoring</h2>
+                </div>
+                <div class="topbar-right">
+                    <button class="btn-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notif-dot"></span>
+                    </button>
+                    <div class="user-profile" onclick="logout()">
+                        <div class="user-avatar">A</div>
+                        <div class="user-info">
+                            <div class="name">Admin</div>
+                            <div class="role">Super Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="page-content">
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-inbox"></i></div>
+                        <div class="stat-info">
+                            <div class="label">Total Order</div>
+                            <div class="value" id="statTotal">0</div>
+                            <div class="trend">Semua layanan</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+                        <div class="stat-info">
+                            <div class="label">Pending / Baru</div>
+                            <div class="value" id="statPending">0</div>
+                            <div class="trend">Perlu ditindaklanjuti</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple"><i class="fas fa-spinner"></i></div>
+                        <div class="stat-info">
+                            <div class="label">Sedang Diproses</div>
+                            <div class="value" id="statProses">0</div>
+                            <div class="trend">Dalam pengerjaan</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-info">
+                            <div class="label">Selesai</div>
+                            <div class="value" id="statSelesai">0</div>
+                            <div class="trend">Bulan ini</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders -->
+                <div class="orders-section">
+                    <div class="orders-header">
+                        <h3><i class="fas fa-list-alt"></i> Daftar Order Masuk</h3>
+                        <div class="orders-controls">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="searchInput" placeholder="Cari nama/No. Order..." oninput="renderOrders()">
+                            </div>
+                            <select class="filter-select" id="filterStatus" onchange="renderOrders()">
+                                <option value="">Semua Status</option>
+                                <option value="Baru Masuk">Baru Masuk</option>
+                                <option value="Sedang Diproses">Sedang Diproses</option>
+                                <option value="Menunggu Dokumen">Menunggu Dokumen</option>
+                                <option value="Penandatanganan">Penandatanganan</option>
+                                <option value="Selesai">Selesai</option>
+                                <option value="Dibatalkan">Dibatalkan</option>
+                            </select>
+                            <button class="btn-primary" onclick="addSampleOrder()">
+                                <i class="fas fa-plus"></i> Tambah Order
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>No. Order</th>
+                                    <th>Klien</th>
+                                    <th>Layanan</th>
+                                    <th class="hide-mobile">Tanggal</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- ============ DETAIL MODAL ============ -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-file-invoice"></i> Detail Order <span id="detailId" style="color: var(--gold-primary);"></span></h3>
+                <button class="modal-close" onclick="closeModal('detailModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <label>Nama Klien</label>
+                        <div class="value" id="detailName">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <label>No. Telepon</label>
+                        <div class="value" id="detailPhone">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <label>Email</label>
+                        <div class="value" id="detailEmail">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <label>Jenis Layanan</label>
+                        <div class="value" id="detailService">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <label>Tanggal Order</label>
+                        <div class="value" id="detailDate">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <label>Status</label>
+                        <div class="value">
+                            <select id="detailStatus" class="filter-select" onchange="updateStatus()" style="width: 100%;">
+                                <option value="Baru Masuk">Baru Masuk</option>
+                                <option value="Sedang Diproses">Sedang Diproses</option>
+                                <option value="Menunggu Dokumen">Menunggu Dokumen</option>
+                                <option value="Penandatanganan">Penandatanganan</option>
+                                <option value="Selesai">Selesai</option>
+                                <option value="Dibatalkan">Dibatalkan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="detail-item full">
+                        <label>Deskripsi / Catatan Klien</label>
+                        <div class="value" id="detailDesc" style="line-height: 1.6;">-</div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <h4 style="font-size: 0.9rem; margin: 20px 0 10px; color: var(--gold-dark);">
+                    <i class="fas fa-history"></i> Riwayat Progres
+                </h4>
+                <div class="timeline" id="detailTimeline"></div>
+
+                <!-- Admin Notes -->
+                <div class="notes-section">
+                    <h4><i class="fas fa-sticky-note"></i> Catatan Internal Admin</h4>
+                    <textarea id="detailNotes" placeholder="Tulis catatan internal untuk order ini..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('detailModal')">Tutup</button>
+                <button class="btn-primary" onclick="saveNotes()">
+                    <i class="fas fa-save"></i> Simpan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastText">Berhasil!</span>
+    </div>
+
+    <script>
+        // ========== KREDENSIAL ==========
+        const CREDENTIALS = { username: 'admin', password: 'admin123' };
+
+        // ========== DATA STORAGE ==========
+        let orders = JSON.parse(localStorage.getItem('notaris_orders') || 'null');
+        let currentOrderId = null;
+
+        // Demo data kalau belum ada
+        if (!orders) {
+            orders = [
+                {
+                    id: 'ORD-2026-001',
+                    name: 'Budi Santoso',
+                    phone: '081234567890',
+                    email: 'budi.santoso@email.com',
+                    service: 'Jual Beli (AJB)',
+                    date: '2026-07-01',
+                    status: 'Sedang Diproses',
+                    description: 'Transaksi jual beli rumah di Jl. Sudirman No. 45, Jakarta Selatan. Luas tanah 150m², bangunan 120m².',
+                    notes: 'Dokumen sertifikat sudah diverifikasi. Tunggu PBB tahun terakhir.',
+                    timeline: [
+                        { time: '01 Jul 2026, 09:15', event: 'Order baru masuk' },
+                        { time: '01 Jul 2026, 10:30', event: 'Admin memverifikasi dokumen awal' },
+                        { time: '01 Jul 2026, 14:00', event: 'Status diubah ke "Sedang Diproses"' }
+                    ]
+                },
+                {
+                    id: 'ORD-2026-002',
+                    name: 'Siti Rahayu',
+                    phone: '085678912345',
+                    email: 'siti.rahayu@email.com',
+                    service: 'Pendirian PT',
+                    date: '2026-07-01',
+                    status: 'Baru Masuk',
+                    description: 'Pendirian PT baru di bidang jasa konstruksi. Modal dasar Rp 1 Miliar.',
+                    notes: '',
+                    timeline: [
+                        { time: '01 Jul 2026, 16:45', event: 'Order baru masuk' }
+                    ]
+                },
+                {
+                    id: 'ORD-2026-003',
+                    name: 'Ahmad Wijaya',
+                    phone: '082198765432',
+                    email: 'ahmad.wijaya@gmail.com',
+                    service: 'Legalisasi',
+                    date: '2026-06-30',
+                    status: 'Penandatanganan',
+                    description: 'Legalisasi perjanjian kerjasama bisnis antara 3 pihak.',
+                    notes: 'Sudah dijadwalkan tanda tangan 3 Juli 2026 pukul 10:00.',
+                    timeline: [
+                        { time: '30 Jun 2026, 08:20', event: 'Order baru masuk' },
+                        { time: '30 Jun 2026, 11:00', event: 'Draft dokumen disiapkan' },
+                        { time: '01 Jul 2026, 09:30', event: 'Dokumen siap ditandatangani' }
+                    ]
+                },
+                {
+                    id: 'ORD-2026-004',
+                    name: 'Dewi Lestari',
+                    phone: '087812345678',
+                    email: 'dewi.lestari@yahoo.com',
+                    service: 'Waris',
+                    date: '2026-06-28',
+                    status: 'Menunggu Dokumen',
+                    description: 'Pengurusan surat keterangan waris untuk 4 orang ahli waris.',
+                    notes: 'Klien masih melengkapi akta kematian dan KK.',
+                    timeline: [
+                        { time: '28 Jun 2026, 13:00', event: 'Order baru masuk' },
+                        { time: '29 Jun 2026, 10:15', event: 'Dokumen kurang lengkap, menunggu klien' }
+                    ]
+                },
+                {
+                    id: 'ORD-2026-005',
+                    name: 'Hendra Kusuma',
+                    phone: '081299887766',
+                    email: 'hendra.k@company.com',
+                    service: 'Jual Beli (AJB)',
+                    date: '2026-06-25',
+                    status: 'Selesai',
+                    description: 'Transaksi jual beli ruko 2 lantai di kawasan bisnis.',
+                    notes: 'Proses selesai. AJB sudah ditandatangani semua pihak.',
+                    timeline: [
+                        { time: '25 Jun 2026, 10:00', event: 'Order baru masuk' },
+                        { time: '26 Jun 2026, 09:00', event: 'Verifikasi dokumen selesai' },
+                        { time: '28 Jun 2026, 14:00', event: 'Penandatanganan AJB' },
+                        { time: '30 Jun 2026, 11:30', event: 'Proses selesai' }
+                    ]
+                }
+            ];
+            saveOrders();
+        }
+
+        function saveOrders() {
+            localStorage.setItem('notaris_orders', JSON.stringify(orders));
+        }
+
+        // ========== LOGIN ==========
+        function login() {
+            const u = document.getElementById('username').value.trim();
+            const p = document.getElementById('password').value.trim();
+
+            if (u === CREDENTIALS.username && p === CREDENTIALS.password) {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('adminPanel').classList.add('show');
+                sessionStorage.setItem('admin_logged_in', 'true');
+                renderOrders();
+                showToast('Selamat datang, Admin!');
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+                setTimeout(() => document.getElementById('loginError').style.display = 'none', 3000);
+            }
+        }
+
+        function logout() {
+            if (confirm('Yakin ingin keluar dari Admin Panel?')) {
+                sessionStorage.removeItem('admin_logged_in');
+                location.reload();
+            }
+        }
+
+        // Auto-login check
+        if (sessionStorage.getItem('admin_logged_in') === 'true') {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('adminPanel').classList.add('show');
+            renderOrders();
+        }
+
+        // Enter key
+        document.getElementById('password').addEventListener('keypress', e => {
+            if (e.key === 'Enter') login();
+        });
+        document.getElementById('username').addEventListener('keypress', e => {
+            if (e.key === 'Enter') login();
+        });
+
+        // ========== RENDER ==========
+        function renderOrders() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const filter = document.getElementById('filterStatus').value;
+
+            let filtered = orders.filter(o => {
+                const matchSearch = o.name.toLowerCase().includes(search) ||
+                                    o.id.toLowerCase().includes(search) ||
+                                    o.service.toLowerCase().includes(search);
+                const matchFilter = !filter || o.status === filter;
+                return matchSearch && matchFilter;
+            });
+
+            // Update stats
+            document.getElementById('statTotal').textContent = orders.length;
+            document.getElementById('statPending').textContent = orders.filter(o => o.status === 'Baru Masuk').length;
+            document.getElementById('statProses').textContent = orders.filter(o => ['Sedang Diproses', 'Menunggu Dokumen', 'Penandatanganan'].includes(o.status)).length;
+            document.getElementById('statSelesai').textContent = orders.filter(o => o.status === 'Selesai').length;
+            document.getElementById('menuBadge').textContent = orders.filter(o => o.status === 'Baru Masuk').length;
+
+            const tbody = document.getElementById('ordersTableBody');
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6">
+                            <div class="empty-state">
+                                <i class="fas fa-inbox"></i>
+                                <div>Tidak ada order ditemukan</div>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(o => {
+                const statusClass = {
+                    'Baru Masuk': 'status-baru',
+                    'Sedang Diproses': 'status-proses',
+                    'Menunggu Dokumen': 'status-menunggu',
+                    'Penandatanganan': 'status-tanda-tangan',
+                    'Selesai': 'status-selesai',
+                    'Dibatalkan': 'status-batal'
+                }[o.status] || 'status-baru';
+
+                const serviceClass = {
+                    'Jual Beli (AJB)': 'ppjb',
+                    'Legalisasi': 'legalisasi',
+                    'Waris': 'waris',
+                    'Pendirian PT': 'akta'
+                }[o.service] || '';
+
+                return `
+                    <tr>
+                        <td><span class="order-id">${o.id}</span></td>
+                        <td>
+                            <div class="client-info">
+                                <span class="name">${o.name}</span>
+                                <span class="phone">${o.phone}</span>
+                            </div>
+                        </td>
+                        <td><span class="service-badge ${serviceClass}">${o.service}</span></td>
+                        <td class="hide-mobile">${formatDate(o.date)}</td>
+                        <td><span class="status-badge ${statusClass}">${o.status}</span></td>
+                        <td>
+                            <div class="action-btns">
+                                <button class="btn-sm view" onclick="viewOrder('${o.id}')" title="Lihat Detail">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-sm delete" onclick="deleteOrder('${o.id}')" title="Hapus">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function formatDate(dateStr) {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            const d = new Date(dateStr);
+            return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+        }
+
+        // ========== VIEW DETAIL ==========
+        function viewOrder(id) {
+            const order = orders.find(o => o.id === id);
+            if (!order) return;
+
+            currentOrderId = id;
+
+            document.getElementById('detailId').textContent = '#' + order.id;
+            document.getElementById('detailName').textContent = order.name;
+            document.getElementById('detailPhone').textContent = order.phone;
+            document.getElementById('detailEmail').textContent = order.email;
+            document.getElementById('detailService').textContent = order.service;
+            document.getElementById('detailDate').textContent = formatDate(order.date);
+            document.getElementById('detailStatus').value = order.status;
+            document.getElementById('detailDesc').textContent = order.description || '-';
+            document.getElementById('detailNotes').value = order.notes || '';
+
+            // Render timeline
+            const timeline = document.getElementById('detailTimeline');
+            if (order.timeline && order.timeline.length > 0) {
+                timeline.innerHTML = [...order.timeline].reverse().map(t => `
+                    <div class="timeline-item">
+                        <div class="time">${t.time}</div>
+                        <div class="event">${t.event}</div>
+                    </div>
+                `).join('');
+            } else {
+                timeline.innerHTML = '<div style="color: var(--text-muted); font-size: 0.85rem; padding: 10px;">Belum ada aktivitas</div>';
+            }
+
+            document.getElementById('detailModal').classList.add('show');
+        }
+
+        function updateStatus() {
+            if (!currentOrderId) return;
+            const order = orders.find(o => o.id === currentOrderId);
+            if (!order) return;
+
+            const oldStatus = order.status;
+            const newStatus = document.getElementById('detailStatus').value;
+
+            if (oldStatus !== newStatus) {
+                order.status = newStatus;
+                const now = new Date();
+                const timeStr = `${now.getDate().toString().padStart(2,'0')} ${['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'][now.getMonth()]} ${now.getFullYear()}, ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+                order.timeline.push({
+                    time: timeStr,
+                    event: `Status diubah dari "${oldStatus}" ke "${newStatus}"`
+                });
+                saveOrders();
+                renderOrders();
+                showToast('Status berhasil diperbarui!');
+            }
+        }
+
+        function saveNotes() {
+            if (!currentOrderId) return;
+            const order = orders.find(o => o.id === currentOrderId);
+            if (!order) return;
+
+            order.notes = document.getElementById('detailNotes').value;
+            saveOrders();
+            showToast('Catatan berhasil disimpan!');
+            closeModal('detailModal');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('show');
+            currentOrderId = null;
+        }
+
+        // ========== TAMBAH ORDER (DEMO) ==========
+        function addSampleOrder() {
+            const names = ['Rini Wulandari', 'Bambang Pamungkas', 'Linda Sari', 'Eko Prasetyo', 'Mega Putri'];
+            const services = ['Jual Beli (AJB)', 'Pendirian PT', 'Legalisasi', 'Waris', 'Perjanjian Kerjasama'];
+            const statuses = ['Baru Masuk', 'Sedang Diproses', 'Menunggu Dokumen'];
+
+            const name = names[Math.floor(Math.random() * names.length)];
+            const service = services[Math.floor(Math.random() * services.length)];
+            const status = statuses[Math.floor(Math.random() * statuses.length)];
+
+            const newId = 'ORD-2026-' + String(orders.length + 1).padStart(3, '0');
+            const today = new Date().toISOString().split('T')[0];
+            const now = new Date();
+            const timeStr = `${now.getDate().toString().padStart(2,'0')} ${['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'][now.getMonth()]} ${now.getFullYear()}, ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+
+            orders.unshift({
+                id: newId,
+                name: name,
+                phone: '08' + Math.floor(1000000000 + Math.random() * 9000000000),
+                email: name.toLowerCase().replace(' ', '.') + '@email.com',
+                service: service,
+                date: today,
+                status: status,
+                description: 'Order baru dari klien untuk layanan ' + service + '.',
+                notes: '',
+                timeline: [
+                    { time: timeStr, event: 'Order baru masuk' }
+                ]
+            });
+
+            saveOrders();
+            renderOrders();
+            showToast('Order baru berhasil ditambahkan!');
+        }
+
+        function deleteOrder(id) {
+            if (!confirm('Yakin ingin menghapus order ' + id + '?')) return;
+            orders = orders.filter(o => o.id !== id);
+            saveOrders();
+            renderOrders();
+            showToast('Order berhasil dihapus!');
+        }
+
+        // ========== UI HELPERS ==========
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('show');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastText').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // Close modal on outside click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', e => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('show');
+                    currentOrderId = null;
+                }
+            });
+        });
+
+        // ESC to close modal
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.show').forEach(m => {
+                    m.classList.remove('show');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
