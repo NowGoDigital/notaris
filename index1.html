@@ -1373,6 +1373,118 @@
 
 
 /* =============================================
+   MOBILE TOP BAR - JUDUL WEBSITE (MOBILE ONLY)
+   ============================================= */
+
+.mobile-top-bar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-top-bar {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: rgba(10, 14, 26, 0.92);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+        z-index: 997;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        /* Safe area untuk notch (iPhone) */
+        padding-top: env(safe-area-inset-top);
+    }
+    
+    /* Efek shimmer emas di bagian bawah top bar */
+    .mobile-top-bar::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, 
+            transparent 0%, 
+            var(--gold) 20%, 
+            var(--gold-light) 50%, 
+            var(--gold) 80%, 
+            transparent 100%);
+        opacity: 0.6;
+    }
+    
+    /* Container logo + nama */
+    .mobile-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    /* Logo circle */
+    .mobile-brand-logo {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 
+            0 0 0 2px rgba(212, 175, 55, 0.2),
+            0 4px 12px rgba(212, 175, 55, 0.3);
+        flex-shrink: 0;
+    }
+    
+    .mobile-brand-logo i {
+        color: #0a0e1a;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    
+    /* Nama kantor */
+    .mobile-brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+    }
+    
+    .mobile-brand-name {
+        font-family: var(--font-serif);
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 0.5px;
+    }
+    
+    .mobile-brand-title {
+        font-size: 0.62rem;
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin-top: 2px;
+    }
+    
+    /* Sesuaikan body padding untuk top bar + bottom nav */
+    body {
+        padding-top: 60px;
+    }
+    
+    /* Hero section - sesuaikan padding */
+    .hero {
+        padding-top: 20px !important;
+        min-height: calc(100vh - 60px);
+    }
+}
+
+        
+
+/* =============================================
    BOTTOM NAVIGATION BAR - APP-LIKE (MOBILE ONLY)
    ============================================= */
 
@@ -1388,10 +1500,7 @@
     }
     
     /* Hero tidak perlu padding-top karena navbar hilang */
-    .hero {
-        padding-top: 0 !important;
-    }
-    
+        
     /* Floating WA geser ke atas agar tidak tertutup bottom nav */
     .float-wa {
         bottom: 95px !important;
@@ -1556,6 +1665,23 @@
 </head>
 <body>
 
+
+    <!-- ============ MOBILE TOP BAR (APP-LIKE HEADER) ============ -->
+<header class="mobile-top-bar">
+    <div class="mobile-brand">
+        <div class="mobile-brand-logo">
+            <i class="fas fa-landmark"></i>
+        </div>
+        <div class="mobile-brand-text">
+            <span class="mobile-brand-name">Notaris & PPAT</span>
+            <span class="mobile-brand-title">Kantor Hukum Terpercaya</span>
+        </div>
+    </div>
+</header>
+
+
+
+    
     <!-- ============ NAVBAR PREMIUM ============ -->
     <nav class="navbar" id="navbar">
         <div class="container nav-content">
