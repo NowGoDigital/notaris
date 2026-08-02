@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digitalisasi Profesi Notaris | NowGoDigital</title>
+    <title>Jasa Website Notaris Profesional | NowGoDigital</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,7 @@
             font-family: 'Poppins', sans-serif;
             color: var(--text-dark);
             background-color: var(--bg-light);
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
@@ -49,13 +49,14 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 20px; /* Padding default lebih kecil untuk mobile safety */
         }
 
         /* --- UTILITIES --- */
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             padding: 14px 32px;
             border-radius: 50px;
@@ -64,12 +65,15 @@
             transition: all 0.3s ease;
             font-size: 1rem;
             cursor: pointer;
+            width: 100%; /* Default full width di mobile */
+            max-width: 300px; /* Batas lebar di desktop */
         }
 
         .btn-gold {
             background: linear-gradient(135deg, var(--accent) 0%, #f3cf55 100%);
             color: var(--primary);
             box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            border: none;
         }
 
         .btn-gold:hover {
@@ -78,17 +82,18 @@
         }
 
         .btn-outline {
-            border: 2px solid var(--primary);
-            color: var(--primary);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: var(--white);
+            background: transparent;
         }
 
         .btn-outline:hover {
-            background: var(--primary);
-            color: var(--white);
+            background: var(--white);
+            color: var(--primary);
         }
 
         .section-padding {
-            padding: 100px 0;
+            padding: 60px 0; /* Padding vertikal lebih rapat di mobile */
         }
 
         .text-center { text-align: center; }
@@ -96,7 +101,7 @@
 
         /* --- NAVIGATION --- */
         nav {
-            padding: 20px 0;
+            padding: 15px 0;
             position: absolute;
             width: 100%;
             top: 0;
@@ -111,7 +116,7 @@
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--white);
             letter-spacing: 1px;
@@ -120,18 +125,19 @@
         /* --- HERO SECTION --- */
         .hero {
             position: relative;
-            min-height: 100vh;
+            min-height: 100vh; /* Full screen di mobile */
             display: flex;
             align-items: center;
             background: var(--primary);
             overflow: hidden;
+            padding-top: 60px; /* Space untuk navbar */
         }
 
         .hero::before {
             content: '';
             position: absolute;
             top: 0; right: 0; bottom: 0; left: 0;
-            background: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
             z-index: 1;
@@ -141,82 +147,88 @@
             position: relative;
             z-index: 2;
             color: var(--white);
-            max-width: 700px;
+            width: 100%;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 24px;
+            font-size: 2.2rem; /* Ukuran aman untuk HP */
+            margin-bottom: 20px;
             color: var(--white);
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1rem;
             color: #cbd5e1;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column; /* Tombol atas bawah di HP */
+            gap: 15px;
+            align-items: center;
         }
 
         .hero-stats {
             display: flex;
-            gap: 40px;
-            margin-top: 60px;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 40px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 30px;
+            padding-top: 20px;
         }
 
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+        
         .stat-item h3 {
             color: var(--accent);
-            font-size: 2rem;
+            font-size: 1.5rem;
             margin-bottom: 5px;
             font-family: 'Poppins', sans-serif;
         }
         
         .stat-item p {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             margin: 0;
             color: #94a3b8;
         }
 
-        /* --- PROBLEM SECTION (Glassmorphism) --- */
+        /* --- PROBLEM SECTION --- */
         .problem-section {
             background: var(--bg-light);
-            position: relative;
         }
 
         .problem-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: 1fr; /* 1 kolom di HP */
+            gap: 20px;
+            margin-top: 40px;
         }
 
         .problem-card {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
+            padding: 30px 20px;
+            border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-10px);
-            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .icon-box {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: var(--primary);
             color: var(--accent);
-            border-radius: 15px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 25px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
         }
 
         /* --- DEMO PREVIEW --- */
@@ -224,45 +236,51 @@
             background: var(--primary);
             color: white;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding-bottom: 80px;
         }
 
         .browser-mockup {
-            margin-top: 50px;
+            margin-top: 30px;
             background: #fff;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            max-width: 900px;
+            width: 100%;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
             position: relative;
             z-index: 2;
-            transition: transform 0.5s ease;
-        }
-
-        .browser-mockup:hover {
-            transform: scale(1.02);
         }
 
         .browser-header {
             background: #f1f5f9;
-            padding: 12px;
+            padding: 10px;
             display: flex;
-            gap: 8px;
+            gap: 6px;
             border-bottom: 1px solid #e2e8f0;
         }
 
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
         .red { background: #ef4444; }
         .yellow { background: #f59e0b; }
         .green { background: #10b981; }
 
-        .browser-body img {
+        /* Iframe container responsive */
+        .iframe-container {
+            position: relative;
             width: 100%;
-            height: auto;
-            display: block;
+            padding-bottom: 56.25%; /* Rasio 16:9 */
+            height: 0;
+        }
+        
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* --- FEATURES GRID --- */
@@ -272,21 +290,22 @@
 
         .feature-list {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-top: 60px;
+            grid-template-columns: 1fr; /* 1 kolom di HP */
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .feature-item {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             align-items: flex-start;
         }
 
         .feature-icon-large {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--accent);
-            min-width: 50px;
+            min-width: 40px;
+            margin-top: 5px;
         }
 
         /* --- PRICING --- */
@@ -296,60 +315,66 @@
 
         .pricing-card {
             background: white;
-            border-radius: 24px;
-            padding: 60px;
-            max-width: 800px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            width: 100%;
             margin: 0 auto;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
             border: 1px solid #e2e8f0;
         }
 
         .pricing-card::before {
-            content: "PENAWARAN TERBATAS";
+            content: "PROMO";
             position: absolute;
-            top: 20px;
-            right: -30px;
+            top: 15px;
+            right: -25px;
             background: var(--accent);
             color: var(--primary);
-            padding: 8px 40px;
+            padding: 5px 30px;
             transform: rotate(45deg);
             font-weight: bold;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .price-tag {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--primary);
             font-family: 'Playfair Display', serif;
         }
 
-        .price-strike {
-            text-decoration: line-through;
-            color: #94a3b8;
-            font-size: 1.5rem;
-        }
-
         .check-list {
             list-style: none;
-            margin: 40px 0;
+            margin: 30px 0;
             text-align: left;
-            display: inline-block;
+            width: 100%;
         }
 
         .check-list li {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .check-list i {
             color: var(--accent);
+            font-size: 1rem;
+        }
+
+        /* --- STICKY MOBILE CTA --- */
+        .sticky-cta {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 100;
+            display: none; /* Hidden by default on desktop */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         /* --- FOOTER --- */
@@ -359,15 +384,35 @@
             padding: 40px 0;
             text-align: center;
             border-top: 5px solid var(--accent);
+            font-size: 0.9rem;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero-stats { flex-direction: column; gap: 20px; }
-            .feature-list { grid-template-columns: 1fr; }
-            .pricing-card { padding: 30px; }
-            .price-tag { font-size: 2.5rem; }
+        /* --- MEDIA QUERIES (DESKTOP) --- */
+        @media (min-width: 768px) {
+            .container { padding: 0 40px; }
+            
+            .hero h1 { font-size: 3.5rem; }
+            .hero p { font-size: 1.25rem; }
+            
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+            
+            .btn { width: auto; max-width: none; }
+            
+            .problem-grid { grid-template-columns: repeat(3, 1fr); }
+            .feature-list { grid-template-columns: repeat(2, 1fr); }
+            
+            .pricing-card { padding: 60px; max-width: 800px; }
+            .price-tag { font-size: 3.5rem; }
+            
+            .sticky-cta { display: none !important; } /* Hide sticky on desktop */
+        }
+
+        @media (max-width: 767px) {
+            .sticky-cta { display: block; } /* Show sticky on mobile */
+            .section-padding { padding: 50px 0; }
         }
     </style>
 </head>
@@ -377,7 +422,6 @@
     <nav>
         <div class="container nav-content">
             <div class="logo">NOWGO<span style="color:var(--accent)">DIGITAL</span>.</div>
-            <!-- Bisa tambahkan menu link jika perlu -->
         </div>
     </nav>
 
@@ -385,15 +429,15 @@
     <header class="hero">
         <div class="container">
             <div class="hero-content">
-                <span style="color: var(--accent); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block;">Solusi Digital Hukum</span>
+                <span style="color: var(--accent); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; font-size: 0.8rem;">Solusi Digital Hukum</span>
                 <h1>Jangan Biarkan Klien Mencari Notaris Lain Karena Anda Tidak Ditemukan Online.</h1>
-                <p>Di era digital, website bukan sekadar identitas. Website adalah alat branding paling kuat untuk membangun kepercayaan klien sebelum mereka bahkan bertemu Anda.</p>
+                <p>Di era digital, website bukan sekadar identitas. Website adalah alat branding paling kuat untuk membangun kepercayaan klien sebelum mereka bertemu Anda.</p>
                 
-                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <div class="hero-buttons">
                     <a href="#offer" class="btn btn-gold">
-                        <i class="fas fa-rocket"></i> Buat Website Sekarang
+                        <i class="fas fa-rocket"></i> Buat Website
                     </a>
-                    <a href="https://nowgodigital.github.io/notaris/index.html" target="_blank" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: white;">
+                    <a href="https://nowgodigital.github.io/notaris/index.html" target="_blank" class="btn btn-outline">
                         <i class="fas fa-eye"></i> Lihat Demo
                     </a>
                 </div>
@@ -401,15 +445,15 @@
                 <div class="hero-stats">
                     <div class="stat-item">
                         <h3>24/7</h3>
-                        <p>Layanan Informasi</p>
+                        <p>Info Layanan</p>
                     </div>
                     <div class="stat-item">
                         <h3>100%</h3>
-                        <p>Profesional Branding</p>
+                        <p>Profesional</p>
                     </div>
                     <div class="stat-item">
                         <h3>Fast</h3>
-                        <p>Akses Mobile</p>
+                        <p>Akses HP</p>
                     </div>
                 </div>
             </div>
@@ -420,25 +464,25 @@
     <section class="section-padding problem-section">
         <div class="container">
             <div class="text-center" style="max-width: 700px; margin: 0 auto;">
-                <h2 style="font-size: 2.5rem;">Mengapa Website Itu Krusial?</h2>
-                <p style="color: #64748b;">Banyak notaris hebat kehilangan potensi klien hanya karena informasi mereka sulit diakses secara digital.</p>
+                <h2 style="font-size: 2rem;">Mengapa Website Itu Krusial?</h2>
+                <p style="color: #64748b; font-size: 0.95rem;">Banyak notaris hebat kehilangan potensi klien hanya karena informasi mereka sulit diakses secara digital.</p>
             </div>
 
             <div class="problem-grid">
                 <div class="problem-card">
                     <div class="icon-box"><i class="fas fa-search"></i></div>
                     <h3>Trust Issue</h3>
-                    <p>Klien zaman sekarang "Googling" dulu. Jika tidak ada website, kredibilitas dipertanyakan. Website memvalidasi profesi Anda secara instan.</p>
+                    <p style="font-size: 0.9rem;">Klien zaman sekarang "Googling" dulu. Jika tidak ada website, kredibilitas dipertanyakan. Website memvalidasi profesi Anda.</p>
                 </div>
                 <div class="problem-card">
                     <div class="icon-box"><i class="fas fa-clock"></i></div>
                     <h3>Efisiensi Waktu</h3>
-                    <p>Hentikan menjawab pertanyaan berulang via WA. Letakkan daftar layanan, syarat akta, dan lokasi di website. Klien datang sudah siap.</p>
+                    <p style="font-size: 0.9rem;">Hentikan menjawab pertanyaan berulang via WA. Letakkan daftar layanan & syarat akta di website. Klien datang sudah siap.</p>
                 </div>
                 <div class="problem-card">
                     <div class="icon-box"><i class="fas fa-briefcase"></i></div>
                     <h3>Branding Premium</h3>
-                    <p>Tampil beda dari kompetitor. Desain elegan mencerminkan kualitas pelayanan hukum yang teliti, amanah, dan profesional.</p>
+                    <p style="font-size: 0.9rem;">Tampil beda dari kompetitor. Desain elegan mencerminkan kualitas pelayanan hukum yang teliti dan amanah.</p>
                 </div>
             </div>
         </div>
@@ -447,8 +491,8 @@
     <!-- DEMO PREVIEW -->
     <section class="section-padding demo-section">
         <div class="container">
-            <h2 style="color: white; margin-bottom: 10px;">Desain Eksklusif untuk Notaris</h2>
-            <p style="color: #cbd5e1; margin-bottom: 40px;">Kami tidak menggunakan template abal-abal. Ini didesain khusus untuk industri hukum.</p>
+            <h2 style="color: white; margin-bottom: 10px; font-size: 2rem;">Desain Eksklusif Notaris</h2>
+            <p style="color: #cbd5e1; margin-bottom: 30px; font-size: 0.9rem;">Kami tidak menggunakan template abal-abal. Ini didesain khusus untuk industri hukum.</p>
             
             <div class="browser-mockup">
                 <div class="browser-header">
@@ -456,16 +500,13 @@
                     <div class="dot yellow"></div>
                     <div class="dot green"></div>
                 </div>
-                <div class="browser-body">
-                    <!-- Menggunakan screenshot placeholder atau iframe preview sederhana -->
-                    <div style="padding: 56.25% 0 0 0; position: relative;">
-                        <iframe src="https://nowgodigital.github.io/notaris/index.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" title="Demo Website Notaris"></iframe>
-                    </div>
+                <div class="iframe-container">
+                    <iframe src="https://nowgodigital.github.io/notaris/index.html" title="Demo Website Notaris"></iframe>
                 </div>
             </div>
             
-            <div style="margin-top: 40px;">
-                <a href="https://nowgodigital.github.io/notaris/index.html" target="_blank" class="btn btn-gold">
+            <div style="margin-top: 30px;">
+                <a href="https://nowgodigital.github.io/notaris/index.html" target="_blank" class="btn btn-gold" style="max-width: 100%;">
                     Buka Demo Full Screen <i class="fas fa-external-link-alt"></i>
                 </a>
             </div>
@@ -476,8 +517,8 @@
     <section class="section-padding features-section">
         <div class="container">
             <div class="text-center">
-                <h2 style="font-size: 2.5rem;">Fitur Lengkap Siap Pakai</h2>
-                <p>Semua yang Anda butuhkan untuk tampil profesional di mata klien.</p>
+                <h2 style="font-size: 2rem;">Fitur Lengkap Siap Pakai</h2>
+                <p style="font-size: 0.9rem;">Semua yang Anda butuhkan untuk tampil profesional di mata klien.</p>
             </div>
 
             <div class="feature-list">
@@ -485,28 +526,28 @@
                     <div class="feature-icon-large"><i class="fas fa-mobile-alt"></i></div>
                     <div>
                         <h4>Responsive Mobile First</h4>
-                        <p style="color: #64748b;">Tampilan sempurna di HP, Tablet, dan Desktop. Klien bisa akses info kapan saja.</p>
+                        <p style="color: #64748b; font-size: 0.9rem;">Tampilan sempurna di HP. Klien bisa akses info kapan saja tanpa zoom-in/out.</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon-large"><i class="fas fa-file-signature"></i></div>
                     <div>
                         <h4>Katalog Layanan Akta</h4>
-                        <p style="color: #64748b;">Penjelasan detail layanan: AJB, HT, Pendirian PT, Wasiat, dll dengan layout rapi.</p>
+                        <p style="color: #64748b; font-size: 0.9rem;">Penjelasan detail layanan: AJB, HT, Pendirian PT, Wasiat, dll dengan layout rapi.</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon-large"><i class="fab fa-whatsapp"></i></div>
                     <div>
-                        <h4>Direct WhatsApp Integration</h4>
-                        <p style="color: #64748b;">Tombol melayang (floating button) untuk konsultasi cepat tanpa simpan nomor.</p>
+                        <h4>Direct WhatsApp</h4>
+                        <p style="color: #64748b; font-size: 0.9rem;">Tombol melayang untuk konsultasi cepat tanpa simpan nomor manual.</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon-large"><i class="fas fa-map-marked-alt"></i></div>
                     <div>
                         <h4>Google Maps Embed</h4>
-                        <p style="color: #64748b;">Panduan arah langsung ke kantor Anda. Memudahkan klien pertama kali berkunjung.</p>
+                        <p style="color: #64748b; font-size: 0.9rem;">Panduan arah langsung ke kantor Anda. Memudahkan klien baru.</p>
                     </div>
                 </div>
             </div>
@@ -517,14 +558,14 @@
     <section id="offer" class="section-padding pricing-section">
         <div class="container">
             <div class="pricing-card text-center">
-                <h2 style="margin-bottom: 10px;">Investasi Profesionalisme Anda</h2>
-                <p style="color: #64748b; margin-bottom: 30px;">Satu kali bayar, aset digital milik Anda selamanya.</p>
+                <h2 style="margin-bottom: 10px; font-size: 1.8rem;">Investasi Profesionalisme</h2>
+                <p style="color: #64748b; margin-bottom: 20px; font-size: 0.9rem;">Satu kali bayar, aset digital milik Anda selamanya.</p>
 
                 <div style="margin-bottom: 30px;">
-                    <span class="price-strike">Rp 4.500.000</span>
+                    <span class="price-strike" style="text-decoration: line-through; color: #94a3b8; font-size: 1.2rem;">Rp 4.500.000</span>
                     <br>
                     <span class="price-tag">Rp 2.500.000</span>
-                    <span style="display: block; margin-top: 10px; color: var(--accent); font-weight: 600;">Hemat 45% Hari Ini</span>
+                    <span style="display: block; margin-top: 10px; color: var(--accent); font-weight: 600; font-size: 0.9rem;">Hemat 45% Hari Ini</span>
                 </div>
 
                 <ul class="check-list">
@@ -532,17 +573,16 @@
                     <li><i class="fas fa-check-circle"></i> Gratis Domain (.com/.id) & Hosting 1 Tahun</li>
                     <li><i class="fas fa-check-circle"></i> Optimasi Kecepatan Tinggi</li>
                     <li><i class="fas fa-check-circle"></i> Revisi Konten & Desain 2x</li>
-                    <li><i class="fas fa-check-circle"></i> Panduan Edit Sendiri (User Friendly)</li>
+                    <li><i class="fas fa-check-circle"></i> Panduan Edit Sendiri</li>
                 </ul>
 
-                <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 30px; color: #92400e; font-size: 0.9rem;">
-                    <i class="fas fa-exclamation-triangle"></i> <strong>Perhatian:</strong> Penawaran ini terbatas hanya untuk <strong>1 NOTARIS</strong> pertama yang menghubungi kami hari ini.
+                <div style="background: #fef3c7; padding: 12px; border-radius: 8px; margin-bottom: 25px; color: #92400e; font-size: 0.85rem;">
+                    <i class="fas fa-exclamation-triangle"></i> <strong>Perhatian:</strong> Penawaran terbatas hanya untuk <strong>1 NOTARIS</strong> pertama.
                 </div>
 
-                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20klaim%20promo%20website%20notaris%20Rp2.5jt." class="btn btn-gold" style="width: 100%; justify-content: center; font-size: 1.2rem;">
+                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20klaim%20promo%20website%20notaris%20Rp2.5jt." class="btn btn-gold" style="width: 100%; max-width: 100%; font-size: 1.1rem;">
                     <i class="fab fa-whatsapp"></i> Klaim Promo Sekarang
                 </a>
-                <p style="margin-top: 15px; font-size: 0.8rem; color: #94a3b8;">Respon cepat via WhatsApp</p>
             </div>
         </div>
     </section>
@@ -553,6 +593,13 @@
             <p>&copy; 2026 NowGoDigital. Specialized Web Solutions for Legal Professionals.</p>
         </div>
     </footer>
+
+    <!-- STICKY MOBILE CTA -->
+    <div class="sticky-cta">
+        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20buat%20website%20notaris." class="btn btn-gold" style="width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+            <i class="fab fa-whatsapp"></i> Chat WhatsApp Sekarang
+        </a>
+    </div>
 
 </body>
 </html>
