@@ -75,7 +75,7 @@
             background: transparent;
         }
 
-        .section-padding { padding: 60px 0; }
+        .section-padding { padding: 50px 0; }
         .text-center { text-align: center; }
 
         /* --- NAVIGATION --- */
@@ -95,7 +95,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- HERO SECTION (MOBILE OPTIMIZED) --- */
+        /* --- HERO SECTION --- */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -122,7 +122,7 @@
             z-index: 2;
             color: var(--white);
             width: 100%;
-            text-align: center; /* Default center for mobile */
+            text-align: center;
         }
 
         .hero-label {
@@ -136,7 +136,7 @@
         }
 
         .hero h1 {
-            font-size: 2rem; /* Optimized for mobile */
+            font-size: 2rem;
             margin-bottom: 20px;
             color: var(--white);
         }
@@ -151,7 +151,6 @@
             margin-right: auto;
         }
 
-        /* Split Buttons 50:50 for Mobile */
         .hero-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -185,42 +184,111 @@
             color: #94a3b8;
         }
 
-        /* --- PROBLEM SECTION --- */
+        /* ============================================= */
+        /* --- REDESIGNED PROBLEM SECTION (MINIMAL) --- */
+        /* ============================================= */
+        .problem-section {
+            background: var(--bg-light);
+            padding: 50px 0;
+        }
+
+        .problem-section .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .problem-section .section-header h2 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .problem-section .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .problem-section .section-header p {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+
         .problem-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
-            margin-top: 40px;
+            gap: 14px; /* Gap lebih rapat */
         }
 
         .problem-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 25px 20px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            background: #ffffff;
+            padding: 16px 18px;
+            border-radius: 12px;
+            border: 1px solid #f1f5f9;
+            border-left: 3px solid var(--accent); /* Aksen garis emas di kiri */
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: all 0.25s ease;
         }
 
-        .icon-box {
-            width: 45px;
-            height: 45px;
-            background: var(--primary);
+        .problem-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+        }
+
+        /* Icon minimalis dengan style outline */
+        .icon-box-mini {
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            border: 1.5px solid var(--accent);
             color: var(--accent);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+            font-size: 0.95rem;
+            background: rgba(212, 175, 55, 0.05);
         }
+
+        .problem-card-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .problem-card h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .problem-card p {
+            font-size: 0.8rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* ============================================= */
 
         /* --- DEMO PREVIEW --- */
         .demo-section {
             background: var(--primary);
             color: white;
             text-align: center;
-            padding-bottom: 60px;
+            padding: 50px 0 60px;
         }
 
         .browser-mockup {
@@ -248,7 +316,7 @@
         .iframe-container {
             position: relative;
             width: 100%;
-            padding-bottom: 140%; /* Taller ratio for mobile preview feel */
+            padding-bottom: 140%;
             height: 0;
         }
         
@@ -262,7 +330,7 @@
         .feature-list {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 25px;
+            gap: 20px;
             margin-top: 30px;
         }
 
@@ -386,7 +454,8 @@
             
             .hero-buttons .btn { width: auto; padding: 14px 32px; font-size: 1rem; }
             
-            .problem-grid { grid-template-columns: repeat(3, 1fr); }
+            .problem-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+            .problem-card { padding: 25px; }
             .feature-list { grid-template-columns: repeat(2, 1fr); }
             
             .pricing-card { padding: 60px; max-width: 800px; }
@@ -394,7 +463,6 @@
             
             .iframe-container { padding-bottom: 56.25%; }
             
-            /* Hide sticky button on desktop if preferred, or keep it */
             .sticky-wa { display: none; } 
         }
     </style>
@@ -416,7 +484,6 @@
                 <h1>Jangan Biarkan Klien Mencari Notaris Lain Karena Anda Tidak Ditemukan Online.</h1>
                 <p>Di era digital, website bukan sekadar identitas. Website adalah alat branding paling kuat untuk membangun kepercayaan klien sebelum mereka bertemu Anda.</p>
                 
-                <!-- SPLIT BUTTONS 50:50 -->
                 <div class="hero-buttons">
                     <a href="#offer" class="btn btn-gold">
                         <i class="fas fa-rocket"></i> Buat Website
@@ -444,36 +511,53 @@
         </div>
     </header>
 
-    <!-- PROBLEM SECTION -->
-    <section class="section-padding problem-section">
+    <!-- PROBLEM SECTION - REDESIGNED MINIMAL -->
+    <section class="problem-section">
         <div class="container">
-            <div class="text-center" style="max-width: 700px; margin: 0 auto;">
-                <h2 style="font-size: 1.8rem;">Mengapa Website Itu Krusial?</h2>
-                <p style="color: #64748b; font-size: 0.9rem;">Banyak notaris hebat kehilangan potensi klien hanya karena informasi mereka sulit diakses secara digital.</p>
+            <div class="section-header">
+                <h2>Mengapa Website Krusial?</h2>
+                <p>Banyak notaris hebat kehilangan klien karena info sulit diakses digital.</p>
             </div>
 
             <div class="problem-grid">
+                <!-- Card 1: Trust Issue -->
                 <div class="problem-card">
-                    <div class="icon-box"><i class="fas fa-search"></i></div>
-                    <h3>Trust Issue</h3>
-                    <p style="font-size: 0.85rem;">Klien zaman sekarang "Googling" dulu. Jika tidak ada website, kredibilitas dipertanyakan.</p>
+                    <div class="icon-box-mini">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="problem-card-content">
+                        <h3>Trust Issue</h3>
+                        <p>Klien Googling dulu. Tanpa website, kredibilitas Anda dipertanyakan.</p>
+                    </div>
                 </div>
+
+                <!-- Card 2: Efisiensi -->
                 <div class="problem-card">
-                    <div class="icon-box"><i class="fas fa-clock"></i></div>
-                    <h3>Efisiensi Waktu</h3>
-                    <p style="font-size: 0.85rem;">Hentikan menjawab pertanyaan berulang via WA. Letakkan daftar layanan di website.</p>
+                    <div class="icon-box-mini">
+                        <i class="fas fa-stopwatch"></i>
+                    </div>
+                    <div class="problem-card-content">
+                        <h3>Efisiensi Waktu</h3>
+                        <p>Stop jawab pertanyaan berulang. Taruh info di web, klien datang siap.</p>
+                    </div>
                 </div>
+
+                <!-- Card 3: Branding -->
                 <div class="problem-card">
-                    <div class="icon-box"><i class="fas fa-briefcase"></i></div>
-                    <h3>Branding Premium</h3>
-                    <p style="font-size: 0.85rem;">Tampil beda dari kompetitor. Desain elegan mencerminkan kualitas pelayanan hukum.</p>
+                    <div class="icon-box-mini">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="problem-card-content">
+                        <h3>Branding Premium</h3>
+                        <p>Desain elegan = cerminan kualitas layanan hukum Anda.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- DEMO PREVIEW -->
-    <section class="section-padding demo-section">
+    <section class="demo-section">
         <div class="container">
             <h2 style="color: white; margin-bottom: 10px; font-size: 1.8rem;">Desain Eksklusif Notaris</h2>
             <p style="color: #cbd5e1; margin-bottom: 25px; font-size: 0.9rem;">Preview langsung tampilan website di perangkat Anda.</p>
