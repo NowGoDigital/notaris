@@ -3,369 +3,546 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jasa Pembuatan Website Notaris Profesional</title>
+    <title>Digitalisasi Profesi Notaris | NowGoDigital</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* --- RESET & BASIC STYLES --- */
+        :root {
+            --primary: #0f172a; /* Deep Navy */
+            --secondary: #1e293b; /* Slate */
+            --accent: #d4af37; /* Metallic Gold */
+            --accent-hover: #b5952f;
+            --text-dark: #334155;
+            --text-light: #94a3b8;
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        a { text-decoration: none; }
-        
-        /* --- COLORS --- */
-        :root {
-            --primary: #1e2a45; /* Navy Blue - Trust */
-            --accent: #c5a059;  /* Gold - Prestige */
-            --light: #ffffff;
-            --grey: #f4f4f4;
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            line-height: 1.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
         /* --- UTILITIES --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
             cursor: pointer;
-            text-align: center;
         }
 
-        .btn-primary {
-            background-color: var(--accent);
+        .btn-gold {
+            background: linear-gradient(135deg, var(--accent) 0%, #f3cf55 100%);
+            color: var(--primary);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
             color: var(--primary);
         }
 
-        .btn-primary:hover {
-            background-color: #b08d45;
-            transform: translateY(-2px);
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
         }
 
-        .btn-whatsapp {
-            background-color: #25D366;
-            color: white;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        .section-padding {
+            padding: 100px 0;
         }
 
-        .btn-whatsapp:hover {
-            background-color: #1ebc57;
+        .text-center { text-align: center; }
+        .text-accent { color: var(--accent); }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 20px 0;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        h1, h2, h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        section {
-            padding: 60px 0;
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1px;
         }
 
         /* --- HERO SECTION --- */
         .hero {
-            background: linear-gradient(rgba(30, 42, 69, 0.9), rgba(30, 42, 69, 0.8)), url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--primary);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
-            color: var(--light);
-            text-align: center;
-            padding: 100px 0;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+            max-width: 700px;
         }
 
         .hero h1 {
-            color: var(--light);
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+            color: var(--white);
         }
 
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
+            font-size: 1.25rem;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+            font-weight: 300;
         }
 
-        /* --- PROBLEM / AWARENESS --- */
-        .awareness {
-            text-align: center;
-            background: var(--light);
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
         }
 
-        .awareness-grid {
+        .stat-item h3 {
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .stat-item p {
+            font-size: 0.9rem;
+            margin: 0;
+            color: #94a3b8;
+        }
+
+        /* --- PROBLEM SECTION (Glassmorphism) --- */
+        .problem-section {
+            background: var(--bg-light);
+            position: relative;
+        }
+
+        .problem-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
-        .awareness-item {
-            padding: 20px;
-            border-left: 4px solid var(--accent);
-            background: var(--grey);
-            text-align: left;
-        }
-
-        /* --- DEMO SECTION --- */
-        .demo-section {
-            background-color: var(--primary);
-            color: var(--light);
-            text-align: center;
-        }
-
-        .demo-section h2 { color: var(--light); }
-
-        .demo-link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 40px;
-            background: var(--light);
-            color: var(--primary);
-            font-weight: bold;
-            border-radius: 50px;
-            border: 2px solid var(--accent);
-        }
-        
-        .demo-link:hover {
-            background: var(--accent);
-            color: var(--light);
-        }
-
-        /* --- FEATURES --- */
-        .features {
-            background: var(--grey);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .feature-card {
-            background: var(--light);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        .problem-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
             transition: 0.3s;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
+        .problem-card:hover {
+            transform: translateY(-10px);
+            background: white;
         }
 
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
             color: var(--accent);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
         }
 
-        /* --- OFFER & PRICING --- */
-        .offer {
-            background: var(--light);
-            text-align: center;
-        }
-
-        .price-box {
-            background: #fff;
-            border: 2px solid var(--primary);
-            border-radius: 10px;
-            padding: 40px;
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .badge {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            background: #e74c3c;
+        /* --- DEMO PREVIEW --- */
+        .demo-section {
+            background: var(--primary);
             color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 1.2rem;
-        }
-
-        .new-price {
-            color: var(--primary);
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin: 10px 0 30px;
-        }
-
-        .benefits-list {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 30px;
-        }
-
-        .benefits-list li {
-            margin-bottom: 10px;
-            padding-left: 25px;
+            text-align: center;
             position: relative;
+            overflow: hidden;
         }
 
-        .benefits-list li::before {
-            content: "✓";
-            color: green;
-            font-weight: bold;
+        .browser-mockup {
+            margin-top: 50px;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.5s ease;
+        }
+
+        .browser-mockup:hover {
+            transform: scale(1.02);
+        }
+
+        .browser-header {
+            background: #f1f5f9;
+            padding: 12px;
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ef4444; }
+        .yellow { background: #f59e0b; }
+        .green { background: #10b981; }
+
+        .browser-body img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- FEATURES GRID --- */
+        .features-section {
+            background: white;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .feature-icon-large {
+            font-size: 2rem;
+            color: var(--accent);
+            min-width: 50px;
+        }
+
+        /* --- PRICING --- */
+        .pricing-section {
+            background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 24px;
+            padding: 60px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .pricing-card::before {
+            content: "PENAWARAN TERBATAS";
             position: absolute;
-            left: 0;
+            top: 20px;
+            right: -30px;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 8px 40px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .price-tag {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .price-strike {
+            text-decoration: line-through;
+            color: #94a3b8;
+            font-size: 1.5rem;
+        }
+
+        .check-list {
+            list-style: none;
+            margin: 40px 0;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .check-list li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .check-list i {
+            color: var(--accent);
         }
 
         /* --- FOOTER --- */
         footer {
             background: var(--primary);
-            color: var(--light);
+            color: #94a3b8;
+            padding: 40px 0;
             text-align: center;
-            padding: 30px 0;
-            font-size: 0.9rem;
+            border-top: 5px solid var(--accent);
         }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .price-box { padding: 20px; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .feature-list { grid-template-columns: 1fr; }
+            .pricing-card { padding: 30px; }
+            .price-tag { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- NAV -->
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">NOWGO<span style="color:var(--accent)">DIGITAL</span>.</div>
+            <!-- Bisa tambahkan menu link jika perlu -->
+        </div>
+    </nav>
+
     <!-- HERO SECTION -->
     <header class="hero">
         <div class="container">
-            <h1>Website Profesional untuk Profesi Notaris</h1>
-            <p>Tingkatkan kredibilitas, bangun kepercayaan klien, dan permudah pelayanan Anda di era digital.</p>
-            <a href="#offer" class="btn btn-primary">Lihat Penawaran Spesial</a>
+            <div class="hero-content">
+                <span style="color: var(--accent); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block;">Solusi Digital Hukum</span>
+                <h1>Jangan Biarkan Klien Mencari Notaris Lain Karena Anda Tidak Ditemukan Online.</h1>
+                <p>Di era digital, website bukan sekadar identitas. Website adalah alat branding paling kuat untuk membangun kepercayaan klien sebelum mereka bahkan bertemu Anda.</p>
+                
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <a href="#offer" class="btn btn-gold">
+                        <i class="fas fa-rocket"></i> Buat Website Sekarang
+                    </a>
+                    <a href="https://nowgodigital.github.io/notaris/index.html" target="_blank" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: white;">
+                        <i class="fas fa-eye"></i> Lihat Demo
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>24/7</h3>
+                        <p>Layanan Informasi</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Profesional Branding</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Fast</h3>
+                        <p>Akses Mobile</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- AWARENESS SECTION -->
-    <section class="awareness">
+    <!-- PROBLEM / VALUE PROPOSITION -->
+    <section class="section-padding problem-section">
         <div class="container">
-            <div class="section-title">
-                <h2>Mengapa Notaris Butuh Website?</h2>
-                <p>Di zaman sekarang, klien mencari informasi secara online sebelum datang ke kantor Anda.</p>
+            <div class="text-center" style="max-width: 700px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem;">Mengapa Website Itu Krusial?</h2>
+                <p style="color: #64748b;">Banyak notaris hebat kehilangan potensi klien hanya karena informasi mereka sulit diakses secara digital.</p>
             </div>
-            <div class="awareness-grid">
-                <div class="awareness-item">
-                    <h3>🏆 Branding & Kredibilitas</h3>
-                    <p>Website adalah "kantor virtual" Anda. Tampilan profesional menunjukkan integritas dan keseriusan Anda dalam melayani masyarakat.</p>
+
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="icon-box"><i class="fas fa-search"></i></div>
+                    <h3>Trust Issue</h3>
+                    <p>Klien zaman sekarang "Googling" dulu. Jika tidak ada website, kredibilitas dipertanyakan. Website memvalidasi profesi Anda secara instan.</p>
                 </div>
-                <div class="awareness-item">
-                    <h3>⚡ Efisiensi Pelayanan</h3>
-                    <p>Klien dapat melihat daftar layanan, syarat pembuatan akta, dan lokasi kantor tanpa perlu menelepon berulang kali. Hemat waktu Anda dan klien.</p>
+                <div class="problem-card">
+                    <div class="icon-box"><i class="fas fa-clock"></i></div>
+                    <h3>Efisiensi Waktu</h3>
+                    <p>Hentikan menjawab pertanyaan berulang via WA. Letakkan daftar layanan, syarat akta, dan lokasi di website. Klien datang sudah siap.</p>
                 </div>
-                <div class="awareness-item">
-                    <h3>🔍 Mudah Ditemukan</h3>
-                    <p>Saat seseorang mencari "Notaris di [Kota Anda]" di Google, pastikan profil Andalah yang muncul pertama kali dengan informasi yang lengkap.</p>
+                <div class="problem-card">
+                    <div class="icon-box"><i class="fas fa-briefcase"></i></div>
+                    <h3>Branding Premium</h3>
+                    <p>Tampil beda dari kompetitor. Desain elegan mencerminkan kualitas pelayanan hukum yang teliti, amanah, dan profesional.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- DEMO LINK SECTION -->
-    <section class="demo-section">
+    <!-- DEMO PREVIEW -->
+    <section class="section-padding demo-section">
         <div class="container">
-            <h2>Lihat Contoh Tampilan Website</h2>
-            <p>Kami telah menyiapkan desain khusus yang elegan, bersih, dan fokus pada kebutuhan klien notaris.</p>
-            <br>
-            <a href="https://nowgodigital.github.io/notaris/index.html" target="_blank" class="demo-link">
-                👀 Klik Disini untuk Lihat Demo Website
-            </a>
-            <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">(Link akan membuka halaman demo di tab baru)</p>
-        </div>
-    </section>
-
-    <!-- FEATURES SECTION -->
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Fitur Unggulan Website Ini</h2>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobile Friendly</h3>
-                    <p>Tampilan otomatis menyesuaikan layar HP, Tablet, dan Laptop. Klien nyaman mengakses dari mana saja.</p>
+            <h2 style="color: white; margin-bottom: 10px;">Desain Eksklusif untuk Notaris</h2>
+            <p style="color: #cbd5e1; margin-bottom: 40px;">Kami tidak menggunakan template abal-abal. Ini didesain khusus untuk industri hukum.</p>
+            
+            <div class="browser-mockup">
+                <div class="browser-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📋</div>
-                    <h3>Daftar Layanan Lengkap</h3>
-                    <p>Halaman khusus untuk menjelaskan layanan AJB, Hak Tanggungan, Pendirian PT, Legalisasi, dll.</p>
+                <div class="browser-body">
+                    <!-- Menggunakan screenshot placeholder atau iframe preview sederhana -->
+                    <div style="padding: 56.25% 0 0 0; position: relative;">
+                        <iframe src="https://nowgodigital.github.io/notaris/index.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" title="Demo Website Notaris"></iframe>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3>Tombol WhatsApp Cepat</h3>
-                    <p>Facilitate klien untuk langsung konsultasi atau buat janji temu hanya dengan satu klik.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📍</div>
-                    <h3>Peta & Lokasi</h3>
-                    <p>Integrasi peta digital agar klien mudah menemukan lokasi kantor notaris Anda.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- OFFER SECTION -->
-    <section id="offer" class="offer">
-        <div class="container">
-            <div class="section-title">
-                <h2>Penawaran Eksklusif Terbatas</h2>
-                <p>Kami hanya menerima <strong>1 Klien Pertama</strong> untuk paket spesial ini.</p>
             </div>
             
-            <div class="price-box">
-                <div class="badge">Sisa 1 Slot!</div>
-                <h3>Paket Website Notaris Pro</h3>
-                <p>Cocok untuk Notaris Perorangan atau Kantor Kecil</p>
-                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-                
-                <ul class="benefits-list">
-                    <li>Desain One-Page Modern & Elegan</li>
-                    <li>Gratis Domain (.com/.id) & Hosting 1 Tahun</li>
-                    <li>Optimasi Kecepatan & SEO Dasar</li>
-                    <li>Integrasi WhatsApp & Google Maps</li>
-                    <li>Revisi Desain Hingga 2x</li>
-                    <li>Panduan Pengelolaan Konten</li>
+            <div style="margin-top: 40px;">
+                <a href="https://nowgodigital.github.io/notaris/index.html" target="_blank" class="btn btn-gold">
+                    Buka Demo Full Screen <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES DETAIL -->
+    <section class="section-padding features-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 style="font-size: 2.5rem;">Fitur Lengkap Siap Pakai</h2>
+                <p>Semua yang Anda butuhkan untuk tampil profesional di mata klien.</p>
+            </div>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon-large"><i class="fas fa-mobile-alt"></i></div>
+                    <div>
+                        <h4>Responsive Mobile First</h4>
+                        <p style="color: #64748b;">Tampilan sempurna di HP, Tablet, dan Desktop. Klien bisa akses info kapan saja.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon-large"><i class="fas fa-file-signature"></i></div>
+                    <div>
+                        <h4>Katalog Layanan Akta</h4>
+                        <p style="color: #64748b;">Penjelasan detail layanan: AJB, HT, Pendirian PT, Wasiat, dll dengan layout rapi.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon-large"><i class="fab fa-whatsapp"></i></div>
+                    <div>
+                        <h4>Direct WhatsApp Integration</h4>
+                        <p style="color: #64748b;">Tombol melayang (floating button) untuk konsultasi cepat tanpa simpan nomor.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon-large"><i class="fas fa-map-marked-alt"></i></div>
+                    <div>
+                        <h4>Google Maps Embed</h4>
+                        <p style="color: #64748b;">Panduan arah langsung ke kantor Anda. Memudahkan klien pertama kali berkunjung.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING OFFER -->
+    <section id="offer" class="section-padding pricing-section">
+        <div class="container">
+            <div class="pricing-card text-center">
+                <h2 style="margin-bottom: 10px;">Investasi Profesionalisme Anda</h2>
+                <p style="color: #64748b; margin-bottom: 30px;">Satu kali bayar, aset digital milik Anda selamanya.</p>
+
+                <div style="margin-bottom: 30px;">
+                    <span class="price-strike">Rp 4.500.000</span>
+                    <br>
+                    <span class="price-tag">Rp 2.500.000</span>
+                    <span style="display: block; margin-top: 10px; color: var(--accent); font-weight: 600;">Hemat 45% Hari Ini</span>
+                </div>
+
+                <ul class="check-list">
+                    <li><i class="fas fa-check-circle"></i> Desain One-Page Premium & Elegan</li>
+                    <li><i class="fas fa-check-circle"></i> Gratis Domain (.com/.id) & Hosting 1 Tahun</li>
+                    <li><i class="fas fa-check-circle"></i> Optimasi Kecepatan Tinggi</li>
+                    <li><i class="fas fa-check-circle"></i> Revisi Konten & Desain 2x</li>
+                    <li><i class="fas fa-check-circle"></i> Panduan Edit Sendiri (User Friendly)</li>
                 </ul>
 
-                <div class="old-price">Rp 4.500.000</div>
-                <div class="new-price">Rp 2.500.000</div>
-                
-                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20penawaran%20website%20notaris%20seharga%202.5jt." class="btn btn-whatsapp">
-                    📞 Ambil Promo Ini via WhatsApp
+                <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 30px; color: #92400e; font-size: 0.9rem;">
+                    <i class="fas fa-exclamation-triangle"></i> <strong>Perhatian:</strong> Penawaran ini terbatas hanya untuk <strong>1 NOTARIS</strong> pertama yang menghubungi kami hari ini.
+                </div>
+
+                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20klaim%20promo%20website%20notaris%20Rp2.5jt." class="btn btn-gold" style="width: 100%; justify-content: center; font-size: 1.2rem;">
+                    <i class="fab fa-whatsapp"></i> Klaim Promo Sekarang
                 </a>
-                <p style="margin-top: 15px; font-size: 0.8rem; color: #666;">*Harga belum termasuk biaya perpanjangan tahun berikutnya.</p>
+                <p style="margin-top: 15px; font-size: 0.8rem; color: #94a3b8;">Respon cepat via WhatsApp</p>
             </div>
         </div>
     </section>
@@ -373,7 +550,7 @@
     <!-- FOOTER -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 NowGoDigital. Solusi Digital untuk Profesi Hukum.</p>
+            <p>&copy; 2026 NowGoDigital. Specialized Web Solutions for Legal Professionals.</p>
         </div>
     </footer>
 
