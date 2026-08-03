@@ -648,6 +648,128 @@
             margin-top: 3px;
         }
 
+        /* --- PRICE COLLAPSE --- */
+        .price-collapse-trigger {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 18px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            color: #92400e;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: 2px solid #f59e0b;
+            transition: all 0.3s ease;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .price-collapse-trigger:hover {
+            background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .price-collapse-trigger:active {
+            transform: translateY(0);
+        }
+
+        .price-collapse-trigger .trigger-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            text-align: left;
+        }
+
+        .price-collapse-trigger .trigger-content i {
+            font-size: 1.2rem;
+            color: #d97706;
+        }
+
+        .price-collapse-trigger .trigger-content strong {
+            font-weight: 700;
+        }
+
+        .price-collapse-trigger .toggle-icon {
+            width: 30px;
+            height: 30px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .price-collapse-trigger.active .toggle-icon {
+            transform: rotate(180deg);
+            background: #d97706;
+        }
+
+        .price-collapse-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .price-collapse-content.show {
+            max-height: 400px;
+            opacity: 1;
+            margin-bottom: 20px;
+        }
+
+        .price-reveal-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #86efac;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .price-reveal-box .price-strike {
+            text-decoration: line-through;
+            color: #94a3b8;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .price-reveal-box .price-tag {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            margin: 10px 0;
+        }
+
+        .price-reveal-box .price-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
         /* --- STICKY ROUND WA BUTTON --- */
         .sticky-wa {
             position: fixed;
@@ -1088,12 +1210,6 @@
                 <h2 style="margin-bottom: 10px; font-size: 1.6rem;">Investasi Profesionalisme</h2>
                 <p style="color: #64748b; margin-bottom: 20px; font-size: 0.85rem;">Satu kali bayar, aset digital milik Anda selamanya.</p>
 
-                <div style="margin-bottom: 25px;">
-                    <span style="text-decoration: line-through; color: #94a3b8; font-size: 1.1rem;">Rp 4.500.000</span>
-                    <div class="price-tag">Rp 2.500.000</div>
-                    <span style="display: block; color: var(--accent); font-weight: 600; font-size: 0.85rem;">Hemat 45% Hari Ini</span>
-                </div>
-
                 <ul class="check-list">
                     <li><i class="fas fa-check-circle"></i> <span>Desain <strong>Multi-Page Premium</strong> dan saling terhubung</span></li>
                     <li><i class="fas fa-check-circle"></i> <span>Include <strong>Domain .com 3 Tahun</strong> & Hosting <strong>4 Tahun</strong></span></li>
@@ -1104,8 +1220,26 @@
                     <li><i class="fas fa-check-circle"></i> <span>Support & Maintenance 3 Bulan</span></li>
                 </ul>
 
-                <div style="background: #fef3c7; padding: 12px; border-radius: 8px; margin-bottom: 20px; color: #92400e; font-size: 0.8rem;">
-                    <i class="fas fa-exclamation-triangle"></i> Terbatas untuk <strong>1 NOTARIS</strong> pertama hari ini.
+                <!-- PRICE COLLAPSE TRIGGER -->
+                <div class="price-collapse-trigger" id="priceCollapseTrigger">
+                    <div class="trigger-content">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Terbatas untuk <strong>1 NOTARIS</strong> pertama hari ini</span>
+                    </div>
+                    <div class="toggle-icon">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <!-- PRICE COLLAPSE CONTENT -->
+                <div class="price-collapse-content" id="priceCollapseContent">
+                    <div class="price-reveal-box">
+                        <span class="price-strike">Rp 4.500.000</span>
+                        <div class="price-tag">Rp 2.500.000</div>
+                        <span class="price-badge">
+                            <i class="fas fa-tag"></i> Hemat 45% Hari Ini
+                        </span>
+                    </div>
                 </div>
 
                 <a href="https://wa.me/628175761165?text=Halo,%20saya%20ingin%20klaim%20promo%20website%20notaris%20Rp2.5jt." class="btn btn-gold" style="width: 100%; font-size: 1rem;">
@@ -1296,7 +1430,33 @@
         });
 
         // ============================================
-        // 5. SMOOTH SCROLL FOR ANCHOR LINKS
+        // 5. PRICE COLLAPSE TOGGLE
+        // ============================================
+        const priceTrigger = document.getElementById('priceCollapseTrigger');
+        const priceContent = document.getElementById('priceCollapseContent');
+
+        priceTrigger.addEventListener('click', () => {
+            const isActive = priceContent.classList.contains('show');
+            
+            priceTrigger.classList.toggle('active');
+            priceContent.classList.toggle('show');
+            
+            // Smooth scroll ke tombol CTA setelah reveal
+            if (!isActive) {
+                setTimeout(() => {
+                    const ctaButton = document.querySelector('.pricing-card .btn-gold');
+                    if (ctaButton) {
+                        ctaButton.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }
+                }, 600);
+            }
+        });
+
+        // ============================================
+        // 6. SMOOTH SCROLL FOR ANCHOR LINKS
         // ============================================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
