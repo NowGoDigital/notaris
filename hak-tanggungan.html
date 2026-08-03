@@ -1143,5 +1143,99 @@
         });
     </script>
 
+<!-- ============================================================ -->
+<!-- 🔒 Proteksi Konten (Disesuaikan dengan Tema Premium/Luxury)     -->
+<!-- ============================================================ -->
+<script>
+(function() {
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        showToastCustom('🔒 Konten dilindungi. Klik kanan dinonaktifkan.');
+        return false;
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
+        if (e.ctrlKey && e.key === 's') { e.preventDefault(); return false; }
+        if (e.ctrlKey && e.key === 'c') { e.preventDefault(); return false; }
+        if ((e.ctrlKey && e.shiftKey && e.key === 'I') || e.key === 'F12') { 
+            e.preventDefault(); 
+            showToastCustom('🔒 Developer Tools dinonaktifkan.');
+            return false; 
+        }
+        if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
+        if (e.ctrlKey && e.key === 'p') { e.preventDefault(); return false; }
+    });
+
+    document.addEventListener('selectstart', function(e) {
+        if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    function showToastCustom(message) {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed; top: 20px; right: 20px; z-index: 99999;
+            background: linear-gradient(135deg, #0a1a2e, #1a2a4a);
+            color: #f5f5f5; padding: 16px 24px; border-radius: 12px;
+            font-weight: 600; font-size: 0.95rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.15);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            animation: slideInToast 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-left: 4px solid #D4AF37;
+            backdrop-filter: blur(10px);
+            letter-spacing: 0.3px;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(20px)';
+            toast.style.transition = 'all 0.4s ease';
+            setTimeout(() => toast.remove(), 400);
+        }, 3000);
+    }
+
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideInToast {
+            from { 
+                transform: translateX(120%); 
+                opacity: 0;
+            }
+            to { 
+                transform: translateX(0); 
+                opacity: 1; 
+            }
+        }
+        body { 
+            -webkit-user-select: none; 
+            -moz-user-select: none; 
+            -ms-user-select: none; 
+            user-select: none; 
+        }
+        input, textarea, select { 
+            -webkit-user-select: text; 
+            -moz-user-select: text; 
+            -ms-user-select: text; 
+            user-select: text; 
+        }
+    `;
+    document.head.appendChild(style);
+
+    console.log('%c🔒 Proteksi Konten Aktif', 'color: #D4AF37; font-size: 14px; font-weight: bold; background: #0a1a2e; padding: 8px 12px; border-radius: 4px;');
+})();
+</script>
+
+
+    
 </body>
 </html>
